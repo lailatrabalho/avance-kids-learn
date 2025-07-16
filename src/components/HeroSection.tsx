@@ -17,9 +17,9 @@ const HeroSection = () => {
             <h1 className="fredoka text-4xl lg:text-6xl mb-6 leading-tight">
               E-BOOK AVANCE
               <br />
-              <span className="text-gold">EDUCAÇÃO INFANTIL</span>
+              <span className="text-gold">OS NÍVEIS DE ALFABETIZAÇÃO</span>
               <br />
-              <span className="text-lg poppins font-normal">DE 3 A 6 ANOS</span>
+              <span className="text-lg poppins font-normal">DE 3 A 8 ANOS</span>
             </h1>
             <div className="space-y-4 mb-8 poppins">
               <div className="flex items-center">
