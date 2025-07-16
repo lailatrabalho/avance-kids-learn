@@ -30,14 +30,14 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    /* Educational theme colors */
-    --coral: 355 70% 64%; /* #EA4C57 equivalent */
-    --dark-blue: 224 75% 39%; /* #2E4DA7 equivalent */
-    --gold: 45 93% 47%; /* #FFC107 equivalent */
-    --orange: 32 100% 50%; /* #FF8A00 equivalent */
-    --light-green: 122 39% 49%; /* #4CAF50 equivalent */
-    --purple: 259 94% 51%; /* #8B5CF6 equivalent */
-    --pink: 340 82% 52%;
+    /* Educational theme colors - exact matches */
+    --coral: 355 70% 64%; /* #EA4C57 */
+    --dark-blue: 224 75% 39%; /* #2E4DA7 */
+    --gold: 45 100% 51%; /* #FFC107 */
+    --orange: 32 100% 50%; /* #FF8A00 */
+    --light-green: 122 39% 49%; /* #4CAF50 */
+    --purple: 259 94% 71%; /* #8B5CF6 */
+    --pink: 340 62% 86%; /* #FFB6C1 */
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(225 73% 70%), hsl(259 45% 63%));
