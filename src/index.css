@@ -2,56 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Design System for E-book Avance - Educational Children's App */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* Core system colors */
+    --background: 0 0% 98%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
+    --radius: 1rem;
 
-    --radius: 0.5rem;
+    /* Brand colors for children's education */
+    --primary: 218 91% 60%; /* Light blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 93% 47%; /* Gold */
+    --secondary-foreground: 222.2 84% 4.9%;
+    --accent: 142 76% 36%; /* Green */
+    --accent-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
+    /* Educational theme colors */
+    --coral: 355 70% 64%; /* #EA4C57 equivalent */
+    --dark-blue: 224 75% 39%; /* #2E4DA7 equivalent */
+    --gold: 45 93% 47%; /* #FFC107 equivalent */
+    --orange: 32 100% 50%; /* #FF8A00 equivalent */
+    --light-green: 122 39% 49%; /* #4CAF50 equivalent */
+    --purple: 259 94% 51%; /* #8B5CF6 equivalent */
+    --pink: 340 82% 52%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(225 73% 70%), hsl(259 45% 63%));
+    --gradient-card-1: linear-gradient(135deg, hsl(225 73% 70%), hsl(259 45% 63%));
+    --gradient-card-2: linear-gradient(135deg, hsl(311 76% 80%), hsl(355 70% 64%));
+    --gradient-card-3: linear-gradient(135deg, hsl(195 100% 65%), hsl(186 100% 50%));
+    --gradient-card-4: linear-gradient(135deg, hsl(158 64% 52%), hsl(171 80% 60%));
+    --gradient-cta: linear-gradient(135deg, hsl(225 73% 70%), hsl(259 45% 63%));
+
+    /* Animations and effects */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--gold) / 0.4);
+
+    /* Sidebar (keeping existing) */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -101,5 +109,135 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .fredoka {
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  .poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  /* Educational theme color utilities */
+  .bg-coral { background-color: hsl(var(--coral)); }
+  .bg-dark-blue { background-color: hsl(var(--dark-blue)); }
+  .bg-gold { background-color: hsl(var(--gold)); }
+  .bg-orange { background-color: hsl(var(--orange)); }
+  .bg-light-green { background-color: hsl(var(--light-green)); }
+  .bg-purple { background-color: hsl(var(--purple)); }
+  .bg-pink { background-color: hsl(var(--pink)); }
+  
+  .text-coral { color: hsl(var(--coral)); }
+  .text-dark-blue { color: hsl(var(--dark-blue)); }
+  .text-gold { color: hsl(var(--gold)); }
+  .text-orange { color: hsl(var(--orange)); }
+  .text-light-green { color: hsl(var(--light-green)); }
+  .text-purple { color: hsl(var(--purple)); }
+  
+  /* Gradient backgrounds */
+  .gradient-hero { background: var(--gradient-hero); }
+  .gradient-card-1 { background: var(--gradient-card-1); }
+  .gradient-card-2 { background: var(--gradient-card-2); }
+  .gradient-card-3 { background: var(--gradient-card-3); }
+  .gradient-card-4 { background: var(--gradient-card-4); }
+  .gradient-cta { background: var(--gradient-cta); }
+  
+  /* Interactive animations */
+  .card-hover {
+    transition: var(--transition-smooth);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  .story-link {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .story-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(var(--coral));
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  .hover-scale {
+    transition: transform 0.2s ease;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .number-badge {
+    background: var(--gradient-card-1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+  }
+}
+
+@layer utilities {
+  /* Animation keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes blob {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+    50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+    75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  }
+  
+  @keyframes rocket-fly {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-8px) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(0deg); }
+    75% { transform: translateY(-8px) rotate(5deg); }
+  }
+  
+  .floating {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  
+  .blob {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: blob 7s ease-in-out infinite;
+  }
+  
+  .rocket-animation {
+    display: inline-block;
+    animation: rocket-fly 2s ease-in-out infinite;
   }
 }

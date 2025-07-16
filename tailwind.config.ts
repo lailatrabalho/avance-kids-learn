@@ -61,7 +61,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Educational theme colors
+				coral: 'hsl(var(--coral))',
+				'dark-blue': 'hsl(var(--dark-blue))',
+				gold: 'hsl(var(--gold))',
+				orange: 'hsl(var(--orange))',
+				'light-green': 'hsl(var(--light-green))',
+				purple: 'hsl(var(--purple))',
+				pink: 'hsl(var(--pink))'
+			},
+			fontFamily: {
+				fredoka: ['Fredoka One', 'cursive'],
+				poppins: ['Poppins', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
