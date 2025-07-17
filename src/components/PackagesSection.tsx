@@ -118,7 +118,7 @@ const PackagesSection = () => {
         <div className="text-center">
           <Button 
             onClick={handlePurchaseClick}
-            className="inline-flex items-center justify-center max-w-xs mx-auto text-base sm:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka border-4 border-white"
+            className="inline-flex items-center justify-center max-w-xs mx-auto text-base sm:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka"
           >
             <span className="rocket-animation mr-2">🚀</span> QUERO AVANÇAR
           </Button>
