@@ -48,7 +48,7 @@ const FAQSection = () => {
           
           <Button 
             onClick={handleAtendimentoWhatsApp}
-            className="w-full max-w-xs mx-auto block text-base sm:text-xl md:text-2xl px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-2xl hover-scale font-bold bg-gold hover:bg-yellow-500 text-black poppins"
+            className="w-full max-w-md mx-auto block text-lg sm:text-xl md:text-2xl px-8 py-4 rounded-full shadow-2xl hover-scale font-bold bg-gold hover:bg-yellow-500 text-black poppins"
           >
             SOLICITAR ATENDIMENTO
           </Button>

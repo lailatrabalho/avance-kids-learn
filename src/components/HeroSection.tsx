@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-ebook.jpg";
+// Using uploaded image directly
 
 const HeroSection = () => {
   const handlePurchaseClick = () => {
@@ -43,7 +43,7 @@ const HeroSection = () => {
             <div className="blob bg-white/10 w-80 h-80 absolute top-10 right-10"></div>
             <div className="relative z-10 floating">
               <img 
-                src={heroImage} 
+                src="/lovable-uploads/4a24f329-7319-4c8b-abac-61de42f6ab2b.png" 
                 alt="E-book Avance" 
                 className="w-full max-w-md mx-auto rounded-2xl shadow-2xl"
               />

@@ -118,7 +118,7 @@ const PackagesSection = () => {
         <div className="text-center">
           <Button 
             onClick={handlePurchaseClick}
-            className="w-full max-w-xs mx-auto block text-base sm:text-xl md:text-2xl px-6 py-3 sm:px-8 sm:py-4 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka border-4 border-white"
+            className="w-full max-w-md mx-auto block text-lg sm:text-xl md:text-2xl px-8 py-4 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka border-4 border-white"
           >
             <span className="rocket-animation mr-2">🚀</span> QUERO AVANÇAR
           </Button>
