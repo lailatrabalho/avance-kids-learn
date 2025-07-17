@@ -74,17 +74,17 @@ const BenefitsSection = () => {
               </p>
               
               <div className="grid md:grid-cols-3 gap-4">
-                <div className="flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 text-white p-3 rounded-xl">
-                  <span className="mr-2">📜</span>
-                  <span className="poppins font-semibold text-sm">Certificado Digital</span>
+                <div className="flex items-center justify-center bg-blue-600 text-white p-3 rounded-xl shadow-lg">
+                  <span className="mr-2 text-lg">📜</span>
+                  <span className="poppins font-bold text-sm">Certificado Digital</span>
                 </div>
-                <div className="flex items-center justify-center bg-gradient-to-r from-green-500 to-teal-500 text-white p-3 rounded-xl">
-                  <span className="mr-2">🎨</span>
-                  <span className="poppins font-semibold text-sm">Design Exclusivo</span>
+                <div className="flex items-center justify-center bg-green-600 text-white p-3 rounded-xl shadow-lg">
+                  <span className="mr-2 text-lg">🎨</span>
+                  <span className="poppins font-bold text-sm">Design Exclusivo</span>
                 </div>
-                <div className="flex items-center justify-center bg-gradient-to-r from-pink-500 to-red-500 text-white p-3 rounded-xl">
-                  <span className="mr-2">👶</span>
-                  <span className="poppins font-semibold text-sm">Nome da Criança</span>
+                <div className="flex items-center justify-center bg-pink-600 text-white p-3 rounded-xl shadow-lg">
+                  <span className="mr-2 text-lg">👶</span>
+                  <span className="poppins font-bold text-sm">Nome da Criança</span>
                 </div>
               </div>
             </div>
