@@ -91,7 +91,7 @@ const PackagesSection = () => {
           </div>
           
           {/* PACOTE EXPERT */}
-          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl card-hover border-4 border-gold relative" style={{ boxShadow: '0 0 30px rgba(255, 193, 7, 0.4)' }}>
+          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl card-hover relative">
             <div className="gradient-card-4 p-6 text-white">
                         <div className="flex justify-between items-start mb-4">
                             <div>
