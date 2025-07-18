@@ -1,7 +1,5 @@
-
 const BenefitsSection = () => {
-  return (
-    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white" id="sobre">
+  return <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white" id="sobre">
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
@@ -56,14 +54,14 @@ const BenefitsSection = () => {
           {/* Confetes decorativos */}
           <div className="absolute top-2 left-4 text-white/30 text-2xl animate-bounce">🎉</div>
           <div className="absolute top-4 right-6 text-white/30 text-xl animate-bounce" style={{
-            animationDelay: '0.5s'
-          }}>⭐</div>
+          animationDelay: '0.5s'
+        }}>⭐</div>
           <div className="absolute bottom-3 left-8 text-white/30 text-lg animate-bounce" style={{
-            animationDelay: '1s'
-          }}>🎊</div>
+          animationDelay: '1s'
+        }}>🎊</div>
           <div className="absolute bottom-2 right-4 text-white/30 text-2xl animate-bounce" style={{
-            animationDelay: '1.5s'
-          }}>✨</div>
+          animationDelay: '1.5s'
+        }}>✨</div>
           
           <div className="relative z-10">
             <div className="flex flex-col items-center justify-center mb-4 sm:mb-6">
@@ -89,7 +87,7 @@ const BenefitsSection = () => {
                   <span className="text-lg sm:text-base mb-1 sm:mb-0 sm:mr-2">🎨</span>
                   <span className="poppins font-bold text-xs sm:text-sm text-center">Design Exclusivo</span>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center justify-center bg-yellow-600 text-white p-3 rounded-xl shadow-lg">
+                <div className="flex flex-col sm:flex-row items-center justify-center text-white p-3 rounded-xl shadow-lg bg-yellow-500">
                   <span className="text-lg sm:text-base mb-1 sm:mb-0 sm:mr-2">👶</span>
                   <span className="poppins font-bold text-xs sm:text-sm text-center">Nome da Criança</span>
                 </div>
@@ -98,8 +96,6 @@ const BenefitsSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default BenefitsSection;
