@@ -16,17 +16,17 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-white">
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white">
       <div className="container mx-auto max-w-4xl">
-        <div className="gradient-cta p-12 rounded-3xl text-white text-center">
-          <h2 className="fredoka text-3xl lg:text-4xl mb-6">
+        <div className="gradient-cta p-6 sm:p-8 lg:p-12 rounded-3xl text-white text-center">
+          <h2 className="fredoka text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 sm:mb-6">
             AINDA TEM DÚVIDAS SOBRE O AVANCE?
           </h2>
-          <p className="poppins text-lg mb-8">
+          <p className="poppins text-sm sm:text-base lg:text-lg mb-6 sm:mb-8">
             Nossos consultores especializados em educação infantil estão prontos para esclarecer todas as suas questões e te ajudar a escolher o melhor pacote.
           </p>
           
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <div className="bg-white/10 p-4 rounded-xl">
               <Input 
                 value={nome}
@@ -48,7 +48,7 @@ const FAQSection = () => {
           
           <Button 
             onClick={handleAtendimentoWhatsApp}
-            className="inline-flex items-center justify-center max-w-xs mx-auto text-base sm:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gold hover:bg-yellow-500 text-black poppins"
+            className="inline-flex items-center justify-center w-full sm:max-w-xs sm:mx-auto text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gold hover:bg-yellow-500 text-black poppins"
           >
             SOLICITAR ATENDIMENTO
           </Button>

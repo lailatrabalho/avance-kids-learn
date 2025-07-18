@@ -24,30 +24,30 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-gray-50" id="depoimentos">
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-50" id="depoimentos">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="fredoka text-4xl lg:text-5xl text-dark-blue mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
             O QUE DIZEM OS PAIS E PROFESSORES
           </h2>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white p-8 rounded-3xl shadow-lg">
+            <div key={index} className="bg-white p-6 sm:p-8 rounded-3xl shadow-lg">
               <div className="flex items-center mb-4">
-                <div className={`w-12 h-12 ${testimonial.color} rounded-full flex items-center justify-center text-white font-bold mr-4`}>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 ${testimonial.color} rounded-full flex items-center justify-center text-white font-bold mr-3 sm:mr-4 flex-shrink-0`}>
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <h4 className="fredoka text-lg text-dark-blue">{testimonial.name}</h4>
-                  <p className="poppins text-sm text-gray-500">{testimonial.role}</p>
+                  <h4 className="fredoka text-base sm:text-lg text-dark-blue">{testimonial.name}</h4>
+                  <p className="poppins text-xs sm:text-sm text-gray-500">{testimonial.role}</p>
                 </div>
               </div>
-              <p className="poppins text-gray-700 italic">
+              <p className="poppins text-sm sm:text-base text-gray-700 italic">
                 "{testimonial.text}"
               </p>
-              <div className="flex text-gold mt-4">⭐⭐⭐⭐⭐</div>
+              <div className="flex text-gold mt-4 text-sm sm:text-base">⭐⭐⭐⭐⭐</div>
             </div>
           ))}
         </div>

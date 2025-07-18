@@ -10,17 +10,17 @@ const PackagesSection = () => {
   };
 
   return (
-    <section className="py-12 px-6 bg-gray-50" id="conteudo">
+    <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gray-50" id="conteudo">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="fredoka text-4xl lg:text-5xl text-dark-blue mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
             ESCOLHA O PACOTE IDEAL
             <br />
             <span className="text-coral">PARA SUA CRIANÇA</span>
           </h2>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {/* PACOTE MIDDLE */}
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
             <div className="gradient-card-1 p-6 text-white">
@@ -33,8 +33,8 @@ const PackagesSection = () => {
                                 <img src={childReading1} alt="Criança lendo livro 1" className="w-full h-full object-cover" />
                             </div>
                         </div>
-              <h3 className="fredoka text-xl mb-3">PACOTE MIDDLE</h3>
-              <p className="poppins text-sm leading-relaxed text-white/90">Atividades fundamentais de alfabetização inicial, reconhecimento de formas e cores básicas para desenvolvimento motor.</p>
+              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE MIDDLE</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Atividades fundamentais de alfabetização inicial, reconhecimento de formas e cores básicas para desenvolvimento motor.</p>
               <div className="mt-4 flex items-center">
                 <span className="poppins text-sm">Primeiras atividades</span>
                 <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
@@ -56,8 +56,8 @@ const PackagesSection = () => {
                                 <img src={childReading2} alt="Criança lendo livro 2" className="w-full h-full object-cover" />
                             </div>
                         </div>
-              <h3 className="fredoka text-xl mb-3">PACOTE RICH</h3>
-              <p className="poppins text-sm leading-relaxed text-white/90">Exercícios de coordenação motora, primeiras palavras, números até 10 e atividades de associação e memória.</p>
+              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE RICH</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Exercícios de coordenação motora, primeiras palavras, números até 10 e atividades de associação e memória.</p>
               <div className="mt-4 flex items-center">
                 <span className="poppins text-sm">Desenvolvimento médio</span>
                 <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
@@ -79,8 +79,8 @@ const PackagesSection = () => {
                                 <img src={childReading3} alt="Criança lendo livro 3" className="w-full h-full object-cover" />
                             </div>
                         </div>
-              <h3 className="fredoka text-xl mb-3">PACOTE SUPER</h3>
-              <p className="poppins text-sm leading-relaxed text-white/90">Leitura de palavras simples, operações matemáticas básicas, desenvolvimento da escrita e atividades de lógica.</p>
+              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE SUPER</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Leitura de palavras simples, operações matemáticas básicas, desenvolvimento da escrita e atividades de lógica.</p>
               <div className="mt-4 flex items-center">
                 <span className="poppins text-sm">Nível avançado</span>
                 <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
@@ -102,8 +102,8 @@ const PackagesSection = () => {
                                 <img src={childReading4} alt="Criança lendo livro 4" className="w-full h-full object-cover" />
                             </div>
                         </div>
-              <h3 className="fredoka text-xl mb-3">PACOTE EXPERT</h3>
-              <p className="poppins text-sm leading-relaxed text-white/90">Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 8 anos.</p>
+              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE EXPERT</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 8 anos.</p>
               <div className="mt-4 flex items-center">
                 <span className="poppins text-sm">Completo e progressivo</span>
                 <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
@@ -118,11 +118,11 @@ const PackagesSection = () => {
         <div className="text-center">
           <Button 
             onClick={handlePurchaseClick}
-            className="inline-flex items-center justify-center max-w-xs mx-auto text-base sm:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka"
+            className="inline-flex items-center justify-center w-full sm:max-w-xs sm:mx-auto text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka"
           >
             <span className="rocket-animation mr-2">🚀</span> QUERO AVANÇAR
           </Button>
-          <p className="poppins text-gray-600 mt-4 text-sm">
+          <p className="poppins text-gray-600 mt-4 text-xs sm:text-sm text-center">
             Escolha qualquer pacote e comece a transformar o aprendizado da sua criança hoje mesmo!
           </p>
         </div>
