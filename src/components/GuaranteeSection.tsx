@@ -1,7 +1,5 @@
-
 const GuaranteeSection = () => {
-  return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
+  return <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white">
       <div className="container mx-auto text-center">
         <div className="max-w-2xl mx-auto">
           <div className="relative">
@@ -9,7 +7,9 @@ const GuaranteeSection = () => {
             <div className="relative inline-block">
               <div className="w-64 h-64 sm:w-80 sm:h-80 mx-auto relative">
                 {/* Outer rotating ring */}
-                <div className="absolute inset-0 rounded-full border-8 border-dashed border-yellow-400 animate-spin" style={{ animationDuration: '20s' }}></div>
+                <div className="absolute inset-0 rounded-full border-8 border-dashed border-yellow-400 animate-spin" style={{
+                animationDuration: '20s'
+              }}></div>
                 
                 {/* Main seal circle */}
                 <div className="absolute inset-4 bg-gradient-to-br from-yellow-300 via-gold to-yellow-400 rounded-full shadow-2xl flex items-center justify-center">
@@ -81,7 +81,7 @@ const GuaranteeSection = () => {
               </div>
               
               <div className="group relative overflow-hidden bg-gradient-to-br from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 p-4 sm:p-6 rounded-2xl text-white shadow-lg hover-scale transition-all duration-300 cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 group-hover:animate-pulse bg-amber-600"></div>
                 <div className="relative z-10 text-center">
                   <div className="text-3xl sm:text-4xl mb-3 transform group-hover:scale-110 transition-transform duration-300">⚡</div>
                   <h4 className="poppins font-bold text-sm sm:text-base mb-2">Entrega Imediata</h4>
@@ -92,8 +92,6 @@ const GuaranteeSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default GuaranteeSection;
