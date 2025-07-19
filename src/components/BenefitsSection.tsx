@@ -74,7 +74,7 @@ const BenefitsSection = () => {
               </h3>
             </div>
             
-            <div className="bg-gradient-to-br from-yellow-50/90 via-orange-50/85 to-yellow-100/90 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/30">
+            <div className="bg-gradient-to-br from-yellow-100/95 via-orange-100/90 to-orange-200/90 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/30">
               <p className="poppins text-dark-blue font-semibold text-xs sm:text-sm lg:text-base mb-3 sm:mb-4">
                 🎓 Reconhecimento oficial que motiva e valoriza o desenvolvimento de cada criança ao concluir as atividades propostas
               </p>
