@@ -18,7 +18,7 @@ const FAQSection = () => {
   return (
     <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white">
       <div className="container mx-auto max-w-4xl">
-        <div className="gradient-cta p-6 sm:p-8 lg:p-12 rounded-3xl text-white text-center">
+        <div className="gradient-faq p-6 sm:p-8 lg:p-12 rounded-3xl text-white text-center">
           <h2 className="fredoka text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 sm:mb-6">
             AINDA TEM DÚVIDAS SOBRE O AVANCE?
           </h2>
