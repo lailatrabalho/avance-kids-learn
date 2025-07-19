@@ -48,7 +48,7 @@ const BenefitsSection = () => {
           </div>
         </div>
       
-        <div className="bg-gradient-to-r from-yellow-400 via-gold to-orange-500 p-4 sm:p-6 lg:p-8 rounded-3xl mt-12 sm:mt-16 text-center shadow-2xl border-4 border-white relative overflow-hidden">
+        <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }} className="p-4 sm:p-6 lg:p-8 rounded-3xl mt-12 sm:mt-16 text-center shadow-2xl border-4 border-white relative overflow-hidden">
           {/* Brilho animado */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse"></div>
           
@@ -74,7 +74,7 @@ const BenefitsSection = () => {
               </h3>
             </div>
             
-            <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }} className="backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/30">
+            <div className="bg-white/90 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/30">
               <p className="poppins text-dark-blue font-semibold text-xs sm:text-sm lg:text-base mb-3 sm:mb-4">
                 🎓 Reconhecimento oficial que motiva e valoriza o desenvolvimento de cada criança ao concluir as atividades propostas
               </p>
