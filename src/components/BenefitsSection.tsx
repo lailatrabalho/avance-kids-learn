@@ -1,3 +1,4 @@
+
 const BenefitsSection = () => {
   return <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white" id="sobre">
       <div className="container mx-auto">
@@ -73,7 +74,7 @@ const BenefitsSection = () => {
               </h3>
             </div>
             
-            <div className="bg-white/90 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl">
+            <div className="bg-gradient-to-br from-orange-100/95 via-yellow-50/95 to-orange-50/95 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/20">
               <p className="poppins text-dark-blue font-semibold text-xs sm:text-sm lg:text-base mb-3 sm:mb-4">
                 🎓 Reconhecimento oficial que motiva e valoriza o desenvolvimento de cada criança ao concluir as atividades propostas
               </p>

@@ -1,9 +1,5 @@
 
 import { Button } from "@/components/ui/button";
-import childReading1 from "@/assets/child-reading-1.jpg";
-import childReading2 from "@/assets/child-reading-2.jpg";
-import childReading3 from "@/assets/child-reading-3.jpg";
-import childReading4 from "@/assets/child-reading-4.jpg";
 
 const PackagesSection = () => {
   const handlePurchaseClick = () => {
@@ -32,9 +28,9 @@ const PackagesSection = () => {
                 </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
                   <img 
-                    src={childReading1} 
+                    src="https://i.imgur.com/rUT1xeR.jpeg" 
                     alt="Criança lendo livro 1" 
-                    className="w-full h-full object-cover aspect-square" 
+                    className="w-full h-full object-cover" 
                     style={{ aspectRatio: '1/1' }}
                   />
                 </div>
@@ -60,9 +56,9 @@ const PackagesSection = () => {
                 </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
                   <img 
-                    src={childReading2} 
+                    src="https://i.imgur.com/YpcSJsf.jpeg" 
                     alt="Criança lendo livro 2" 
-                    className="w-full h-full object-cover aspect-square" 
+                    className="w-full h-full object-cover" 
                     style={{ aspectRatio: '1/1' }}
                   />
                 </div>
@@ -88,9 +84,9 @@ const PackagesSection = () => {
                 </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
                   <img 
-                    src={childReading3} 
+                    src="https://i.imgur.com/M6ByzwL.jpeg" 
                     alt="Criança lendo livro 3" 
-                    className="w-full h-full object-cover aspect-square" 
+                    className="w-full h-full object-cover" 
                     style={{ aspectRatio: '1/1' }}
                   />
                 </div>
@@ -116,9 +112,9 @@ const PackagesSection = () => {
                 </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
                   <img 
-                    src={childReading4} 
+                    src="https://i.imgur.com/FDqaQzG.jpeg" 
                     alt="Criança lendo livro 4" 
-                    className="w-full h-full object-cover aspect-square" 
+                    className="w-full h-full object-cover" 
                     style={{ aspectRatio: '1/1' }}
                   />
                 </div>
