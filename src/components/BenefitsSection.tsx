@@ -74,7 +74,7 @@ const BenefitsSection = () => {
               </h3>
             </div>
             
-            <div className="bg-gradient-to-br from-yellow-100/95 via-orange-100/90 to-orange-200/90 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/30">
+            <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }} className="backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/30">
               <p className="poppins text-dark-blue font-semibold text-xs sm:text-sm lg:text-base mb-3 sm:mb-4">
                 🎓 Reconhecimento oficial que motiva e valoriza o desenvolvimento de cada criança ao concluir as atividades propostas
               </p>
@@ -88,7 +88,7 @@ const BenefitsSection = () => {
                   <span className="text-lg sm:text-base mb-1 sm:mb-0 sm:mr-2">🎨</span>
                   <span className="poppins font-bold text-xs sm:text-sm text-center">Design Exclusivo</span>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center justify-center text-white p-3 rounded-xl shadow-lg bg-yellow-500">
+                <div style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }} className="flex flex-col sm:flex-row items-center justify-center text-white p-3 rounded-xl shadow-lg">
                   <span className="text-lg sm:text-base mb-1 sm:mb-0 sm:mr-2">👶</span>
                   <span className="poppins font-bold text-xs sm:text-sm text-center">Nome da Criança</span>
                 </div>
