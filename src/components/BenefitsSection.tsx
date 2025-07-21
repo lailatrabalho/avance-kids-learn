@@ -10,41 +10,65 @@ const BenefitsSection = () => {
           </h2>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          <div className="text-center">
-            <div className="number-badge mx-auto mb-6">1</div>
-            <div className="bg-gradient-to-br from-purple-100 to-blue-100 p-6 rounded-2xl mb-4">
-              <div className="text-5xl mb-4">🎲</div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="group">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-purple-200">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 opacity-60"></div>
+              <div className="relative p-6 sm:p-8">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">1</div>
+                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">🎲</div>
+                </div>
+                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">JOGOS PEDAGÓGICOS EDUCATIVOS</h3>
+                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades lúdicas e interativas que estimulam o aprendizado por meio de jogos, promovendo o raciocínio, a criatividade e a socialização das crianças.</p>
+                <div className="absolute top-4 right-4 w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+              </div>
             </div>
-            <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-2">JOGOS PEDAGÓGICOS EDUCATIVOS</h3>
-            <p className="poppins text-gray-600 text-xs sm:text-sm">Atividades lúdicas e interativas que estimulam o aprendizado por meio de jogos, promovendo o raciocínio, a criatividade e a socialização das crianças.</p>
           </div>
           
-          <div className="text-center">
-            <div className="number-badge mx-auto mb-6">2</div>
-            <div className="bg-gradient-to-br from-pink-100 to-red-100 p-6 rounded-2xl mb-4">
-              <div className="text-5xl mb-4">🧠</div>
+          <div className="group">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-pink-200">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-100 opacity-60"></div>
+              <div className="relative p-6 sm:p-8">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">2</div>
+                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">🧠</div>
+                </div>
+                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">DESENVOLVEM LÓGICA E INTELIGÊNCIA</h3>
+                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades que estimulam o raciocínio lógico, criatividade e resolução de problemas</p>
+                <div className="absolute top-4 right-4 w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
+              </div>
             </div>
-            <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-2">DESENVOLVEM LÓGICA E INTELIGÊNCIA</h3>
-            <p className="poppins text-gray-600 text-xs sm:text-sm">Atividades que estimulam o raciocínio lógico, criatividade e resolução de problemas</p>
           </div>
           
-          <div className="text-center">
-            <div className="number-badge mx-auto mb-6">3</div>
-            <div className="bg-gradient-to-br from-green-100 to-teal-100 p-6 rounded-2xl mb-4">
-              <div className="text-5xl mb-4">✍️</div>
+          <div className="group">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-green-200">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
+              <div className="relative p-6 sm:p-8">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">3</div>
+                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">✍️</div>
+                </div>
+                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">DESENVOLVEM A COORDENAÇÃO MOTORA</h3>
+                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades práticas que estimulam o traçado, recorte, colagem e outras ações essenciais para o desenvolvimento motor das crianças.</p>
+                <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              </div>
             </div>
-            <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-2">DESENVOLVEM A COORDENAÇÃO MOTORA</h3>
-            <p className="poppins text-gray-600 text-xs sm:text-sm">Atividades práticas que estimulam o traçado, recorte, colagem e outras ações essenciais para o desenvolvimento motor das crianças.</p>
           </div>
           
-          <div className="text-center">
-            <div className="number-badge mx-auto mb-6">4</div>
-            <div className="bg-gradient-to-br from-yellow-100 to-orange-100 p-6 rounded-2xl mb-4">
-              <div className="text-5xl mb-4">📖</div>
+          <div className="group">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-orange-200">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 via-orange-50 to-amber-100 opacity-60"></div>
+              <div className="relative p-6 sm:p-8">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">4</div>
+                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">📖</div>
+                </div>
+                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">MELHORAM E AVANÇAM NO NÍVEIS DE LEITURA E ESCRITA</h3>
+                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades que desenvolvem e aprimoram as habilidades de leitura e escrita, promovendo avanços significativos em cada etapa da alfabetização.</p>
+                <div className="absolute top-4 right-4 w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+              </div>
             </div>
-            <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-2">MELHORAM E AVANÇAM NO NÍVEIS DE LEITURA E ESCRITA</h3>
-            <p className="poppins text-gray-600 text-xs sm:text-sm">Atividades que desenvolvem e aprimoram as habilidades de leitura e escrita, promovendo avanços significativos em cada etapa da alfabetização.</p>
           </div>
         </div>
       
