@@ -16,7 +16,7 @@ const BenefitsSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
               <div className="relative p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg opacity-0"></div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg invisible"></div>
                   <div className="text-4xl sm:text-5xl">🎲</div>
                 </div>
                 <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">JOGOS PEDAGÓGICOS EDUCATIVOS</h3>
@@ -31,7 +31,7 @@ const BenefitsSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
               <div className="relative p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg opacity-0"></div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg invisible"></div>
                   <div className="text-4xl sm:text-5xl">🧠</div>
                 </div>
                 <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">DESENVOLVEM LÓGICA E INTELIGÊNCIA</h3>
@@ -61,7 +61,7 @@ const BenefitsSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
               <div className="relative p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg opacity-0"></div>
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg invisible"></div>
                   <div className="text-4xl sm:text-5xl">📖</div>
                 </div>
                 <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">MELHORAM E AVANÇAM NO NÍVEIS DE LEITURA E ESCRITA</h3>
