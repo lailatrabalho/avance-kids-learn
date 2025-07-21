@@ -12,7 +12,7 @@ const BenefitsSection = () => {
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-purple-200">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-purple-300 hover:bg-gradient-to-br hover:from-purple-50 hover:to-blue-50">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 opacity-60"></div>
               <div className="relative p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-4">
@@ -27,7 +27,7 @@ const BenefitsSection = () => {
           </div>
           
           <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-pink-200">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-pink-300 hover:bg-gradient-to-br hover:from-pink-50 hover:to-rose-50">
               <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-red-100 opacity-60"></div>
               <div className="relative p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-4">
@@ -42,7 +42,7 @@ const BenefitsSection = () => {
           </div>
           
           <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-green-200">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-green-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50">
               <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
               <div className="relative p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-4">
@@ -57,7 +57,7 @@ const BenefitsSection = () => {
           </div>
           
           <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-orange-200">
+            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-orange-300 hover:bg-gradient-to-br hover:from-yellow-50 hover:to-orange-50">
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-50 via-orange-50 to-amber-100 opacity-60"></div>
               <div className="relative p-6 sm:p-8">
                 <div className="flex items-center justify-between mb-4">
