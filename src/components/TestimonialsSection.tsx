@@ -1,24 +1,27 @@
+import { useConfig } from "@/contexts/ConfigContext";
+
 const TestimonialsSection = () => {
+  const { config } = useConfig();
   const testimonials = [
     {
-      name: "Juliana Santos",
-      role: "Professora - Rio de Janeiro",
-      avatar: "J",
-      text: "Transformou completamente minhas aulas! As crianças ficam super engajadas e os pais elogiam o desenvolvimento em casa.",
+      name: config.depoimentos.depoimento1.nome,
+      role: config.depoimentos.depoimento1.cargo,
+      avatar: config.depoimentos.depoimento1.inicial,
+      text: config.depoimentos.depoimento1.texto,
       color: "bg-coral"
     },
     {
-      name: "Carlos Oliveira", 
-      role: "Pai - São Paulo",
-      avatar: "C",
-      text: "Meu filho de 4 anos adora as atividades! Em 2 meses já reconhece todas as letras e números até 20.",
+      name: config.depoimentos.depoimento2.nome,
+      role: config.depoimentos.depoimento2.cargo,
+      avatar: config.depoimentos.depoimento2.inicial,
+      text: config.depoimentos.depoimento2.texto,
       color: "bg-light-green"
     },
     {
-      name: "Ana Maria",
-      role: "Coordenadora - Minas Gerais", 
-      avatar: "A",
-      text: "Implementei em toda a escola. Material de qualidade excepcional com resultados comprovados!",
+      name: config.depoimentos.depoimento3.nome,
+      role: config.depoimentos.depoimento3.cargo,
+      avatar: config.depoimentos.depoimento3.inicial,
+      text: config.depoimentos.depoimento3.texto,
       color: "bg-purple"
     }
   ];
@@ -28,7 +31,7 @@ const TestimonialsSection = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
-            O QUE DIZEM OS PAIS E PROFESSORES
+            {config.depoimentos.titulo}
           </h2>
         </div>
         

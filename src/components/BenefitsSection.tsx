@@ -1,12 +1,15 @@
 
+import { useConfig } from "@/contexts/ConfigContext";
+
 const BenefitsSection = () => {
+  const { config } = useConfig();
   return <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white" id="sobre">
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
-            COM O AVANCE AS CRIANÇAS SE DESENVOLVEM
+            {config.beneficios.titulo}
             <br />
-            <span className="text-coral">EM MÚLTIPLAS ÁREAS</span>
+            <span className="text-coral">{config.beneficios.subtitulo}</span>
           </h2>
         </div>
         

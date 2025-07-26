@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
-// Using uploaded image directly
+import { useConfig } from "@/contexts/ConfigContext";
 
 const HeroSection = () => {
+  const { config } = useConfig();
+  
   const handlePurchaseClick = () => {
     window.open('https://pay.kiwify.com.br/3dFCqAu', '_blank');
   };
@@ -15,27 +17,27 @@ const HeroSection = () => {
               📖 NOVO E-BOOK
             </div>
             <h1 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight">
-              E-BOOK AVANCE
+              {config.hero.titulo}
               <br />
-              <span className="text-gold">OS NÍVEIS DE ALFABETIZAÇÃO</span>
+              <span className="text-gold">{config.hero.subtitulo}</span>
               <br />
-              <span className="text-sm sm:text-base lg:text-lg poppins font-normal">DE 3 A 8 ANOS</span>
+              <span className="text-sm sm:text-base lg:text-lg poppins font-normal">{config.geral.faixaEtaria}</span>
             </h1>
             <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 poppins">
               <div className="flex items-start">
                 <div className="w-2 h-2 bg-gold rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                <span className="text-sm sm:text-base">Atividades prontas para imprimir que desenvolvem habilidades essenciais</span>
+                <span className="text-sm sm:text-base">{config.hero.descricao1}</span>
               </div>
               <div className="flex items-start">
                 <div className="w-2 h-2 bg-gold rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                <span className="text-sm sm:text-base">Métodos aprovados por pedagogos especializados em primeira infância</span>
+                <span className="text-sm sm:text-base">{config.hero.descricao2}</span>
               </div>
             </div>
             <Button 
               onClick={handlePurchaseClick}
               className="bg-gold hover:bg-yellow-500 text-black poppins font-bold text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover-scale bounce-slow w-full sm:w-auto"
             >
-              ADQUIRIR MATERIAL
+              {config.hero.botaoCta}
             </Button>
           </div>
           
@@ -43,7 +45,7 @@ const HeroSection = () => {
             <div className="blob bg-white/10 w-60 h-60 sm:w-80 sm:h-80 absolute top-4 sm:top-10 right-4 sm:right-10"></div>
             <div className="relative z-10 floating">
               <img 
-                src="/lovable-uploads/4a24f329-7319-4c8b-abac-61de42f6ab2b.png" 
+                src={config.hero.imagemUrl} 
                 alt="E-book Avance" 
                 className="w-full max-w-xs sm:max-w-md mx-auto rounded-2xl shadow-2xl"
               />

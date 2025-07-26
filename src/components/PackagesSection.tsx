@@ -1,7 +1,10 @@
 
 import { Button } from "@/components/ui/button";
+import { useConfig } from "@/contexts/ConfigContext";
 
 const PackagesSection = () => {
+  const { config } = useConfig();
+  
   const handlePurchaseClick = () => {
     window.open('https://pay.kiwify.com.br/3dFCqAu', '_blank');
   };
@@ -11,9 +14,9 @@ const PackagesSection = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
-            ESCOLHA O PACOTE IDEAL
+            {config.pacotes.titulo}
             <br />
-            <span className="text-coral">PARA SUA CRIANÇA</span>
+            <span className="text-coral">{config.pacotes.subtitulo}</span>
           </h2>
         </div>
         
@@ -137,7 +140,7 @@ const PackagesSection = () => {
             onClick={handlePurchaseClick}
             className="inline-flex items-center justify-center w-full sm:max-w-xs sm:mx-auto text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka"
           >
-            <span className="rocket-animation mr-2">🚀</span> QUERO AVANÇAR
+            <span className="rocket-animation mr-2">🚀</span> {config.pacotes.botaoCompra}
           </Button>
           <p className="poppins text-gray-600 mt-4 text-xs sm:text-sm text-center">
             Escolha qualquer pacote e comece a transformar o aprendizado da sua criança hoje mesmo!
