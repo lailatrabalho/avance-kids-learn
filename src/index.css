@@ -225,6 +225,49 @@
     75% { transform: translateY(-8px) rotate(5deg); }
   }
   
+  @keyframes guarantee-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(255, 193, 7, 0.3), 0 0 40px rgba(255, 193, 7, 0.2), 0 0 60px rgba(255, 193, 7, 0.1);
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(255, 193, 7, 0.5), 0 0 60px rgba(255, 193, 7, 0.3), 0 0 90px rgba(255, 193, 7, 0.2);
+    }
+  }
+  
+  @keyframes seal-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  @keyframes shine-sweep {
+    0% { transform: translateX(-100%) skewX(-15deg); }
+    100% { transform: translateX(200%) skewX(-15deg); }
+  }
+  
+  @keyframes star-twinkle {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    25% { 
+      transform: scale(1.2) rotate(90deg);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: scale(0.8) rotate(180deg);
+      opacity: 1;
+    }
+    75% { 
+      transform: scale(1.1) rotate(270deg);
+      opacity: 0.9;
+    }
+  }
+  
+  @keyframes badge-float {
+    0%, 100% { transform: translateY(0px) rotate(var(--rotate, 0deg)); }
+    50% { transform: translateY(-8px) rotate(var(--rotate, 0deg)); }
+  }
+  
   .floating {
     animation: float 3s ease-in-out infinite;
   }
@@ -241,5 +284,36 @@
   .rocket-animation {
     display: inline-block;
     animation: rocket-fly 2s ease-in-out infinite;
+  }
+  
+  .guarantee-glow {
+    animation: guarantee-glow 3s ease-in-out infinite;
+  }
+  
+  .seal-pulse {
+    animation: seal-pulse 4s ease-in-out infinite;
+  }
+  
+  .shine-sweep {
+    animation: shine-sweep 3s ease-in-out infinite;
+  }
+  
+  .star-twinkle {
+    animation: star-twinkle 2s ease-in-out infinite;
+  }
+  
+  .badge-float {
+    animation: badge-float 3s ease-in-out infinite;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .hover-scale-102:hover {
+    transform: scale(1.02);
   }
 }
