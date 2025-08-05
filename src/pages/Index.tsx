@@ -2,14 +2,12 @@ import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import PackagesSection from "@/components/PackagesSection";
+import TargetAudienceSection from "@/components/TargetAudienceSection";
 import FAQSection from "@/components/FAQSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import GuaranteeSection from "@/components/GuaranteeSection";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
-
-// Nova sessão: Pra quem é este material
-const TargetAudienceSection = () => (
   <section className="py-20 px-6 bg-white">
     <div className="container mx-auto max-w-6xl">
       <div className="text-center mb-16">

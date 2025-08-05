@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useConfig } from "@/contexts/ConfigContext";
 
 const FAQSection = () => {
+  const { config } = useConfig();
   const [nome, setNome] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
 
   const handleAtendimentoWhatsApp = () => {
-    let mensagem = `Oi, quero mais informações sobre o E-BOOK AVANCE,`;
+    let mensagem = config.faq.mensagemPadrao;
     if (nome) mensagem += `\nMeu nome é: ${nome}`;
     if (whatsapp) mensagem += `\nMeu WhatsApp: ${whatsapp}`;
-    const numero = '559491334167';
+    const numero = config.faq.numeroWhatsApp;
     const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
     window.open(link, '_blank');
   };
@@ -20,10 +22,10 @@ const FAQSection = () => {
       <div className="container mx-auto max-w-4xl">
         <div className="gradient-faq p-6 sm:p-8 lg:p-12 rounded-3xl text-white text-center">
           <h2 className="fredoka text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 sm:mb-6">
-            AINDA TEM DÚVIDAS SOBRE O AVANCE?
+            {config.faq.titulo}
           </h2>
           <p className="poppins text-sm sm:text-base lg:text-lg mb-6 sm:mb-8">
-            Nossos consultores especializados em educação infantil estão prontos para esclarecer todas as suas questões e te ajudar a escolher o melhor pacote.
+            {config.faq.subtitulo}
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">

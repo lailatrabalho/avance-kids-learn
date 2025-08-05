@@ -104,12 +104,12 @@ const AdminPanel = () => {
           <span className="text-3xl">⚙️</span>
           <span>Configurações Gerais</span>
         </h3>
-        <p className="text-gray-600">Configure as informações básicas do seu e-book e dados de contato.</p>
+        <p className="text-gray-700">Configure as informações básicas do seu e-book e dados de contato.</p>
       </div>
       
       <div className="grid md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center space-x-2">
+          <label className="block text-sm font-bold text-gray-800 mb-3 flex items-center space-x-2">
             <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
             <span>Nome do E-book</span>
           </label>
@@ -117,45 +117,49 @@ const AdminPanel = () => {
             type="text"
             value={config.geral.nomeEbook}
             onChange={(e) => updateConfig('geral', 'nomeEbook', e.target.value)}
-            className="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-gray-50 hover:bg-white"
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
             placeholder="Digite o nome do seu e-book..."
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Subtítulo</label>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Subtítulo</label>
           <Input
             type="text"
             value={config.geral.subtitulo}
             onChange={(e) => updateConfig('geral', 'subtitulo', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Faixa Etária</label>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Faixa Etária</label>
           <Input
             type="text"
             value={config.geral.faixaEtaria}
             onChange={(e) => updateConfig('geral', 'faixaEtaria', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">WhatsApp (com código do país)</label>
+          <label className="block text-sm font-bold text-gray-800 mb-3">WhatsApp (com código do país)</label>
           <Input
             type="text"
             value={config.geral.whatsapp}
             onChange={(e) => updateConfig('geral', 'whatsapp', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
             placeholder="5599999999999"
           />
         </div>
         
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">E-mail de Suporte</label>
+          <label className="block text-sm font-bold text-gray-800 mb-3">E-mail de Suporte</label>
           <Input
             type="email"
             value={config.geral.emailSuporta}
             onChange={(e) => updateConfig('geral', 'emailSuporta', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
           />
         </div>
       </div>
@@ -465,56 +469,544 @@ const AdminPanel = () => {
     </div>
   );
 
-  const renderObrigado = () => (
+  const renderNavegacao = () => (
     <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">🎉 Página de Obrigado</h3>
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl border border-blue-200">
+        <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
+          <span className="text-3xl">🧭</span>
+          <span>Navegação</span>
+        </h3>
+        <p className="text-gray-700">Configure o logo e nome da empresa na navegação.</p>
+      </div>
+      
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Logo/Emoji</label>
+          <Input
+            type="text"
+            value={config.navegacao.logo}
+            onChange={(e) => updateConfig('navegacao', 'logo', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+            placeholder="🚀"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Nome da Empresa</label>
+          <Input
+            type="text"
+            value={config.navegacao.nomeEmpresa}
+            onChange={(e) => updateConfig('navegacao', 'nomeEmpresa', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+            placeholder="AVANCE"
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderPublicoAlvo = () => (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl border border-green-200">
+        <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
+          <span className="text-3xl">🎯</span>
+          <span>Público Alvo</span>
+        </h3>
+        <p className="text-gray-700">Configure a seção "Pra quem é este material?"</p>
+      </div>
       
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Título Principal</label>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Título da Seção</label>
           <Input
             type="text"
-            value={config.obrigado.titulo}
-            onChange={(e) => updateConfig('obrigado', 'titulo', e.target.value)}
+            value={config.publicoAlvo.titulo}
+            onChange={(e) => updateConfig('publicoAlvo', 'titulo', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Subtítulo</label>
-          <Input
-            type="text"
-            value={config.obrigado.subtitulo}
-            onChange={(e) => updateConfig('obrigado', 'subtitulo', e.target.value)}
-          />
-        </div>
-        
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Texto de Introdução</label>
           <textarea
-            value={config.obrigado.descricao}
-            onChange={(e) => updateConfig('obrigado', 'descricao', e.target.value)}
-            className="w-full p-3 border border-input rounded-lg focus:ring-2 focus:ring-ring"
+            value={config.publicoAlvo.textoIntroducao}
+            onChange={(e) => updateConfig('publicoAlvo', 'textoIntroducao', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
             rows={3}
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Título do Vídeo</label>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Call to Action - Texto</label>
           <Input
             type="text"
-            value={config.obrigado.videoTitulo}
-            onChange={(e) => updateConfig('obrigado', 'videoTitulo', e.target.value)}
+            value={config.publicoAlvo.ctaTexto}
+            onChange={(e) => updateConfig('publicoAlvo', 'ctaTexto', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
           />
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Descrição do Vídeo</label>
-          <textarea
-            value={config.obrigado.videoDescricao}
-            onChange={(e) => updateConfig('obrigado', 'videoDescricao', e.target.value)}
-            className="w-full p-3 border border-input rounded-lg focus:ring-2 focus:ring-ring"
-            rows={2}
+          <label className="block text-sm font-bold text-gray-800 mb-3">Call to Action - Subtexto</label>
+          <Input
+            type="text"
+            value={config.publicoAlvo.ctaSubtexto}
+            onChange={(e) => updateConfig('publicoAlvo', 'ctaSubtexto', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
           />
+        </div>
+      </div>
+      
+      <div className="grid md:grid-cols-2 gap-6">
+        {(['card1', 'card2', 'card3', 'card4'] as const).map((key, index) => (
+          <div key={key} className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Card {index + 1}</h4>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Título</label>
+                <Input
+                  type="text"
+                  value={config.publicoAlvo[key].titulo}
+                  onChange={(e) => updateNestedConfig('publicoAlvo', key, 'titulo', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Descrição</label>
+                <textarea
+                  value={config.publicoAlvo[key].descricao}
+                  onChange={(e) => updateNestedConfig('publicoAlvo', key, 'descricao', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                  rows={3}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Detalhe</label>
+                <Input
+                  type="text"
+                  value={config.publicoAlvo[key].detalhe}
+                  onChange={(e) => updateNestedConfig('publicoAlvo', key, 'detalhe', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderFAQ = () => (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-2xl border border-yellow-200">
+        <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
+          <span className="text-3xl">❓</span>
+          <span>FAQ / Dúvidas</span>
+        </h3>
+        <p className="text-gray-700">Configure a seção de dúvidas e atendimento.</p>
+      </div>
+      
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Título da Seção</label>
+          <Input
+            type="text"
+            value={config.faq.titulo}
+            onChange={(e) => updateConfig('faq', 'titulo', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Subtítulo</label>
+          <textarea
+            value={config.faq.subtitulo}
+            onChange={(e) => updateConfig('faq', 'subtitulo', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+            rows={3}
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Número do WhatsApp</label>
+          <Input
+            type="text"
+            value={config.faq.numeroWhatsApp}
+            onChange={(e) => updateConfig('faq', 'numeroWhatsApp', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+            placeholder="559491334167"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-bold text-gray-800 mb-3">Mensagem Padrão do WhatsApp</label>
+          <Input
+            type="text"
+            value={config.faq.mensagemPadrao}
+            onChange={(e) => updateConfig('faq', 'mensagemPadrao', e.target.value)}
+            className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderGarantia = () => (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-200">
+        <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
+          <span className="text-3xl">🛡️</span>
+          <span>Garantia</span>
+        </h3>
+        <p className="text-gray-700">Configure todos os textos da seção de garantia.</p>
+      </div>
+      
+      <div className="space-y-6">
+        <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
+          <h4 className="font-bold text-lg mb-4 text-gray-800">Selo de Garantia</h4>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Texto 1 (GARANTIA)</label>
+              <Input
+                type="text"
+                value={config.garantia.seloTexto1}
+                onChange={(e) => updateConfig('garantia', 'seloTexto1', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Texto 2 (7 DIAS)</label>
+              <Input
+                type="text"
+                value={config.garantia.seloTexto2}
+                onChange={(e) => updateConfig('garantia', 'seloTexto2', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Texto 3 (Satisfação)</label>
+              <Input
+                type="text"
+                value={config.garantia.seloTexto3}
+                onChange={(e) => updateConfig('garantia', 'seloTexto3', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-purple-50 p-6 rounded-xl border border-purple-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Card 1 - Garantia Incondicional</h4>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Título</label>
+                <Input
+                  type="text"
+                  value={config.garantia.card1Titulo}
+                  onChange={(e) => updateConfig('garantia', 'card1Titulo', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Descrição</label>
+                <textarea
+                  value={config.garantia.card1Descricao}
+                  onChange={(e) => updateConfig('garantia', 'card1Descricao', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                  rows={4}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-green-50 p-6 rounded-xl border border-green-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Card 2 - Dinheiro de Volta</h4>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Título</label>
+                <Input
+                  type="text"
+                  value={config.garantia.card2Titulo}
+                  onChange={(e) => updateConfig('garantia', 'card2Titulo', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Descrição</label>
+                <textarea
+                  value={config.garantia.card2Descricao}
+                  onChange={(e) => updateConfig('garantia', 'card2Descricao', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                  rows={4}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-orange-50 p-6 rounded-xl border border-orange-200">
+          <h4 className="font-bold text-lg mb-4 text-gray-800">Funcionalidades</h4>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Funcionalidade 1</label>
+              <Input
+                type="text"
+                value={config.garantia.funcionalidade1}
+                onChange={(e) => updateConfig('garantia', 'funcionalidade1', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Funcionalidade 2</label>
+              <Input
+                type="text"
+                value={config.garantia.funcionalidade2}
+                onChange={(e) => updateConfig('garantia', 'funcionalidade2', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Funcionalidade 3</label>
+              <Input
+                type="text"
+                value={config.garantia.funcionalidade3}
+                onChange={(e) => updateConfig('garantia', 'funcionalidade3', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderObrigado = () => (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl border border-green-200">
+        <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
+          <span className="text-3xl">🎉</span>
+          <span>Página de Obrigado</span>
+        </h3>
+        <p className="text-gray-700">Configure todos os elementos da página de agradecimento.</p>
+      </div>
+      
+      <div className="space-y-6">
+        <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
+          <h4 className="font-bold text-lg mb-4 text-gray-800">Informações Principais</h4>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Título Principal</label>
+              <Input
+                type="text"
+                value={config.obrigado.titulo}
+                onChange={(e) => updateConfig('obrigado', 'titulo', e.target.value)}
+                className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Subtítulo</label>
+              <Input
+                type="text"
+                value={config.obrigado.subtitulo}
+                onChange={(e) => updateConfig('obrigado', 'subtitulo', e.target.value)}
+                className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Descrição</label>
+              <textarea
+                value={config.obrigado.descricao}
+                onChange={(e) => updateConfig('obrigado', 'descricao', e.target.value)}
+                className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800"
+                rows={3}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-purple-50 p-6 rounded-xl border border-purple-200">
+          <h4 className="font-bold text-lg mb-4 text-gray-800">Seção de Vídeo</h4>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Título do Vídeo</label>
+              <Input
+                type="text"
+                value={config.obrigado.videoTitulo}
+                onChange={(e) => updateConfig('obrigado', 'videoTitulo', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Descrição do Vídeo</label>
+              <textarea
+                value={config.obrigado.videoDescricao}
+                onChange={(e) => updateConfig('obrigado', 'videoDescricao', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                rows={2}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-green-50 p-6 rounded-xl border border-green-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Próximos Passos</h4>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Título</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.proximosPassos.titulo}
+                  onChange={(e) => updateNestedConfig('obrigado', 'proximosPassos', 'titulo', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Passo 1</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.proximosPassos.passo1}
+                  onChange={(e) => updateNestedConfig('obrigado', 'proximosPassos', 'passo1', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Passo 2</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.proximosPassos.passo2}
+                  onChange={(e) => updateNestedConfig('obrigado', 'proximosPassos', 'passo2', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Passo 3</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.proximosPassos.passo3}
+                  onChange={(e) => updateNestedConfig('obrigado', 'proximosPassos', 'passo3', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Informações Importantes</h4>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Título</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.informacoesImportantes.titulo}
+                  onChange={(e) => updateNestedConfig('obrigado', 'informacoesImportantes', 'titulo', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Info 1</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.informacoesImportantes.info1}
+                  onChange={(e) => updateNestedConfig('obrigado', 'informacoesImportantes', 'info1', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Info 2</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.informacoesImportantes.info2}
+                  onChange={(e) => updateNestedConfig('obrigado', 'informacoesImportantes', 'info2', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-gray-800 mb-2">Info 3</label>
+                <Input
+                  type="text"
+                  value={config.obrigado.informacoesImportantes.info3}
+                  onChange={(e) => updateNestedConfig('obrigado', 'informacoesImportantes', 'info3', e.target.value)}
+                  className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-indigo-50 p-6 rounded-xl border border-indigo-200">
+          <h4 className="font-bold text-lg mb-4 text-gray-800">FAQ Completo</h4>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Título do FAQ</label>
+              <Input
+                type="text"
+                value={config.obrigado.faqCompleto.titulo}
+                onChange={(e) => updateNestedConfig('obrigado', 'faqCompleto', 'titulo', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+            
+            {['pergunta1', 'pergunta2', 'pergunta3', 'pergunta4', 'pergunta5'].map((key, index) => (
+              <div key={key} className="bg-white p-4 rounded-lg border border-gray-200">
+                <h5 className="font-bold text-md mb-3 text-gray-800">Pergunta {index + 1}</h5>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-bold text-gray-800 mb-1">Pergunta</label>
+                    <Input
+                      type="text"
+                      value={(config.obrigado.faqCompleto as any)[key].pergunta}
+                      onChange={(e) => {
+                        const updated = { ...(config.obrigado.faqCompleto as any)[key], pergunta: e.target.value };
+                        updateNestedConfig('obrigado', 'faqCompleto', key, updated);
+                      }}
+                      className="w-full p-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-gray-800 mb-1">Resposta</label>
+                    <textarea
+                      value={(config.obrigado.faqCompleto as any)[key].resposta}
+                      onChange={(e) => {
+                        const updated = { ...(config.obrigado.faqCompleto as any)[key], resposta: e.target.value };
+                        updateNestedConfig('obrigado', 'faqCompleto', key, updated);
+                      }}
+                      className="w-full p-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                      rows={2}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-pink-50 p-6 rounded-xl border border-pink-200">
+          <h4 className="font-bold text-lg mb-4 text-gray-800">Compartilhamento</h4>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Título</label>
+              <Input
+                type="text"
+                value={config.obrigado.compartilhamento.titulo}
+                onChange={(e) => updateNestedConfig('obrigado', 'compartilhamento', 'titulo', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Texto para Compartilhar</label>
+              <textarea
+                value={config.obrigado.compartilhamento.texto}
+                onChange={(e) => updateNestedConfig('obrigado', 'compartilhamento', 'texto', e.target.value)}
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800"
+                rows={3}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -522,9 +1014,13 @@ const AdminPanel = () => {
 
   const tabs = [
     { id: 'geral', label: '⚙️ Geral', component: renderGeral },
+    { id: 'navegacao', label: '🧭 Navegação', component: renderNavegacao },
     { id: 'hero', label: '🚀 Hero', component: renderHero },
     { id: 'beneficios', label: '✨ Benefícios', component: renderBeneficios },
     { id: 'pacotes', label: '📦 Pacotes', component: renderPacotes },
+    { id: 'publico-alvo', label: '🎯 Público Alvo', component: renderPublicoAlvo },
+    { id: 'faq', label: '❓ FAQ', component: renderFAQ },
+    { id: 'garantia', label: '🛡️ Garantia', component: renderGarantia },
     { id: 'depoimentos', label: '💬 Depoimentos', component: renderDepoimentos },
     { id: 'obrigado', label: '🎉 Obrigado', component: renderObrigado }
   ];

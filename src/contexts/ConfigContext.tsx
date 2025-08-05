@@ -28,6 +28,10 @@ interface ConfigData {
     whatsapp: string;
     emailSuporta: string;
   };
+  navegacao: {
+    logo: string;
+    nomeEmpresa: string;
+  };
   hero: {
     titulo: string;
     subtitulo: string;
@@ -53,6 +57,50 @@ interface ConfigData {
     expert: PackageItem;
     botaoCompra: string;
   };
+  publicoAlvo: {
+    titulo: string;
+    textoIntroducao: string;
+    card1: {
+      titulo: string;
+      descricao: string;
+      detalhe: string;
+    };
+    card2: {
+      titulo: string;
+      descricao: string;
+      detalhe: string;
+    };
+    card3: {
+      titulo: string;
+      descricao: string;
+      detalhe: string;
+    };
+    card4: {
+      titulo: string;
+      descricao: string;
+      detalhe: string;
+    };
+    ctaTexto: string;
+    ctaSubtexto: string;
+  };
+  faq: {
+    titulo: string;
+    subtitulo: string;
+    numeroWhatsApp: string;
+    mensagemPadrao: string;
+  };
+  garantia: {
+    seloTexto1: string;
+    seloTexto2: string;
+    seloTexto3: string;
+    card1Titulo: string;
+    card1Descricao: string;
+    card2Titulo: string;
+    card2Descricao: string;
+    funcionalidade1: string;
+    funcionalidade2: string;
+    funcionalidade3: string;
+  };
   depoimentos: {
     titulo: string;
     depoimento1: TestimonialItem;
@@ -65,6 +113,30 @@ interface ConfigData {
     descricao: string;
     videoTitulo: string;
     videoDescricao: string;
+    proximosPassos: {
+      titulo: string;
+      passo1: string;
+      passo2: string;
+      passo3: string;
+    };
+    informacoesImportantes: {
+      titulo: string;
+      info1: string;
+      info2: string;
+      info3: string;
+    };
+    faqCompleto: {
+      titulo: string;
+      pergunta1: { pergunta: string; resposta: string; };
+      pergunta2: { pergunta: string; resposta: string; };
+      pergunta3: { pergunta: string; resposta: string; };
+      pergunta4: { pergunta: string; resposta: string; };
+      pergunta5: { pergunta: string; resposta: string; };
+    };
+    compartilhamento: {
+      titulo: string;
+      texto: string;
+    };
   };
   cores: {
     primaria: string;
@@ -83,6 +155,10 @@ const defaultConfig: ConfigData = {
     faixaEtaria: 'DE 3 A 8 ANOS',
     whatsapp: '5599999999999',
     emailSuporta: 'contato@avance.com'
+  },
+  navegacao: {
+    logo: '🚀',
+    nomeEmpresa: 'AVANCE'
   },
   hero: {
     titulo: 'E-BOOK AVANCE',
@@ -145,6 +221,50 @@ const defaultConfig: ConfigData = {
     },
     botaoCompra: 'QUERO AVANÇAR'
   },
+  publicoAlvo: {
+    titulo: '🎯 PRA QUEM É ESSE MATERIAL?',
+    textoIntroducao: 'O Tarefinhas AVANCE foi feito especialmente para professores da Educação Infantil e dos primeiros anos do Ensino Fundamental que:',
+    card1: {
+      titulo: 'Querem potencializar o aprendizado',
+      descricao: 'das crianças com atividades divertidas, criativas e bem estruturadas.',
+      detalhe: 'Desenvolvimento criativo'
+    },
+    card2: {
+      titulo: 'Buscam um material pronto',
+      descricao: 'que economiza tempo e facilita o planejamento das aulas.',
+      detalhe: 'Planejamento facilitado'
+    },
+    card3: {
+      titulo: 'Desejam ver suas turmas avançando',
+      descricao: 'com confiança, de forma lúdica e consistente.',
+      detalhe: 'Aprendizado lúdico'
+    },
+    card4: {
+      titulo: 'Amam ensinar com propósito e afeto',
+      descricao: 'respeitando o ritmo e o desenvolvimento de cada criança.',
+      detalhe: 'Desenvolvimento individual'
+    },
+    ctaTexto: 'Se você se identifica com isso,',
+    ctaSubtexto: 'esse material foi feito exatamente para você!'
+  },
+  faq: {
+    titulo: 'AINDA TEM DÚVIDAS SOBRE O AVANCE?',
+    subtitulo: 'Nossos consultores especializados em educação infantil estão prontos para esclarecer todas as suas questões e te ajudar a escolher o melhor pacote.',
+    numeroWhatsApp: '559491334167',
+    mensagemPadrao: 'Oi, quero mais informações sobre o E-BOOK AVANCE,'
+  },
+  garantia: {
+    seloTexto1: 'GARANTIA',
+    seloTexto2: '7 DIAS',
+    seloTexto3: 'Satisfação TOTAL ou seu dinheiro de volta',
+    card1Titulo: 'Garantia Incondicional de 7 Dias',
+    card1Descricao: 'Estamos tão confiantes na qualidade do nosso material que oferecemos 7 dias de garantia incondicional. Se por qualquer motivo você não ficar satisfeito, devolvemos 100% do seu investimento.',
+    card2Titulo: 'Satisfação Total ou Seu Dinheiro de Volta',
+    card2Descricao: 'Sem burocracia, sem perguntas. Reembolso em até 48 horas.',
+    funcionalidade1: 'Compra Segura - Pagamento 100% protegido',
+    funcionalidade2: 'Suporte 24h - Atendimento sempre disponível',
+    funcionalidade3: 'Entrega Imediata - Acesso instantâneo ao conteúdo'
+  },
   depoimentos: {
     titulo: 'O QUE DIZEM OS PAIS E PROFESSORES',
     depoimento1: {
@@ -171,7 +291,46 @@ const defaultConfig: ConfigData = {
     subtitulo: 'SUA COMPRA FOI REALIZADA',
     descricao: 'Você acaba de dar o primeiro passo para transformar o desenvolvimento da sua criança! Em instantes você receberá todo o material em seu e-mail.',
     videoTitulo: 'VEJA COMO USAR SEU E-BOOK AVANCE',
-    videoDescricao: 'Assista ao vídeo completo e descubra como aproveitar ao máximo cada atividade'
+    videoDescricao: 'Assista ao vídeo completo e descubra como aproveitar ao máximo cada atividade',
+    proximosPassos: {
+      titulo: 'PRÓXIMOS PASSOS:',
+      passo1: '📧 Verifique seu e-mail (incluindo spam)',
+      passo2: '📋 Imprima as atividades do seu pacote',
+      passo3: '🎯 Comece a aplicar com suas crianças'
+    },
+    informacoesImportantes: {
+      titulo: 'INFORMAÇÕES IMPORTANTES:',
+      info1: '⏰ O material chegará em até 10 minutos',
+      info2: '📱 Acesso vitalício ao conteúdo',
+      info3: '🎯 Material para crianças de 3 a 8 anos'
+    },
+    faqCompleto: {
+      titulo: 'PERGUNTAS FREQUENTES',
+      pergunta1: {
+        pergunta: 'Quanto tempo demora para receber o material?',
+        resposta: 'O material é enviado automaticamente para seu e-mail em até 10 minutos após a confirmação do pagamento.'
+      },
+      pergunta2: {
+        pergunta: 'O material é adequado para qual idade?',
+        resposta: 'Nosso material é especialmente desenvolvido para crianças de 3 a 8 anos, com atividades progressivas para cada faixa etária.'
+      },
+      pergunta3: {
+        pergunta: 'Posso imprimir quantas vezes quiser?',
+        resposta: 'Sim! O material é seu e você pode imprimir quantas vezes precisar, para usar com várias crianças.'
+      },
+      pergunta4: {
+        pergunta: 'Tem garantia?',
+        resposta: 'Sim! Oferecemos 7 dias de garantia incondicional. Se não ficar satisfeito, devolvemos 100% do valor.'
+      },
+      pergunta5: {
+        pergunta: 'Como posso entrar em contato?',
+        resposta: 'Você pode entrar em contato pelo WhatsApp ou e-mail. Nosso suporte está sempre disponível para ajudar.'
+      }
+    },
+    compartilhamento: {
+      titulo: 'COMPARTILHE COM OUTROS EDUCADORES',
+      texto: 'Acabei de adquirir o E-book AVANCE com atividades incríveis para crianças de 3 a 8 anos! 🚀📚 Material completo para desenvolver alfabetização, coordenação motora e muito mais. Super recomendo!'
+    }
   },
   cores: {
     primaria: '#2E4DA7',
