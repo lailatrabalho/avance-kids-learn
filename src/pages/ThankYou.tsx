@@ -22,7 +22,7 @@ const ThankYou = () => {
   };
 
   const shareSuccess = () => {
-    const text = "Acabei de adquirir o E-book Avance para educação infantil! 📚✨ Material incrível para o desenvolvimento das crianças de 3 a 6 anos.";
+    const text = "Acabei de adquirir o E-book Avance para educação infantil! 📚✨ Material incrível para o desenvolvimento das crianças de 3 a 8 anos.";
     
     if (navigator.share) {
       navigator.share({

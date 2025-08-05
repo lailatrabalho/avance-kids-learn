@@ -80,7 +80,7 @@ const defaultConfig: ConfigData = {
   geral: {
     nomeEbook: 'E-BOOK AVANCE',
     subtitulo: 'EDUCAÇÃO INFANTIL',
-    faixaEtaria: 'DE 3 A 6 ANOS',
+    faixaEtaria: 'DE 3 A 8 ANOS',
     whatsapp: '5599999999999',
     emailSuporta: 'contato@avance.com'
   },
@@ -138,9 +138,9 @@ const defaultConfig: ConfigData = {
     },
     expert: {
       nome: 'PACOTE EXPERT',
-      idade: '3-6 ANOS',
+      idade: '3-8 ANOS',
       atividades: '25 ATIVIDADES',
-      descricao: 'Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 6 anos.',
+      descricao: 'Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 8 anos.',
       preco: '89.90'
     },
     botaoCompra: 'QUERO AVANÇAR'
