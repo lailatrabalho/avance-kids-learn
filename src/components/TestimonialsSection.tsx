@@ -13,7 +13,8 @@ const TestimonialsSection = () => {
       bgGradient: "from-pink-50 to-rose-50",
       icon: "👩‍🏫",
       category: "Professora",
-      borderColor: "border-t-coral"
+      borderColor: "border-t-coral",
+      imageUrl: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     {
       name: config.depoimentos.depoimento2.nome,
@@ -24,7 +25,8 @@ const TestimonialsSection = () => {
       bgGradient: "from-blue-50 to-cyan-50",
       icon: "👨‍👧",
       category: "Pai",
-      borderColor: "border-t-dark-blue"
+      borderColor: "border-t-dark-blue",
+      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     {
       name: config.depoimentos.depoimento3.nome,
@@ -35,7 +37,8 @@ const TestimonialsSection = () => {
       bgGradient: "from-purple-50 to-indigo-50",
       icon: "👩‍💼",
       category: "Coordenadora",
-      borderColor: "border-t-purple"
+      borderColor: "border-t-purple",
+      imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     }
   ];
 
@@ -101,8 +104,19 @@ const TestimonialsSection = () => {
                 
                 {/* Header */}
                 <div className="flex items-center mb-6">
-                  <div className={`w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br ${testimonial.gradient} rounded-full flex items-center justify-center text-white font-bold mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    {testimonial.avatar}
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300 border-2 border-white bg-gray-100">
+                    <img 
+                      src={testimonial.imageUrl} 
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className={`w-full h-full bg-gradient-to-br ${testimonial.gradient} rounded-full flex items-center justify-center text-white font-bold text-lg hidden`}>
+                      {testimonial.avatar}
+                    </div>
                   </div>
                   <div className="flex-1">
                     <h4 className="fredoka text-lg sm:text-xl text-dark-blue mb-1">
