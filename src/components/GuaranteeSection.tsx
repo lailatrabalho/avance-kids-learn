@@ -5,7 +5,7 @@ const GuaranteeSection = () => {
         <div className="max-w-2xl mx-auto">
           <div className="relative">
             {/* Selo Principal com Garantia */}
-            <div className="w-80 h-80 md:w-96 md:h-96 mx-auto relative">
+            <div className="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 mx-auto relative">
               {/* Triple rotating rings for more impact */}
               <div className="absolute inset-0 rounded-full border-8 border-dashed border-gold animate-spin opacity-80" style={{animationDuration: '25s'}}></div>
               <div className="absolute inset-2 rounded-full border-6 border-dotted border-yellow-300 animate-spin opacity-60" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
@@ -17,7 +17,7 @@ const GuaranteeSection = () => {
               {/* Main seal circle with enhanced gradient */}
               <div className="absolute inset-10 bg-gradient-to-br from-gold via-yellow-200 to-gold rounded-full shadow-2xl flex items-center justify-center border-4 border-white">
                 {/* Inner white circle */}
-                <div className="w-56 h-56 md:w-64 md:h-64 bg-white rounded-full shadow-inner flex flex-col items-center justify-center p-6 relative overflow-hidden">
+                <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-white rounded-full shadow-inner flex flex-col items-center justify-center p-4 sm:p-6 relative overflow-hidden">
                   {/* Sparkle effects inside */}
                   <div className="absolute top-3 left-4 text-gold text-sm animate-bounce">✨</div>
                   <div className="absolute top-4 right-5 text-yellow-400 text-sm animate-bounce" style={{animationDelay: '0.5s'}}>⭐</div>
@@ -48,26 +48,32 @@ const GuaranteeSection = () => {
                 </div>
               </div>
               
-              {/* Enhanced floating badges around the seal */}
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-xs font-bold fredoka shadow-2xl border-2 border-white animate-bounce">
+              {/* Enhanced floating badges around the seal - Mobile Responsive */}
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-500 to-green-600 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs font-bold fredoka shadow-2xl border-2 border-white animate-bounce" translate="no">
                 ✓ APROVADO
               </div>
-              <div className="absolute top-16 -right-12 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2 rounded-full text-sm font-bold fredoka transform rotate-12 shadow-2xl border-2 border-white animate-pulse">
-                ✓ 100% SEGURO
+              <div className="absolute top-12 sm:top-16 -right-6 sm:-right-12 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-2 sm:px-5 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-bold fredoka transform rotate-12 shadow-2xl border-2 border-white animate-pulse" translate="no">
+                ✓ SEGURO
               </div>
-              <div className="absolute bottom-16 -left-12 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-5 py-2 rounded-full text-sm font-bold fredoka transform -rotate-12 shadow-2xl border-2 border-white animate-pulse">
+              <div className="absolute bottom-12 sm:bottom-16 -left-6 sm:-left-12 bg-gradient-to-r from-purple-500 to-purple-600 text-white px-2 sm:px-5 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-bold fredoka transform -rotate-12 shadow-2xl border-2 border-white animate-pulse" translate="no">
                 ✓ CONFIÁVEL
               </div>
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-xs font-bold fredoka shadow-2xl border-2 border-white animate-bounce">
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-500 to-pink-500 text-white px-2 sm:px-4 py-1 sm:py-2 rounded-full text-xs font-bold fredoka shadow-2xl border-2 border-white animate-bounce" translate="no">
                 ✓ COMPROVADO
               </div>
               
-              {/* Floating money back guarantee */}
-              <div className="absolute top-1/2 -left-24 transform -translate-y-1/2 bg-gradient-to-r from-gold to-yellow-400 text-black px-4 py-2 rounded-2xl text-xs font-bold fredoka shadow-xl border-2 border-white animate-pulse">
-                💰 DINHEIRO DE VOLTA
+              {/* Floating money back guarantee - Mobile Responsive */}
+              <div className="absolute top-1/2 -left-4 sm:-left-8 md:-left-16 lg:-left-24 transform -translate-y-1/2 bg-gradient-to-r from-gold to-yellow-400 text-black px-1 sm:px-2 md:px-3 lg:px-4 py-1 sm:py-2 rounded-lg sm:rounded-xl md:rounded-2xl text-xs font-bold fredoka shadow-xl border-2 border-white animate-pulse max-w-[60px] sm:max-w-[80px] md:max-w-none" translate="no">
+                <span className="hidden lg:inline">💰 DINHEIRO DE VOLTA</span>
+                <span className="hidden md:inline lg:hidden">💰 VOLTA</span>
+                <span className="hidden sm:inline md:hidden">💰</span>
+                <span className="sm:hidden">💰</span>
               </div>
-              <div className="absolute top-1/2 -right-24 transform -translate-y-1/2 bg-gradient-to-r from-gold to-yellow-400 text-black px-4 py-2 rounded-2xl text-xs font-bold fredoka shadow-xl border-2 border-white animate-pulse">
-                ⚡ SEM BUROCRACIA
+              <div className="absolute top-1/2 -right-4 sm:-right-8 md:-right-16 lg:-right-24 transform -translate-y-1/2 bg-gradient-to-r from-gold to-yellow-400 text-black px-1 sm:px-2 md:px-3 lg:px-4 py-1 sm:py-2 rounded-lg sm:rounded-xl md:rounded-2xl text-xs font-bold fredoka shadow-xl border-2 border-white animate-pulse max-w-[60px] sm:max-w-[80px] md:max-w-none" translate="no">
+                <span className="hidden lg:inline">⚡ SEM BUROCRACIA</span>
+                <span className="hidden md:inline lg:hidden">⚡ RÁPIDO</span>
+                <span className="hidden sm:inline md:hidden">⚡</span>
+                <span className="sm:hidden">⚡</span>
               </div>
             </div>
           </div>

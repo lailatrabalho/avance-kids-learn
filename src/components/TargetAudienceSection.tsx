@@ -125,13 +125,19 @@ const TargetAudienceSection = () => {
           <div className="absolute bottom-8 left-1/3 text-blue-900/60 text-lg animate-bounce" style={{ animationDelay: '1s' }}>🎯</div>
           <div className="absolute bottom-4 right-1/3 text-blue-900/60 text-2xl animate-bounce" style={{ animationDelay: '1.5s' }}>🚀</div>
           
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h3 className="fredoka text-2xl md:text-3xl text-blue-900 mb-4">
-              {config.publicoAlvo.ctaTexto}<br />
-              <span className="text-blue-900">{config.publicoAlvo.ctaSubtexto}</span>
-            </h3>
-            <div className="flex justify-center">
-              <div className="text-5xl bounce-slow">🚀</div>
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-blue-100 shadow-lg">
+              <div className="space-y-2 sm:space-y-3">
+                <h3 className="fredoka text-base sm:text-lg md:text-xl lg:text-2xl text-blue-900 leading-tight text-center px-2" translate="no">
+                  {config.publicoAlvo.ctaTexto}
+                </h3>
+                <h3 className="fredoka text-base sm:text-lg md:text-xl lg:text-2xl text-coral leading-tight text-center font-bold px-2" translate="no">
+                  {config.publicoAlvo.ctaSubtexto}
+                </h3>
+              </div>
+              <div className="flex justify-center mt-4">
+                <div className="text-2xl sm:text-3xl bounce-slow">🚀</div>
+              </div>
             </div>
           </div>
         </div>
