@@ -1,8 +1,12 @@
 import React, { useState, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useConfig } from "@/contexts/ConfigContext";
 import { useToast } from "@/hooks/use-toast";
+import { Share2, Download, Copy, MessageCircle, Facebook, Twitter, ExternalLink } from "lucide-react";
+import jsPDF from 'jspdf';
+import QRCode from 'qrcode';
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('geral');
   const [uploadingImages, setUploadingImages] = useState<Record<string, boolean>>({});
@@ -104,6 +108,442 @@ const AdminPanel = () => {
     if (newImageId) {
       updateConfig(section as any, field, newImageId);
     }
+  };
+
+  // Generate shareable link for the main page
+  const generateShareableLink = () => {
+    const baseUrl = window.location.origin;
+    return `${baseUrl}/`;
+  };
+
+  // Share to social media platforms
+  const shareToSocial = (platform: string, url: string) => {
+    const encodedUrl = encodeURIComponent(url);
+    const text = encodeURIComponent(`Confira este e-book incrível: ${config.geral.nomeEbook}`);
+    
+    let shareUrl = '';
+    switch (platform) {
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${text}%20${encodedUrl}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${encodedUrl}`;
+        break;
+      default:
+        return;
+    }
+    
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+  };
+
+  // Copy link to clipboard
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast({
+        title: "Sucesso!",
+        description: "Link copiado para a área de transferência!"
+      });
+    } catch (error) {
+      toast({
+        title: "Erro",
+        description: "Erro ao copiar link. Tente novamente.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  // Generate markdown content from config
+  const generateMarkdownContent = (configData: any) => {
+    return `# Configurações do E-book - ${configData.geral.nomeEbook}
+
+## 📋 Informações Gerais
+- **Nome do E-book:** ${configData.geral.nomeEbook}
+- **Subtítulo:** ${configData.geral.subtitulo}
+- **Faixa Etária:** ${configData.geral.faixaEtaria}
+- **WhatsApp:** ${configData.geral.whatsapp}
+- **E-mail de Suporte:** ${configData.geral.emailSuporta}
+
+## 🧭 Navegação
+- **Logo:** ${configData.navegacao.logo}
+- **Nome da Empresa:** ${configData.navegacao.nomeEmpresa}
+
+## 🚀 Seção Principal (Hero)
+### Título: ${configData.hero.titulo}
+### Subtítulo: ${configData.hero.subtitulo}
+### Descrições:
+- ${configData.hero.descricao1}
+- ${configData.hero.descricao2}
+### Botão CTA: ${configData.hero.botaoCta}
+### Imagem: ${configData.hero.imagemUrl}
+
+## ✨ Seção de Benefícios
+### Título: ${configData.beneficios.titulo}
+### Subtítulo: ${configData.beneficios.subtitulo}
+
+#### Benefício 1
+- **Título:** ${configData.beneficios.beneficio1.titulo}
+- **Descrição:** ${configData.beneficios.beneficio1.descricao}
+
+#### Benefício 2
+- **Título:** ${configData.beneficios.beneficio2.titulo}
+- **Descrição:** ${configData.beneficios.beneficio2.descricao}
+
+#### Benefício 3
+- **Título:** ${configData.beneficios.beneficio3.titulo}
+- **Descrição:** ${configData.beneficios.beneficio3.descricao}
+
+#### Benefício 4
+- **Título:** ${configData.beneficios.beneficio4.titulo}
+- **Descrição:** ${configData.beneficios.beneficio4.descricao}
+
+## 📦 Pacotes
+### Título: ${configData.pacotes.titulo}
+### Subtítulo: ${configData.pacotes.subtitulo}
+### Botão de Compra: ${configData.pacotes.botaoCompra}
+
+#### Pacote Middle
+- **Nome:** ${configData.pacotes.middle.nome}
+- **Idade:** ${configData.pacotes.middle.idade}
+- **Atividades:** ${configData.pacotes.middle.atividades}
+- **Descrição:** ${configData.pacotes.middle.descricao}
+- **Preço:** R$ ${configData.pacotes.middle.preco}
+
+#### Pacote Rich
+- **Nome:** ${configData.pacotes.rich.nome}
+- **Idade:** ${configData.pacotes.rich.idade}
+- **Atividades:** ${configData.pacotes.rich.atividades}
+- **Descrição:** ${configData.pacotes.rich.descricao}
+- **Preço:** R$ ${configData.pacotes.rich.preco}
+
+#### Pacote Super
+- **Nome:** ${configData.pacotes.super.nome}
+- **Idade:** ${configData.pacotes.super.idade}
+- **Atividades:** ${configData.pacotes.super.atividades}
+- **Descrição:** ${configData.pacotes.super.descricao}
+- **Preço:** R$ ${configData.pacotes.super.preco}
+
+#### Pacote Expert
+- **Nome:** ${configData.pacotes.expert.nome}
+- **Idade:** ${configData.pacotes.expert.idade}
+- **Atividades:** ${configData.pacotes.expert.atividades}
+- **Descrição:** ${configData.pacotes.expert.descricao}
+- **Preço:** R$ ${configData.pacotes.expert.preco}
+
+## 🎯 Público Alvo
+### Título: ${configData.publicoAlvo.titulo}
+### Introdução: ${configData.publicoAlvo.textoIntroducao}
+### CTA: ${configData.publicoAlvo.ctaTexto}
+### CTA Subtexto: ${configData.publicoAlvo.ctaSubtexto}
+
+#### Cards do Público Alvo
+1. **${configData.publicoAlvo.card1.titulo}**
+   - Descrição: ${configData.publicoAlvo.card1.descricao}
+   - Detalhe: ${configData.publicoAlvo.card1.detalhe}
+
+2. **${configData.publicoAlvo.card2.titulo}**
+   - Descrição: ${configData.publicoAlvo.card2.descricao}
+   - Detalhe: ${configData.publicoAlvo.card2.detalhe}
+
+3. **${configData.publicoAlvo.card3.titulo}**
+   - Descrição: ${configData.publicoAlvo.card3.descricao}
+   - Detalhe: ${configData.publicoAlvo.card3.detalhe}
+
+4. **${configData.publicoAlvo.card4.titulo}**
+   - Descrição: ${configData.publicoAlvo.card4.descricao}
+   - Detalhe: ${configData.publicoAlvo.card4.detalhe}
+
+## 💬 Depoimentos
+### Título: ${configData.depoimentos.titulo}
+
+#### Depoimento 1
+- **Nome:** ${configData.depoimentos.depoimento1.nome}
+- **Cargo:** ${configData.depoimentos.depoimento1.cargo}
+- **Inicial:** ${configData.depoimentos.depoimento1.inicial}
+- **Texto:** ${configData.depoimentos.depoimento1.texto}
+
+#### Depoimento 2
+- **Nome:** ${configData.depoimentos.depoimento2.nome}
+- **Cargo:** ${configData.depoimentos.depoimento2.cargo}
+- **Inicial:** ${configData.depoimentos.depoimento2.inicial}
+- **Texto:** ${configData.depoimentos.depoimento2.texto}
+
+#### Depoimento 3
+- **Nome:** ${configData.depoimentos.depoimento3.nome}
+- **Cargo:** ${configData.depoimentos.depoimento3.cargo}
+- **Inicial:** ${configData.depoimentos.depoimento3.inicial}
+- **Texto:** ${configData.depoimentos.depoimento3.texto}
+
+## ❓ FAQ
+### Título: ${configData.faq.titulo}
+### Subtítulo: ${configData.faq.subtitulo}
+### WhatsApp: ${configData.faq.numeroWhatsApp}
+### Mensagem Padrão: ${configData.faq.mensagemPadrao}
+
+## 🛡️ Garantia
+### Selo de Garantia
+- **Texto 1:** ${configData.garantia.seloTexto1}
+- **Texto 2:** ${configData.garantia.seloTexto2}
+- **Texto 3:** ${configData.garantia.seloTexto3}
+
+### Cards de Garantia
+#### Card 1 - Garantia Incondicional
+- **Título:** ${configData.garantia.card1Titulo}
+- **Descrição:** ${configData.garantia.card1Descricao}
+
+#### Card 2 - Dinheiro de Volta
+- **Título:** ${configData.garantia.card2Titulo}
+- **Descrição:** ${configData.garantia.card2Descricao}
+
+### Funcionalidades
+- **Funcionalidade 1:** ${configData.garantia.funcionalidade1}
+- **Funcionalidade 2:** ${configData.garantia.funcionalidade2}
+- **Funcionalidade 3:** ${configData.garantia.funcionalidade3}
+
+## 🎉 Página de Obrigado
+### Informações Principais
+- **Título:** ${configData.obrigado.titulo}
+- **Subtítulo:** ${configData.obrigado.subtitulo}
+- **Descrição:** ${configData.obrigado.descricao}
+
+### Vídeo
+- **Título do Vídeo:** ${configData.obrigado.videoTitulo}
+- **Descrição do Vídeo:** ${configData.obrigado.videoDescricao}
+
+### Próximos Passos
+- **Título:** ${configData.obrigado.proximosPassos.titulo}
+- **Passo 1:** ${configData.obrigado.proximosPassos.passo1}
+- **Passo 2:** ${configData.obrigado.proximosPassos.passo2}
+- **Passo 3:** ${configData.obrigado.proximosPassos.passo3}
+
+### Informações Importantes
+- **Título:** ${configData.obrigado.informacoesImportantes.titulo}
+- **Info 1:** ${configData.obrigado.informacoesImportantes.info1}
+- **Info 2:** ${configData.obrigado.informacoesImportantes.info2}
+- **Info 3:** ${configData.obrigado.informacoesImportantes.info3}
+
+### FAQ Completo
+#### ${configData.obrigado.faqCompleto.titulo}
+
+1. **${configData.obrigado.faqCompleto.pergunta1.pergunta}**
+   - ${configData.obrigado.faqCompleto.pergunta1.resposta}
+
+2. **${configData.obrigado.faqCompleto.pergunta2.pergunta}**
+   - ${configData.obrigado.faqCompleto.pergunta2.resposta}
+
+3. **${configData.obrigado.faqCompleto.pergunta3.pergunta}**
+   - ${configData.obrigado.faqCompleto.pergunta3.resposta}
+
+4. **${configData.obrigado.faqCompleto.pergunta4.pergunta}**
+   - ${configData.obrigado.faqCompleto.pergunta4.resposta}
+
+5. **${configData.obrigado.faqCompleto.pergunta5.pergunta}**
+   - ${configData.obrigado.faqCompleto.pergunta5.resposta}
+
+### Compartilhamento
+- **Título:** ${configData.obrigado.compartilhamento.titulo}
+- **Texto:** ${configData.obrigado.compartilhamento.texto}
+
+---
+*Documento gerado automaticamente pelo Painel Admin - ${new Date().toLocaleDateString('pt-BR')}*`;
+  };
+
+  // Export configuration as PDF with markdown formatting
+  const exportToPDFMarkdown = async () => {
+    try {
+      const markdownContent = generateMarkdownContent(config);
+      
+      // Create a new jsPDF instance
+      const pdf = new jsPDF();
+      
+      // Set font
+      pdf.setFont("helvetica");
+      
+      // Add title
+      pdf.setFontSize(20);
+      pdf.setTextColor(40, 40, 40);
+      pdf.text(`Configurações - ${config.geral.nomeEbook}`, 20, 30);
+      
+      // Add generation date
+      pdf.setFontSize(10);
+      pdf.setTextColor(100, 100, 100);
+      pdf.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}`, 20, 40);
+      
+      // Split markdown content into lines and add to PDF
+      const lines = markdownContent.split('\n');
+      let yPosition = 60;
+      const pageHeight = pdf.internal.pageSize.height;
+      const margin = 20;
+      const lineHeight = 6;
+      
+      lines.forEach((line, index) => {
+        // Check if we need a new page
+        if (yPosition > pageHeight - 30) {
+          pdf.addPage();
+          yPosition = 30;
+        }
+        
+        // Format different types of markdown
+        if (line.startsWith('# ')) {
+          pdf.setFontSize(16);
+          pdf.setTextColor(0, 100, 200);
+          pdf.text(line.substring(2), margin, yPosition);
+          yPosition += lineHeight + 2;
+        } else if (line.startsWith('## ')) {
+          pdf.setFontSize(14);
+          pdf.setTextColor(50, 50, 50);
+          pdf.text(line.substring(3), margin, yPosition);
+          yPosition += lineHeight + 1;
+        } else if (line.startsWith('### ')) {
+          pdf.setFontSize(12);
+          pdf.setTextColor(70, 70, 70);
+          pdf.text(line.substring(4), margin, yPosition);
+          yPosition += lineHeight;
+        } else if (line.startsWith('#### ')) {
+          pdf.setFontSize(11);
+          pdf.setTextColor(90, 90, 90);
+          pdf.text(line.substring(5), margin + 5, yPosition);
+          yPosition += lineHeight;
+        } else if (line.startsWith('- ')) {
+          pdf.setFontSize(10);
+          pdf.setTextColor(40, 40, 40);
+          pdf.text(line, margin + 10, yPosition);
+          yPosition += lineHeight;
+        } else if (line.trim() !== '') {
+          pdf.setFontSize(10);
+          pdf.setTextColor(40, 40, 40);
+          
+          // Split long lines
+          const maxWidth = 170;
+          const splitLines = pdf.splitTextToSize(line, maxWidth);
+          splitLines.forEach((splitLine: string) => {
+            if (yPosition > pageHeight - 30) {
+              pdf.addPage();
+              yPosition = 30;
+            }
+            pdf.text(splitLine, margin + 5, yPosition);
+            yPosition += lineHeight;
+          });
+        } else {
+          yPosition += 3; // Empty line spacing
+        }
+      });
+      
+      // Save the PDF
+      const fileName = `${config.geral.nomeEbook.replace(/[^a-zA-Z0-9]/g, '_')}_configuracoes_${new Date().toISOString().split('T')[0]}.pdf`;
+      pdf.save(fileName);
+      
+      toast({
+        title: "Sucesso!",
+        description: "PDF gerado e baixado com sucesso!"
+      });
+    } catch (error) {
+      toast({
+        title: "Erro",
+        description: "Erro ao gerar PDF. Tente novamente.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  // Share modal component
+  const ShareModal = () => {
+    const shareUrl = generateShareableLink();
+    const [qrCodeUrl, setQrCodeUrl] = useState('');
+
+    React.useEffect(() => {
+      // Generate QR code
+      QRCode.toDataURL(shareUrl, { width: 200 })
+        .then(url => setQrCodeUrl(url))
+        .catch(err => console.error(err));
+    }, [shareUrl]);
+
+    return (
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center space-x-2">
+            <Share2 className="w-5 h-5" />
+            <span>Compartilhar Página Principal</span>
+          </DialogTitle>
+        </DialogHeader>
+        <div className="space-y-4">
+          {/* URL Display and Copy */}
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Link da página principal:
+            </label>
+            <div className="flex items-center space-x-2">
+              <Input value={shareUrl} readOnly className="flex-1" />
+              <Button 
+                onClick={() => copyToClipboard(shareUrl)}
+                size="sm"
+                variant="outline"
+              >
+                <Copy className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Social Media Buttons */}
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-gray-700">
+              Compartilhar em:
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+              <Button
+                onClick={() => shareToSocial('whatsapp', shareUrl)}
+                className="bg-green-500 hover:bg-green-600 text-white"
+                size="sm"
+              >
+                <MessageCircle className="w-4 h-4 mr-2" />
+                WhatsApp
+              </Button>
+              <Button
+                onClick={() => shareToSocial('facebook', shareUrl)}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+                size="sm"
+              >
+                <Facebook className="w-4 h-4 mr-2" />
+                Facebook
+              </Button>
+              <Button
+                onClick={() => shareToSocial('twitter', shareUrl)}
+                className="bg-black hover:bg-gray-800 text-white"
+                size="sm"
+              >
+                <Twitter className="w-4 h-4 mr-2" />
+                Twitter
+              </Button>
+            </div>
+          </div>
+
+          {/* QR Code */}
+          {qrCodeUrl && (
+            <div className="flex flex-col items-center space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                QR Code:
+              </label>
+              <img src={qrCodeUrl} alt="QR Code" className="border rounded-lg" />
+            </div>
+          )}
+
+          {/* Preview Link */}
+          <div className="pt-4 border-t">
+            <Button
+              onClick={() => window.open(shareUrl, '_blank')}
+              variant="outline"
+              className="w-full"
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Visualizar página principal
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    );
   };
   const renderGeral = () => <div className="space-y-8">
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl border border-blue-200">
@@ -696,20 +1136,36 @@ const AdminPanel = () => {
               </div>
             </div>
             
-            <div className="flex space-x-4">
-              <label className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 rounded-xl cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex space-x-3">
+              {/* Share Page Button */}
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-4 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2">
+                    <Share2 className="w-4 h-4" />
+                    <span className="font-semibold">Compartilhar</span>
+                  </Button>
+                </DialogTrigger>
+                <ShareModal />
+              </Dialog>
+              
+              <label className="group bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 12l2 2 4-4"></path>
                 </svg>
                 <span className="font-semibold">Importar</span>
                 <input type="file" accept=".json" onChange={handleImportConfig} className="hidden" />
               </label>
               
-              <Button onClick={exportConfig} className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <Button onClick={exportConfig} className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
-                <span className="font-semibold">Exportar</span>
+                <span className="font-semibold">Exportar JSON</span>
+              </Button>
+              
+              <Button onClick={exportToPDFMarkdown} className="group bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2">
+                <Download className="w-4 h-4" />
+                <span className="font-semibold">Exportar PDF</span>
               </Button>
             </div>
           </div>
