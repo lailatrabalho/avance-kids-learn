@@ -22,14 +22,15 @@ const PackagesSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {/* PACOTE MIDDLE */}
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
-            <div className="gradient-card-1 p-6 text-white">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs mb-2 fredoka">Pré-Silábico</div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka">12 ATIVIDADES</div>
+          <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl card-hover group transition-all duration-500 border border-gray-100">
+            <div className="gradient-card-1 p-6 text-white relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="space-y-2">
+                  <div className="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-white/20 shadow-lg">Pré-Silábico</div>
+                  <div className="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-white/20 shadow-lg">12 ATIVIDADES</div>
                 </div>
-                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
+                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img 
                     src="https://i.imgur.com/rUT1xeR.jpeg" 
                     alt="Criança lendo livro 1" 
@@ -38,11 +39,11 @@ const PackagesSection = () => {
                   />
                 </div>
               </div>
-              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE MIDDLE</h3>
-              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Atividades fundamentais de alfabetização inicial, reconhecimento de formas e cores básicas para desenvolvimento motor.</p>
-              <div className="mt-4 flex items-center">
-                <span className="poppins text-sm">Primeiras atividades</span>
-                <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+              <h3 className="fredoka text-lg sm:text-xl mb-3 relative z-10 group-hover:scale-105 transition-transform duration-300">PACOTE MIDDLE</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/95 relative z-10">Atividades fundamentais de alfabetização inicial, reconhecimento de formas e cores básicas para desenvolvimento motor.</p>
+              <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+                <span className="poppins text-sm opacity-90">Primeiras atividades</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
@@ -50,14 +51,15 @@ const PackagesSection = () => {
           </div>
           
           {/* PACOTE RICH */}
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
-            <div className="gradient-card-2 p-6 text-white">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs mb-2 fredoka">Silábicos</div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka">15 ATIVIDADES</div>
+          <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl card-hover group transition-all duration-500 border border-gray-100">
+            <div className="gradient-card-2 p-6 text-white relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="space-y-2">
+                  <div className="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-white/20 shadow-lg">Silábicos</div>
+                  <div className="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-white/20 shadow-lg">15 ATIVIDADES</div>
                 </div>
-                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
+                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img 
                     src="https://i.imgur.com/YpcSJsf.jpeg" 
                     alt="Criança lendo livro 2" 
@@ -66,11 +68,11 @@ const PackagesSection = () => {
                   />
                 </div>
               </div>
-              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE RICH</h3>
-              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Exercícios de coordenação motora, primeiras palavras, números até 10 e atividades de associação e memória.</p>
-              <div className="mt-4 flex items-center">
-                <span className="poppins text-sm">Desenvolvimento médio</span>
-                <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+              <h3 className="fredoka text-lg sm:text-xl mb-3 relative z-10 group-hover:scale-105 transition-transform duration-300">PACOTE RICH</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/95 relative z-10">Exercícios de coordenação motora, primeiras palavras, números até 10 e atividades de associação e memória.</p>
+              <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+                <span className="poppins text-sm opacity-90">Desenvolvimento médio</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
@@ -78,14 +80,15 @@ const PackagesSection = () => {
           </div>
           
           {/* PACOTE SUPER */}
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
-            <div className="gradient-card-3 p-6 text-white">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs mb-2 fredoka">Silábico Alfabético</div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka">20 ATIVIDADES</div>
+          <div className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl card-hover group transition-all duration-500 border border-gray-100">
+            <div className="gradient-card-3 p-6 text-white relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="space-y-2">
+                  <div className="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-white/20 shadow-lg">Silábico Alfabético</div>
+                  <div className="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-white/20 shadow-lg">20 ATIVIDADES</div>
                 </div>
-                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
+                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img 
                     src="https://i.imgur.com/M6ByzwL.jpeg" 
                     alt="Criança lendo livro 3" 
@@ -94,11 +97,11 @@ const PackagesSection = () => {
                   />
                 </div>
               </div>
-              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE SUPER</h3>
-              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Leitura de palavras simples, operações matemáticas básicas, desenvolvimento da escrita e atividades de lógica.</p>
-              <div className="mt-4 flex items-center">
-                <span className="poppins text-sm">Nível avançado</span>
-                <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+              <h3 className="fredoka text-lg sm:text-xl mb-3 relative z-10 group-hover:scale-105 transition-transform duration-300">PACOTE SUPER</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/95 relative z-10">Leitura de palavras simples, operações matemáticas básicas, desenvolvimento da escrita e atividades de lógica.</p>
+              <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+                <span className="poppins text-sm opacity-90">Nível avançado</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
@@ -106,14 +109,17 @@ const PackagesSection = () => {
           </div>
           
           {/* PACOTE EXPERT */}
-          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl card-hover relative">
-            <div className="gradient-card-4 p-6 text-white">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs mb-2 fredoka">Alfabéticos Leitores Fluentes</div>
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka">25 ATIVIDADES</div>
+          <div className="bg-white rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl card-hover relative group transition-all duration-500 border-2 border-gold/20 ring-2 ring-gold/10">
+            <div className="absolute -inset-1 bg-gradient-to-r from-gold/20 to-yellow-400/20 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+            <div className="gradient-card-4 p-6 text-white relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute top-2 right-2 bg-gold text-black px-2 py-1 rounded-full text-xs fredoka font-bold shadow-lg animate-pulse">POPULAR</div>
+              <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="space-y-2">
+                  <div className="inline-block bg-white/25 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-white/20 shadow-lg">Alfabéticos Leitores Fluentes</div>
+                  <div className="inline-block bg-gold/30 backdrop-blur-sm px-3 py-1 rounded-full text-xs fredoka border border-gold/30 shadow-lg font-bold">25 ATIVIDADES</div>
                 </div>
-                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0">
+                <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-xl ring-4 ring-gold/30 group-hover:scale-110 transition-transform duration-300">
                   <img 
                     src="https://i.imgur.com/FDqaQzG.jpeg" 
                     alt="Criança lendo livro 4" 
@@ -122,11 +128,11 @@ const PackagesSection = () => {
                   />
                 </div>
               </div>
-              <h3 className="fredoka text-lg sm:text-xl mb-3">PACOTE EXPERT</h3>
-              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/90">Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 8 anos.</p>
-              <div className="mt-4 flex items-center">
-                <span className="poppins text-sm">Completo e progressivo</span>
-                <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+              <h3 className="fredoka text-lg sm:text-xl mb-3 relative z-10 group-hover:scale-105 transition-transform duration-300">PACOTE EXPERT</h3>
+              <p className="poppins text-xs sm:text-sm leading-relaxed text-white/95 relative z-10">Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 8 anos.</p>
+              <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
+                <span className="poppins text-sm opacity-90 font-semibold">Completo e progressivo</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
@@ -134,17 +140,26 @@ const PackagesSection = () => {
           </div>
         </div>
         
-        {/* Botão Central */}
-        <div className="text-center">
+        {/* Botão Central Melhorado */}
+        <div className="text-center relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent blur-3xl"></div>
           <Button 
             onClick={handlePurchaseClick}
-            className="inline-flex items-center justify-center w-full sm:max-w-xs sm:mx-auto text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-purple-600 hover:to-blue-600 text-white fredoka"
+            className="relative inline-flex items-center justify-center w-full sm:max-w-sm sm:mx-auto text-sm sm:text-base lg:text-lg px-8 py-4 rounded-full shadow-2xl hover:shadow-3xl hover-scale font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 hover:from-purple-600 hover:via-blue-600 hover:to-purple-600 text-white fredoka transition-all duration-500 border-2 border-blue-400/20 group overflow-hidden"
           >
-            <span className="rocket-animation mr-2">🚀</span> {config.pacotes.botaoCompra}
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></span>
+            <span className="rocket-animation mr-2 group-hover:scale-110 transition-transform duration-300">🚀</span> 
+            <span className="relative z-10">{config.pacotes.botaoCompra}</span>
           </Button>
-          <p className="poppins text-gray-600 mt-4 text-xs sm:text-sm text-center">
-            Escolha qualquer pacote e comece a transformar o aprendizado da sua criança hoje mesmo!
-          </p>
+          <div className="mt-6 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 max-w-md mx-auto">
+            <p className="poppins text-gray-700 text-xs sm:text-sm text-center font-medium">
+              ✨ Escolha qualquer pacote e comece a transformar o aprendizado da sua criança hoje mesmo!
+            </p>
+            <div className="flex justify-center items-center mt-2 space-x-4 text-xs text-gray-500">
+              <span className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span>Acesso imediato</span>
+              <span className="flex items-center"><span className="w-2 h-2 bg-blue-500 rounded-full mr-1"></span>Suporte incluído</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
