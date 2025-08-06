@@ -50,7 +50,7 @@ const FAQSection = () => {
           
           <Button 
             onClick={handleAtendimentoWhatsApp}
-            className="inline-flex items-center justify-center w-full sm:max-w-xs sm:mx-auto text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-bold bg-gold hover:bg-yellow-500 text-black poppins"
+            className="inline-flex items-center justify-center w-full sm:max-w-xs sm:mx-auto text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full shadow-2xl hover-scale font-black bg-gold hover:bg-yellow-500 text-black poppins border-4 border-white hover:border-yellow-200 transition-all duration-300"
           >
             SOLICITAR ATENDIMENTO
           </Button>

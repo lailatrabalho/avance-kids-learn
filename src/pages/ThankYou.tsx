@@ -85,9 +85,18 @@ const ThankYou = () => {
           {/* Success Animation */}
           <div className="mb-6 md:mb-8 flex justify-center">
             <div className="relative">
-              <div className="w-20 h-20 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center">
-                <svg className="w-12 h-12 md:w-20 md:h-20 text-light-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+              <svg className="checkmark w-20 h-20 md:w-32 md:h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle className="checkmark__circle" fill="none" cx="26" cy="26" r="25"/>
+                <path className="checkmark__check" fill="none" d="l14,20 l7,7 l16,-16"/>
+              </svg>
+              {/* Pulse rings */}
+              <div className="absolute inset-0 rounded-full bg-white pulse-ring"></div>
+              <div className="absolute inset-0 rounded-full bg-white pulse-ring" style={{animationDelay: '0.5s'}}></div>
+              
+              {/* Center check icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{animationDelay: '1.2s', opacity: 0, animation: 'fadeInScale 0.5s ease-out 1.2s forwards'}}>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
                 </svg>
               </div>
             </div>

@@ -14,7 +14,7 @@ const TestimonialsSection = () => {
       icon: "👩‍🏫",
       category: "Professora",
       borderColor: "border-t-coral",
-      imageUrl: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+      imageUrl: config.depoimentos.depoimento1.imagem || "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     {
       name: config.depoimentos.depoimento2.nome,
@@ -26,7 +26,7 @@ const TestimonialsSection = () => {
       icon: "👨‍👧",
       category: "Pai",
       borderColor: "border-t-dark-blue",
-      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+      imageUrl: config.depoimentos.depoimento2.imagem || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     },
     {
       name: config.depoimentos.depoimento3.nome,
@@ -38,7 +38,7 @@ const TestimonialsSection = () => {
       icon: "👩‍💼",
       category: "Coordenadora",
       borderColor: "border-t-purple",
-      imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
+      imageUrl: config.depoimentos.depoimento3.imagem || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face&auto=format&q=80"
     }
   ];
 
@@ -158,26 +158,42 @@ const TestimonialsSection = () => {
         
         {/* Call to Action */}
         <div className="text-center">
-          <div className="gradient-faq rounded-3xl p-8 sm:p-12 shadow-2xl max-w-3xl mx-auto relative overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-4 left-4 text-4xl opacity-20">🎉</div>
-            <div className="absolute bottom-4 right-4 text-4xl opacity-20">🚀</div>
+          <div className="gradient-faq rounded-3xl p-6 sm:p-8 shadow-2xl max-w-3xl mx-auto relative overflow-hidden">
+            {/* Enhanced decorative elements */}
+            <div className="absolute top-4 left-4 text-3xl opacity-30 animate-bounce">🎉</div>
+            <div className="absolute bottom-4 right-4 text-3xl opacity-30 animate-bounce" style={{animationDelay: '0.5s'}}>🚀</div>
+            <div className="absolute top-1/2 left-6 text-2xl opacity-20 animate-pulse">⭐</div>
+            <div className="absolute top-1/2 right-6 text-2xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}>💫</div>
             
             <div className="relative z-10">
-              <h3 className="fredoka text-2xl sm:text-3xl text-white mb-4">
-                Junte-se a milhares de famílias satisfeitas!
-              </h3>
-              <p className="poppins text-white/90 text-lg mb-6">
-                Transforme o aprendizado da sua criança hoje mesmo
+              {/* Main heading with enhanced styling */}
+              <div className="mb-5">
+                <h3 className="fredoka text-2xl sm:text-3xl lg:text-4xl text-white mb-3 leading-tight">
+                  Junte-se a milhares de 
+                  <span className="block text-white animate-pulse">famílias satisfeitas!</span>
+                </h3>
+                <div className="w-20 h-1 bg-white mx-auto rounded-full"></div>
+              </div>
+              
+              {/* Subtitle with better spacing */}
+              <p className="poppins text-white/95 text-lg sm:text-xl mb-6 font-medium leading-relaxed">
+                Transforme o aprendizado da sua criança 
+                <span className="block text-white font-bold">hoje mesmo</span>
               </p>
-              <div className="flex items-center justify-center space-x-4 text-white/80">
-                <div className="flex items-center">
-                  <span className="text-2xl mr-2">✓</span>
-                  <span>Resultados comprovados</span>
+              
+              {/* Enhanced benefits section */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                  <div className="flex items-center justify-center">
+                    <span className="text-2xl mr-2 text-green-400">✓</span>
+                    <span className="text-white font-semibold text-base">Resultados comprovados</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <span className="text-2xl mr-2">✓</span>
-                  <span>Garantia de 7 dias</span>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/20 hover:bg-white/20 transition-all duration-300">
+                  <div className="flex items-center justify-center">
+                    <span className="text-2xl mr-2 text-gold">✓</span>
+                    <span className="text-white font-semibold text-base">Garantia de 7 dias</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -692,38 +692,7 @@ const AdminPanel = () => {
           </div>)}
       </div>
     </div>;
-  const renderDepoimentos = () => <div className="space-y-6">
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">💬 Depoimentos</h3>
-      
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Título da Seção</label>
-        <Input type="text" value={config.depoimentos.titulo} onChange={e => updateConfig('depoimentos', 'titulo', e.target.value)} />
-      </div>
-      
-      <div className="grid md:grid-cols-1 gap-6">
-        {(['depoimento1', 'depoimento2', 'depoimento3'] as const).map((key, index) => <div key={key} className="bg-gray-50 p-4 rounded-lg">
-            <h4 className="font-semibold text-lg mb-3">Depoimento {index + 1}</h4>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-                <Input type="text" value={config.depoimentos[key].nome} onChange={e => updateNestedConfig('depoimentos', key, 'nome', e.target.value)} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Cargo/Local</label>
-                <Input type="text" value={config.depoimentos[key].cargo} onChange={e => updateNestedConfig('depoimentos', key, 'cargo', e.target.value)} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Inicial (1 letra)</label>
-                <Input type="text" maxLength={1} value={config.depoimentos[key].inicial} onChange={e => updateNestedConfig('depoimentos', key, 'inicial', e.target.value.toUpperCase())} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Texto do Depoimento</label>
-                <textarea value={config.depoimentos[key].texto} onChange={e => updateNestedConfig('depoimentos', key, 'texto', e.target.value)} className="w-full p-2 border border-input rounded focus:ring-2 focus:ring-ring" rows={4} />
-              </div>
-            </div>
-          </div>)}
-      </div>
-    </div>;
+
   const renderNavegacao = () => <div className="space-y-6">
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl border border-blue-200">
         <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
@@ -904,6 +873,310 @@ const AdminPanel = () => {
         </div>
       </div>
     </div>;
+
+
+
+  // Função específica para upload de imagens dos depoimentos
+  const handleDepoimentoImageUpload = (file: File, depoimentoKey: 'depoimento1' | 'depoimento2' | 'depoimento3') => {
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64String = e.target?.result as string;
+        updateNestedConfig('depoimentos', depoimentoKey, 'imagem', base64String);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      toast({
+        title: "Erro",
+        description: "Por favor, selecione um arquivo de imagem válido.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Função para upload de vídeo
+  const handleVideoUpload = (file: File) => {
+    if (file && file.type.startsWith('video/')) {
+      // Validar tamanho (máximo 50MB)
+      if (file.size > 50 * 1024 * 1024) {
+        toast({
+          title: "Erro",
+          description: "O vídeo deve ter no máximo 50MB.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64String = e.target?.result as string;
+        updateConfig('obrigado', 'videoUrl', base64String);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      toast({
+        title: "Erro",
+        description: "Por favor, selecione um arquivo de vídeo válido.",
+        variant: "destructive",
+      });
+    }
+  };
+
+
+
+  const renderDepoimentos = () => <div className="space-y-6">
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-2xl border border-purple-200">
+        <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
+          <span className="text-3xl">💬</span>
+          <span>Depoimentos</span>
+        </h3>
+        <p className="text-gray-700">Configure os depoimentos dos clientes, incluindo suas imagens.</p>
+      </div>
+      
+      <div className="space-y-6">
+        <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
+          <h4 className="font-bold text-lg mb-4 text-gray-800">Título da Seção</h4>
+          <div>
+            <label className="block text-sm font-bold text-gray-800 mb-2">Título</label>
+            <Input type="text" value={config.depoimentos.titulo} onChange={e => updateConfig('depoimentos', 'titulo', e.target.value)} className="w-full p-4 border-2 border-gray-300 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-white text-gray-800" />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-1 gap-6">
+          {/* Depoimento 1 */}
+          <div className="bg-green-50 p-6 rounded-xl border border-green-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Depoimento 1</h4>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Nome</label>
+                  <Input type="text" value={config.depoimentos.depoimento1.nome} onChange={e => updateNestedConfig('depoimentos', 'depoimento1', 'nome', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Cargo</label>
+                  <Input type="text" value={config.depoimentos.depoimento1.cargo} onChange={e => updateNestedConfig('depoimentos', 'depoimento1', 'cargo', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Inicial (fallback)</label>
+                  <Input type="text" maxLength={1} value={config.depoimentos.depoimento1.inicial} onChange={e => updateNestedConfig('depoimentos', 'depoimento1', 'inicial', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">URL da Imagem</label>
+                  <Input type="url" value={config.depoimentos.depoimento1.imagem || ''} onChange={e => updateNestedConfig('depoimentos', 'depoimento1', 'imagem', e.target.value)} placeholder="https://exemplo.com/imagem.jpg" className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Ou fazer upload da imagem</label>
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleDepoimentoImageUpload(file, 'depoimento1');
+                      }}
+                      className="hidden"
+                      id="upload-depoimento1"
+                    />
+                    <label
+                      htmlFor="upload-depoimento1"
+                      className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center space-x-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      <span>Escolher arquivo</span>
+                    </label>
+                    {config.depoimentos.depoimento1.imagem && (
+                      <button
+                        onClick={() => updateNestedConfig('depoimentos', 'depoimento1', 'imagem', '')}
+                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                      >
+                        Remover
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Preview da Imagem</label>
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 bg-gray-100 flex items-center justify-center">
+                    {config.depoimentos.depoimento1.imagem ? (
+                      <img src={config.depoimentos.depoimento1.imagem} alt={config.depoimentos.depoimento1.nome} className="w-full h-full object-cover" onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                      }} />
+                    ) : null}
+                    <div className={`w-full h-full flex items-center justify-center text-gray-500 font-bold text-lg ${config.depoimentos.depoimento1.imagem ? 'hidden' : 'flex'}`}>
+                      {config.depoimentos.depoimento1.inicial}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-bold text-gray-800 mb-2">Texto do Depoimento</label>
+              <textarea value={config.depoimentos.depoimento1.texto} onChange={e => updateNestedConfig('depoimentos', 'depoimento1', 'texto', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" rows={3} />
+            </div>
+          </div>
+
+          {/* Depoimento 2 */}
+          <div className="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Depoimento 2</h4>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Nome</label>
+                  <Input type="text" value={config.depoimentos.depoimento2.nome} onChange={e => updateNestedConfig('depoimentos', 'depoimento2', 'nome', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Cargo</label>
+                  <Input type="text" value={config.depoimentos.depoimento2.cargo} onChange={e => updateNestedConfig('depoimentos', 'depoimento2', 'cargo', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Inicial (fallback)</label>
+                  <Input type="text" maxLength={1} value={config.depoimentos.depoimento2.inicial} onChange={e => updateNestedConfig('depoimentos', 'depoimento2', 'inicial', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">URL da Imagem</label>
+                  <Input type="url" value={config.depoimentos.depoimento2.imagem || ''} onChange={e => updateNestedConfig('depoimentos', 'depoimento2', 'imagem', e.target.value)} placeholder="https://exemplo.com/imagem.jpg" className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Ou fazer upload da imagem</label>
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleDepoimentoImageUpload(file, 'depoimento2');
+                      }}
+                      className="hidden"
+                      id="upload-depoimento2"
+                    />
+                    <label
+                      htmlFor="upload-depoimento2"
+                      className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center space-x-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      <span>Escolher arquivo</span>
+                    </label>
+                    {config.depoimentos.depoimento2.imagem && (
+                      <button
+                        onClick={() => updateNestedConfig('depoimentos', 'depoimento2', 'imagem', '')}
+                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                      >
+                        Remover
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Preview da Imagem</label>
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 bg-gray-100 flex items-center justify-center">
+                    {config.depoimentos.depoimento2.imagem ? (
+                      <img src={config.depoimentos.depoimento2.imagem} alt={config.depoimentos.depoimento2.nome} className="w-full h-full object-cover" onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                      }} />
+                    ) : null}
+                    <div className={`w-full h-full flex items-center justify-center text-gray-500 font-bold text-lg ${config.depoimentos.depoimento2.imagem ? 'hidden' : 'flex'}`}>
+                      {config.depoimentos.depoimento2.inicial}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-bold text-gray-800 mb-2">Texto do Depoimento</label>
+              <textarea value={config.depoimentos.depoimento2.texto} onChange={e => updateNestedConfig('depoimentos', 'depoimento2', 'texto', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" rows={3} />
+            </div>
+          </div>
+
+          {/* Depoimento 3 */}
+          <div className="bg-purple-50 p-6 rounded-xl border border-purple-200">
+            <h4 className="font-bold text-lg mb-4 text-gray-800">Depoimento 3</h4>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Nome</label>
+                  <Input type="text" value={config.depoimentos.depoimento3.nome} onChange={e => updateNestedConfig('depoimentos', 'depoimento3', 'nome', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Cargo</label>
+                  <Input type="text" value={config.depoimentos.depoimento3.cargo} onChange={e => updateNestedConfig('depoimentos', 'depoimento3', 'cargo', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Inicial (fallback)</label>
+                  <Input type="text" maxLength={1} value={config.depoimentos.depoimento3.inicial} onChange={e => updateNestedConfig('depoimentos', 'depoimento3', 'inicial', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">URL da Imagem</label>
+                  <Input type="url" value={config.depoimentos.depoimento3.imagem || ''} onChange={e => updateNestedConfig('depoimentos', 'depoimento3', 'imagem', e.target.value)} placeholder="https://exemplo.com/imagem.jpg" className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Ou fazer upload da imagem</label>
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleDepoimentoImageUpload(file, 'depoimento3');
+                      }}
+                      className="hidden"
+                      id="upload-depoimento3"
+                    />
+                    <label
+                      htmlFor="upload-depoimento3"
+                      className="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center space-x-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      <span>Escolher arquivo</span>
+                    </label>
+                    {config.depoimentos.depoimento3.imagem && (
+                      <button
+                        onClick={() => updateNestedConfig('depoimentos', 'depoimento3', 'imagem', '')}
+                        className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                      >
+                        Remover
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Preview da Imagem</label>
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-gray-300 bg-gray-100 flex items-center justify-center">
+                    {config.depoimentos.depoimento3.imagem ? (
+                      <img src={config.depoimentos.depoimento3.imagem} alt={config.depoimentos.depoimento3.nome} className="w-full h-full object-cover" onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                      }} />
+                    ) : null}
+                    <div className={`w-full h-full flex items-center justify-center text-gray-500 font-bold text-lg ${config.depoimentos.depoimento3.imagem ? 'hidden' : 'flex'}`}>
+                      {config.depoimentos.depoimento3.inicial}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-bold text-gray-800 mb-2">Texto do Depoimento</label>
+              <textarea value={config.depoimentos.depoimento3.texto} onChange={e => updateNestedConfig('depoimentos', 'depoimento3', 'texto', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" rows={3} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>;
+
   const renderObrigado = () => <div className="space-y-6">
       <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl border border-green-200">
         <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
@@ -946,6 +1219,143 @@ const AdminPanel = () => {
               <label className="block text-sm font-bold text-gray-800 mb-2">Descrição do Vídeo</label>
               <textarea value={config.obrigado.videoDescricao} onChange={e => updateConfig('obrigado', 'videoDescricao', e.target.value)} className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" rows={2} />
             </div>
+
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">URL do Vídeo</label>
+              <Input 
+                type="url" 
+                value={config.obrigado.videoUrl || ''} 
+                onChange={e => updateConfig('obrigado', 'videoUrl', e.target.value)} 
+                placeholder="https://youtube.com/embed/... ou URL direta do vídeo" 
+                className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" 
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">Ou fazer upload do vídeo</label>
+              <div className="flex items-center space-x-3">
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleVideoUpload(file);
+                  }}
+                  className="hidden"
+                  id="upload-video"
+                />
+                <label
+                  htmlFor="upload-video"
+                  className="cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center space-x-2 shadow-lg border-2 border-white"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  <span>Escolher vídeo</span>
+                </label>
+                {config.obrigado.videoUrl && (
+                  <button
+                    onClick={() => updateConfig('obrigado', 'videoUrl', '')}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                  >
+                    Remover
+                  </button>
+                )}
+              </div>
+              <p className="text-xs text-gray-500 mt-1">Máximo 50MB. Formatos suportados: MP4, WebM, AVI, MOV</p>
+            </div>
+
+            {/* Ajuste de tamanho do vídeo */}
+            <div className="bg-white p-4 rounded-lg border border-gray-200">
+              <h5 className="font-bold text-md mb-3 text-gray-800">Ajustar Tamanho do Player</h5>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Largura (px)</label>
+                  <Input 
+                    type="number" 
+                    value={config.obrigado.videoWidth || 560} 
+                    onChange={e => updateConfig('obrigado', 'videoWidth', parseInt(e.target.value) || 560)} 
+                    min="200"
+                    max="1200"
+                    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-gray-800 mb-2">Altura (px)</label>
+                  <Input 
+                    type="number" 
+                    value={config.obrigado.videoHeight || 315} 
+                    onChange={e => updateConfig('obrigado', 'videoHeight', parseInt(e.target.value) || 315)} 
+                    min="150"
+                    max="800"
+                    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-800" 
+                  />
+                </div>
+              </div>
+              <div className="mt-3 flex items-center space-x-2">
+                <button
+                  onClick={() => {
+                    updateConfig('obrigado', 'videoWidth', 560);
+                    updateConfig('obrigado', 'videoHeight', 315);
+                  }}
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm"
+                >
+                  16:9 (560x315)
+                </button>
+                <button
+                  onClick={() => {
+                    updateConfig('obrigado', 'videoWidth', 640);
+                    updateConfig('obrigado', 'videoHeight', 480);
+                  }}
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm"
+                >
+                  4:3 (640x480)
+                </button>
+                <button
+                  onClick={() => {
+                    updateConfig('obrigado', 'videoWidth', 800);
+                    updateConfig('obrigado', 'videoHeight', 450);
+                  }}
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm"
+                >
+                  Grande (800x450)
+                </button>
+              </div>
+            </div>
+
+            {/* Preview do vídeo */}
+            {config.obrigado.videoUrl && (
+              <div className="bg-white p-4 rounded-lg border border-gray-200">
+                <h5 className="font-bold text-md mb-3 text-gray-800">Preview do Vídeo</h5>
+                <div className="flex justify-center">
+                  {config.obrigado.videoUrl.includes('youtube.com') || config.obrigado.videoUrl.includes('youtu.be') ? (
+                    <iframe
+                      width={config.obrigado.videoWidth || 560}
+                      height={config.obrigado.videoHeight || 315}
+                      src={config.obrigado.videoUrl}
+                      title="Video Preview"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="rounded-lg shadow-lg"
+                    ></iframe>
+                  ) : (
+                    <video
+                      width={config.obrigado.videoWidth || 560}
+                      height={config.obrigado.videoHeight || 315}
+                      controls
+                      className="rounded-lg shadow-lg"
+                    >
+                      <source src={config.obrigado.videoUrl} type="video/mp4" />
+                      Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                  )}
+                </div>
+                <p className="text-sm text-gray-600 mt-2 text-center">
+                  Tamanho: {config.obrigado.videoWidth || 560}x{config.obrigado.videoHeight || 315}px
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -1097,7 +1507,7 @@ const AdminPanel = () => {
                 🚀
               </div>
               <div>
-                <h1 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl lg:text-3xl font-bold text-gray-800">
                   Painel Admin - E-book Avance
                 </h1>
                 <p className="text-gray-600 font-medium text-sm lg:text-base">Gerencie todo o conteúdo das páginas com facilidade</p>
@@ -1108,9 +1518,9 @@ const AdminPanel = () => {
               {/* Share Page Button */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 px-3 lg:px-4 py-2 lg:py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 text-sm lg:text-base text-slate-50 bg-cyan-600 hover:bg-cyan-500">
+                  <Button className="bg-blue-600 hover:bg-blue-700 text-white px-3 lg:px-4 py-2 lg:py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 text-sm lg:text-base font-semibold">
                     <Share2 className="w-4 h-4" />
-                    <span className="font-semibold">Compartilhar</span>
+                    <span>Compartilhar</span>
                   </Button>
                 </DialogTrigger>
                 <ShareModal />

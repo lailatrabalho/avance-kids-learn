@@ -18,6 +18,7 @@ interface TestimonialItem {
   cargo: string;
   texto: string;
   inicial: string;
+  imagem?: string;
 }
 
 interface ConfigData {
@@ -113,6 +114,9 @@ interface ConfigData {
     descricao: string;
     videoTitulo: string;
     videoDescricao: string;
+    videoUrl?: string;
+    videoWidth?: number;
+    videoHeight?: number;
     proximosPassos: {
       titulo: string;
       passo1: string;
@@ -292,6 +296,9 @@ const defaultConfig: ConfigData = {
     descricao: 'Você acaba de dar o primeiro passo para transformar o desenvolvimento da sua criança! Em instantes você receberá todo o material em seu e-mail.',
     videoTitulo: 'VEJA COMO USAR SEU E-BOOK AVANCE',
     videoDescricao: 'Assista ao vídeo completo e descubra como aproveitar ao máximo cada atividade',
+    videoUrl: '',
+    videoWidth: 560,
+    videoHeight: 315,
     proximosPassos: {
       titulo: 'PRÓXIMOS PASSOS:',
       passo1: '📧 Verifique seu e-mail (incluindo spam)',

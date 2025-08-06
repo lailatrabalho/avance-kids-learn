@@ -118,21 +118,20 @@ const TargetAudienceSection = () => {
         </div>
         
         {/* Call to Action Final */}
-        <div className="text-center mt-12">
-          <div className="gradient-gold p-8 rounded-3xl shadow-2xl max-w-3xl mx-auto border-4 border-white relative overflow-hidden">
-            {/* Confetes decorativos */}
-            <div className="absolute top-2 left-4 text-white/40 text-2xl animate-bounce">🌟</div>
-            <div className="absolute top-4 right-6 text-white/40 text-xl animate-bounce" style={{ animationDelay: '0.5s' }}>✨</div>
-            <div className="absolute bottom-3 left-8 text-white/40 text-lg animate-bounce" style={{ animationDelay: '1s' }}>🎯</div>
-            <div className="absolute bottom-2 right-4 text-white/40 text-2xl animate-bounce" style={{ animationDelay: '1.5s' }}>🚀</div>
-            <div className="relative z-10">
-              <h3 className="fredoka text-2xl md:text-3xl text-white mb-4 drop-shadow-lg">
-                {config.publicoAlvo.ctaTexto}<br />
-                <span className="text-blue-900">{config.publicoAlvo.ctaSubtexto}</span>
-              </h3>
-              <div className="flex justify-center">
-                <div className="text-5xl bounce-slow">🚀</div>
-              </div>
+        <div className="text-center mt-12 relative">
+          {/* Ícones decorativos animados */}
+          <div className="absolute top-0 left-1/4 text-blue-900/60 text-2xl animate-bounce">🌟</div>
+          <div className="absolute top-4 right-1/4 text-blue-900/60 text-xl animate-bounce" style={{ animationDelay: '0.5s' }}>✨</div>
+          <div className="absolute bottom-8 left-1/3 text-blue-900/60 text-lg animate-bounce" style={{ animationDelay: '1s' }}>🎯</div>
+          <div className="absolute bottom-4 right-1/3 text-blue-900/60 text-2xl animate-bounce" style={{ animationDelay: '1.5s' }}>🚀</div>
+          
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h3 className="fredoka text-2xl md:text-3xl text-blue-900 mb-4">
+              {config.publicoAlvo.ctaTexto}<br />
+              <span className="text-blue-900">{config.publicoAlvo.ctaSubtexto}</span>
+            </h3>
+            <div className="flex justify-center">
+              <div className="text-5xl bounce-slow">🚀</div>
             </div>
           </div>
         </div>
