@@ -398,4 +398,38 @@
       transform: scale(1);
     }
   }
+
+  /* Mobile responsiveness improvements */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Improve touch targets */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better text scaling */
+    .fredoka {
+      line-height: 1.2;
+    }
+    
+    .poppins {
+      line-height: 1.5;
+    }
+  }
+
+  /* Prevent translation of specific elements */
+  [translate="no"] {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
 }
