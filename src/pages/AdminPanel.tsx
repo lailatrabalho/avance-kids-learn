@@ -120,7 +120,6 @@ const AdminPanel = () => {
   const shareToSocial = (platform: string, url: string) => {
     const encodedUrl = encodeURIComponent(url);
     const text = encodeURIComponent(`Confira este e-book incrível: ${config.geral.nomeEbook}`);
-    
     let shareUrl = '';
     switch (platform) {
       case 'whatsapp':
@@ -135,7 +134,6 @@ const AdminPanel = () => {
       default:
         return;
     }
-    
     window.open(shareUrl, '_blank', 'width=600,height=400');
   };
 
@@ -355,37 +353,36 @@ const AdminPanel = () => {
   const exportToPDFMarkdown = async () => {
     try {
       const markdownContent = generateMarkdownContent(config);
-      
+
       // Create a new jsPDF instance
       const pdf = new jsPDF();
-      
+
       // Set font
       pdf.setFont("helvetica");
-      
+
       // Add title
       pdf.setFontSize(20);
       pdf.setTextColor(40, 40, 40);
       pdf.text(`Configurações - ${config.geral.nomeEbook}`, 20, 30);
-      
+
       // Add generation date
       pdf.setFontSize(10);
       pdf.setTextColor(100, 100, 100);
       pdf.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}`, 20, 40);
-      
+
       // Split markdown content into lines and add to PDF
       const lines = markdownContent.split('\n');
       let yPosition = 60;
       const pageHeight = pdf.internal.pageSize.height;
       const margin = 20;
       const lineHeight = 6;
-      
       lines.forEach((line, index) => {
         // Check if we need a new page
         if (yPosition > pageHeight - 30) {
           pdf.addPage();
           yPosition = 30;
         }
-        
+
         // Format different types of markdown
         if (line.startsWith('# ')) {
           pdf.setFontSize(16);
@@ -415,7 +412,7 @@ const AdminPanel = () => {
         } else if (line.trim() !== '') {
           pdf.setFontSize(10);
           pdf.setTextColor(40, 40, 40);
-          
+
           // Split long lines
           const maxWidth = 170;
           const splitLines = pdf.splitTextToSize(line, maxWidth);
@@ -431,11 +428,10 @@ const AdminPanel = () => {
           yPosition += 3; // Empty line spacing
         }
       });
-      
+
       // Save the PDF
       const fileName = `${config.geral.nomeEbook.replace(/[^a-zA-Z0-9]/g, '_')}_configuracoes_${new Date().toISOString().split('T')[0]}.pdf`;
       pdf.save(fileName);
-      
       toast({
         title: "Sucesso!",
         description: "PDF gerado e baixado com sucesso!"
@@ -453,16 +449,13 @@ const AdminPanel = () => {
   const ShareModal = () => {
     const shareUrl = generateShareableLink();
     const [qrCodeUrl, setQrCodeUrl] = useState('');
-
     React.useEffect(() => {
       // Generate QR code
-      QRCode.toDataURL(shareUrl, { width: 200 })
-        .then(url => setQrCodeUrl(url))
-        .catch(err => console.error(err));
+      QRCode.toDataURL(shareUrl, {
+        width: 200
+      }).then(url => setQrCodeUrl(url)).catch(err => console.error(err));
     }, [shareUrl]);
-
-    return (
-      <DialogContent className="sm:max-w-md">
+    return <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-2">
             <Share2 className="w-5 h-5" />
@@ -477,11 +470,7 @@ const AdminPanel = () => {
             </label>
             <div className="flex items-center space-x-2">
               <Input value={shareUrl} readOnly className="flex-1" />
-              <Button 
-                onClick={() => copyToClipboard(shareUrl)}
-                size="sm"
-                variant="outline"
-              >
+              <Button onClick={() => copyToClipboard(shareUrl)} size="sm" variant="outline">
                 <Copy className="w-4 h-4" />
               </Button>
             </div>
@@ -493,27 +482,15 @@ const AdminPanel = () => {
               Compartilhar em:
             </label>
             <div className="grid grid-cols-3 gap-3">
-              <Button
-                onClick={() => shareToSocial('whatsapp', shareUrl)}
-                className="bg-green-500 hover:bg-green-600 text-white"
-                size="sm"
-              >
+              <Button onClick={() => shareToSocial('whatsapp', shareUrl)} className="bg-green-500 hover:bg-green-600 text-white" size="sm">
                 <MessageCircle className="w-4 h-4 mr-2" />
                 WhatsApp
               </Button>
-              <Button
-                onClick={() => shareToSocial('facebook', shareUrl)}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-                size="sm"
-              >
+              <Button onClick={() => shareToSocial('facebook', shareUrl)} className="bg-blue-600 hover:bg-blue-700 text-white" size="sm">
                 <Facebook className="w-4 h-4 mr-2" />
                 Facebook
               </Button>
-              <Button
-                onClick={() => shareToSocial('twitter', shareUrl)}
-                className="bg-black hover:bg-gray-800 text-white"
-                size="sm"
-              >
+              <Button onClick={() => shareToSocial('twitter', shareUrl)} className="bg-black hover:bg-gray-800 text-white" size="sm">
                 <Twitter className="w-4 h-4 mr-2" />
                 Twitter
               </Button>
@@ -521,29 +498,22 @@ const AdminPanel = () => {
           </div>
 
           {/* QR Code */}
-          {qrCodeUrl && (
-            <div className="flex flex-col items-center space-y-2">
+          {qrCodeUrl && <div className="flex flex-col items-center space-y-2">
               <label className="text-sm font-medium text-gray-700">
                 QR Code:
               </label>
               <img src={qrCodeUrl} alt="QR Code" className="border rounded-lg" />
-            </div>
-          )}
+            </div>}
 
           {/* Preview Link */}
           <div className="pt-4 border-t">
-            <Button
-              onClick={() => window.open(shareUrl, '_blank')}
-              variant="outline"
-              className="w-full"
-            >
+            <Button onClick={() => window.open(shareUrl, '_blank')} variant="outline" className="w-full">
               <ExternalLink className="w-4 h-4 mr-2" />
               Visualizar página principal
             </Button>
           </div>
         </div>
-      </DialogContent>
-    );
+      </DialogContent>;
   };
   const renderGeral = () => <div className="space-y-8">
       <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl border border-blue-200">
@@ -1138,7 +1108,7 @@ const AdminPanel = () => {
               {/* Share Page Button */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white px-3 lg:px-4 py-2 lg:py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 text-sm lg:text-base">
+                  <Button className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 px-3 lg:px-4 py-2 lg:py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2 text-sm lg:text-base text-slate-50 bg-cyan-600 hover:bg-cyan-500">
                     <Share2 className="w-4 h-4" />
                     <span className="font-semibold">Compartilhar</span>
                   </Button>
