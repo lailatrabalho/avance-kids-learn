@@ -98,6 +98,33 @@ export interface ConfigData {
     descricao: string;
     videoTitulo: string;
     videoDescricao: string;
+    videoUrl?: string;
+    videoWidth?: number;
+    videoHeight?: number;
+    proximosPassos: {
+      titulo: string;
+      passo1: string;
+      passo2: string;
+      passo3: string;
+    };
+    informacoesImportantes: {
+      titulo: string;
+      info1: string;
+      info2: string;
+      info3: string;
+    };
+    faqCompleto: {
+      titulo: string;
+      pergunta1: { pergunta: string; resposta: string };
+      pergunta2: { pergunta: string; resposta: string };
+      pergunta3: { pergunta: string; resposta: string };
+      pergunta4: { pergunta: string; resposta: string };
+      pergunta5: { pergunta: string; resposta: string };
+    };
+    compartilhamento: {
+      titulo: string;
+      texto: string;
+    };
   };
   garantia: {
     seloTexto1: string;
@@ -223,6 +250,48 @@ const defaultConfig: ConfigData = {
     descricao: 'Seu material educativo chegará no seu e-mail em até 5 minutos. Enquanto isso, confira as instruções abaixo.',
     videoTitulo: 'COMO USAR SEU MATERIAL',
     videoDescricao: 'Assista este vídeo rápido e aprenda a aproveitar ao máximo seu e-book educativo.',
+    videoUrl: '',
+    videoWidth: 560,
+    videoHeight: 315,
+    proximosPassos: {
+      titulo: 'PRÓXIMOS PASSOS',
+      passo1: 'Verifique seu e-mail em até 5 minutos',
+      passo2: 'Faça o download dos arquivos PDF',
+      passo3: 'Comece a usar com sua criança',
+    },
+    informacoesImportantes: {
+      titulo: 'INFORMAÇÕES IMPORTANTES',
+      info1: 'Material em formato PDF de alta qualidade',
+      info2: 'Impressões ilimitadas permitidas',
+      info3: 'Suporte via WhatsApp disponível',
+    },
+    faqCompleto: {
+      titulo: 'PERGUNTAS FREQUENTES',
+      pergunta1: {
+        pergunta: 'Não recebi o e-mail com o material',
+        resposta: 'Verifique sua caixa de spam e aguarde até 5 minutos. Se não receber, entre em contato via WhatsApp.',
+      },
+      pergunta2: {
+        pergunta: 'Posso imprimir quantas vezes quiser?',
+        resposta: 'Sim! O material é 100% seu após a compra. Downloads e impressões ilimitadas.',
+      },
+      pergunta3: {
+        pergunta: 'Como funciona a garantia de 7 dias?',
+        resposta: 'Garantia total! 100% do seu dinheiro de volta se não ficar satisfeito por qualquer motivo.',
+      },
+      pergunta4: {
+        pergunta: 'Preciso de conhecimento específico para usar?',
+        resposta: 'Não! Foi criado especialmente para pais sem formação pedagógica.',
+      },
+      pergunta5: {
+        pergunta: 'Quanto tempo leva para ver resultados?',
+        resposta: 'Resultados rápidos! Na primeira semana já é possível ver maior interesse e concentração.',
+      },
+    },
+    compartilhamento: {
+      titulo: 'COMPARTILHE SEU SUCESSO',
+      texto: 'Ajude outros pais compartilhando sua experiência com o e-book Avance!',
+    },
   },
   garantia: {
     seloTexto1: 'GARANTIA',
@@ -370,6 +439,13 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           descricao: defaultConfig.obrigado.descricao,
           videoTitulo: defaultConfig.obrigado.videoTitulo,
           videoDescricao: defaultConfig.obrigado.videoDescricao,
+          videoUrl: defaultConfig.obrigado.videoUrl,
+          videoWidth: defaultConfig.obrigado.videoWidth,
+          videoHeight: defaultConfig.obrigado.videoHeight,
+          proximosPassos: defaultConfig.obrigado.proximosPassos,
+          informacoesImportantes: defaultConfig.obrigado.informacoesImportantes,
+          faqCompleto: defaultConfig.obrigado.faqCompleto,
+          compartilhamento: defaultConfig.obrigado.compartilhamento,
         },
         garantia: defaultConfig.garantia,
         faq: defaultConfig.faq,
