@@ -6,10 +6,10 @@ const BenefitsSection = () => {
   return <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-white" id="sobre">
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
-            {config.beneficios.titulo}
-            <br />
-            <span className="text-coral">{config.beneficios.subtitulo}</span>
+          <h2 className="fredoka text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-dark-blue mb-4 leading-tight px-2 sm:px-0">
+            <span className="block sm:inline">{config.beneficios.titulo}</span>
+            <br className="hidden sm:block" />
+            <span className="block sm:inline text-coral">{config.beneficios.subtitulo}</span>
           </h2>
         </div>
         

@@ -43,7 +43,7 @@ const HeroSection = () => {
             <div className="px-2 sm:px-0">
               <Button 
                 onClick={handlePurchaseClick}
-                className="bg-gold hover:bg-yellow-500 text-black poppins font-bold text-xs sm:text-sm md:text-base lg:text-lg px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-4 rounded-full shadow-xl hover:shadow-2xl hover-scale transition-all duration-300 w-full sm:w-auto border-2 border-gold/20 relative overflow-hidden group min-h-[44px]"
+                className="bg-gold hover:bg-yellow-500 text-black poppins font-bold text-sm sm:text-base md:text-lg lg:text-xl px-4 sm:px-6 md:px-8 py-3 sm:py-3 md:py-4 rounded-full shadow-xl hover:shadow-2xl hover-scale transition-all duration-300 w-full sm:w-auto border-2 border-gold/20 relative overflow-hidden group min-h-[48px]"
                 translate="no"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></span>

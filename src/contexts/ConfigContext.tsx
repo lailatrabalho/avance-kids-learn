@@ -173,8 +173,8 @@ const defaultConfig: ConfigData = {
   publicoAlvo: {
     titulo: 'Para quem é este E-book?',
     textoIntroducao: 'Desenvolvido especialmente para crianças em fase de desenvolvimento',
-    ctaTexto: 'Garante já o seu E-book!',
-    ctaSubtexto: 'Acesso imediato + Suporte completo',
+    ctaTexto: 'Garante já o seu E-book e transforme o aprendizado da sua criança!',
+    ctaSubtexto: 'Acesso imediato + Suporte completo + Garantia de 7 dias 🚀',
     card1: { titulo: 'Pais Dedicados', descricao: 'Que buscam estimular o desenvolvimento dos filhos', detalhe: 'Atividades família-criança' },
     card2: { titulo: 'Professores', descricao: 'Que querem recursos educativos inovadores', detalhe: 'Material didático complementar' },
     card3: { titulo: 'Crianças 4-8 anos', descricao: 'Em fase de desenvolvimento cognitivo', detalhe: 'Atividades adequadas para cada faixa etária' },

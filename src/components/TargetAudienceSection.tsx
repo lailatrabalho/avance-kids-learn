@@ -126,18 +126,26 @@ const TargetAudienceSection = () => {
           <div className="absolute bottom-4 right-1/3 text-blue-900/60 text-2xl animate-bounce" style={{ animationDelay: '1.5s' }}>🚀</div>
           
           <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-blue-100 shadow-lg">
-              <div className="space-y-2 sm:space-y-3">
-                <h3 className="fredoka text-base sm:text-lg md:text-xl lg:text-2xl text-blue-900 leading-tight text-center px-2" translate="no">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-blue-100 shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+              {/* Efeito de brilho animado */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse opacity-50"></div>
+              
+              <div className="relative z-10 space-y-3 sm:space-y-4">
+                <h3 className="fredoka text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-900 leading-tight text-center px-1 sm:px-2 font-bold" translate="no">
                   {config.publicoAlvo.ctaTexto}
                 </h3>
-                <h3 className="fredoka text-base sm:text-lg md:text-xl lg:text-2xl text-coral leading-tight text-center font-bold px-2" translate="no">
-                  {config.publicoAlvo.ctaSubtexto}
-                </h3>
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-blue-200 shadow-lg">
+                  <h3 className="fredoka text-base sm:text-lg md:text-xl lg:text-2xl text-coral leading-tight text-center font-bold px-1 sm:px-2 animate-pulse" translate="no">
+                    {config.publicoAlvo.ctaSubtexto}
+                  </h3>
+                </div>
               </div>
-              <div className="flex justify-center mt-4">
-                <div className="text-2xl sm:text-3xl bounce-slow">🚀</div>
-              </div>
+              
+              {/* Elementos decorativos */}
+              <div className="absolute top-2 left-2 text-blue-400 text-lg animate-bounce">✨</div>
+              <div className="absolute top-2 right-2 text-purple-400 text-lg animate-bounce" style={{ animationDelay: '0.5s' }}>⭐</div>
+              <div className="absolute bottom-2 left-2 text-gold text-lg animate-bounce" style={{ animationDelay: '1s' }}>🎯</div>
+              <div className="absolute bottom-2 right-2 text-coral text-lg animate-bounce" style={{ animationDelay: '1.5s' }}>🚀</div>
             </div>
           </div>
         </div>
