@@ -426,12 +426,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           card3: { titulo: supabaseConfig.targetAudience.card_3_title, descricao: supabaseConfig.targetAudience.card_3_description, detalhe: supabaseConfig.targetAudience.card_3_detail },
           card4: { titulo: supabaseConfig.targetAudience.card_4_title, descricao: supabaseConfig.targetAudience.card_4_description, detalhe: supabaseConfig.targetAudience.card_4_detail },
         } : defaultConfig.publicoAlvo,
-        obrigado: supabaseConfig.thankYouConfig ? {
-          titulo: supabaseConfig.thankYouConfig.title,
-          subtitulo: supabaseConfig.thankYouConfig.subtitle,
-          instrucoes: supabaseConfig.thankYouConfig.instructions,
-          textoSuporte: supabaseConfig.thankYouConfig.support_text,
-        } : {
+        obrigado: {
           titulo: supabaseConfig.thankYouConfig?.title || defaultConfig.obrigado.titulo,
           subtitulo: supabaseConfig.thankYouConfig?.subtitle || defaultConfig.obrigado.subtitulo,
           instrucoes: supabaseConfig.thankYouConfig?.instructions || defaultConfig.obrigado.instrucoes,
