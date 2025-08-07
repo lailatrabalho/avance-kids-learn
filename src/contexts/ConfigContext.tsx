@@ -36,6 +36,7 @@ export interface ConfigData {
     descricao: string;
     numeroWhatsApp: string;
     linkCompra: string;
+    faixaEtaria: string;
   };
   hero: {
     titulo: string;
@@ -44,14 +45,17 @@ export interface ConfigData {
     descricao2: string;
     descricao3: string;
     imagemUrl?: string;
+    botaoCta: string;
   };
   beneficios: {
     titulo: string;
+    subtitulo: string;
     items: BenefitItem[];
   };
   pacotes: {
     titulo: string;
     subtitulo: string;
+    botaoCompra: string;
     items: PackageItem[];
   };
   depoimentos: {
@@ -75,6 +79,24 @@ export interface ConfigData {
     subtitulo: string;
     instrucoes: string;
     textoSuporte: string;
+  };
+  garantia: {
+    seloTexto1: string;
+    seloTexto2: string;
+    seloTexto3: string;
+    card1Titulo: string;
+    card1Descricao: string;
+    card2Titulo: string;
+    card2Descricao: string;
+    funcionalidade1: string;
+    funcionalidade2: string;
+    funcionalidade3: string;
+  };
+  faq: {
+    titulo: string;
+    subtitulo: string;
+    numeroWhatsApp: string;
+    mensagemPadrao: string;
   };
   contato: {
     telefoneWhatsApp: string;
@@ -110,16 +132,20 @@ const defaultConfig: ConfigData = {
     descricao: 'E-book interativo para desenvolvimento infantil',
     numeroWhatsApp: '5511999999999',
     linkCompra: 'https://pay.hotmart.com/example',
+    faixaEtaria: 'DE 3 A 8 ANOS',
   },
   hero: {
-    titulo: 'E-BOOK INTERATIVO EDUCATIVO',
-    subtitulo: 'PARA CRIANÇAS DE 4 A 8 ANOS',
+    titulo: 'E-BOOK AVANCE',
+    subtitulo: 'AVANCE NA EDUCAÇÃO INFANTIL',
     descricao1: 'Estimule o desenvolvimento cognitivo e criativo da sua criança',
     descricao2: 'Com atividades lúdicas e educativas',
     descricao3: 'Desenvolvido por especialistas em educação',
+    imagemUrl: 'https://i.imgur.com/sMUelUm.png',
+    botaoCta: 'QUERO AVANÇAR AGORA!',
   },
   beneficios: {
     titulo: 'BENEFÍCIOS DO NOSSO E-BOOK',
+    subtitulo: 'EDUCATIVO PARA CRIANÇAS',
     items: [
       { id: '1', title: 'Jogos Interativos', description: 'Atividades lúdicas que estimulam o aprendizado', icon: 'gamepad' },
       { id: '2', title: 'Desenvolvimento da Lógica', description: 'Exercícios que trabalham o raciocínio lógico', icon: 'brain' },
@@ -130,6 +156,7 @@ const defaultConfig: ConfigData = {
   pacotes: {
     titulo: 'ESCOLHA SEU PACOTE',
     subtitulo: 'Pacotes desenvolvidos para cada necessidade',
+    botaoCompra: 'QUERO COMPRAR AGORA',
     items: [
       { id: '1', nome: 'MIDDLE', descricao: 'Pacote básico com atividades fundamentais' },
       { id: '2', nome: 'RICH', descricao: 'Pacote intermediário com conteúdo ampliado' },
@@ -159,6 +186,24 @@ const defaultConfig: ConfigData = {
     instrucoes: 'Verifique seu e-mail (incluindo a pasta de spam)',
     textoSuporte: 'Precisa de ajuda? Entre em contato conosco',
   },
+  garantia: {
+    seloTexto1: 'GARANTIA',
+    seloTexto2: '7 DIAS',
+    seloTexto3: 'Satisfação TOTAL ou seu dinheiro de volta',
+    card1Titulo: 'Garantia Incondicional de 7 Dias',
+    card1Descricao: 'Estamos tão confiantes na qualidade do nosso material que oferecemos 7 dias de garantia incondicional. Se por qualquer motivo você não ficar satisfeito, devolvemos 100% do seu investimento.',
+    card2Titulo: 'Satisfação Total ou Seu Dinheiro de Volta',
+    card2Descricao: 'Sem burocracia, sem perguntas. Reembolso em até 48 horas.',
+    funcionalidade1: 'Compra Segura - Pagamento 100% protegido',
+    funcionalidade2: 'Suporte 24h - Atendimento sempre disponível',
+    funcionalidade3: 'Entrega Imediata - Acesso instantâneo ao conteúdo',
+  },
+  faq: {
+    titulo: 'Ainda tem dúvidas?',
+    subtitulo: 'Entre em contato conosco pelo WhatsApp e tire todas as suas dúvidas!',
+    numeroWhatsApp: '5511999999999',
+    mensagemPadrao: 'Olá! Gostaria de saber mais sobre o e-book educativo.',
+  },
   contato: {
     telefoneWhatsApp: '5511999999999',
     mensagemWhatsApp: 'Olá! Gostaria de saber mais sobre o e-book educativo.',
@@ -186,17 +231,20 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           descricao: supabaseConfig.websiteConfig?.description || defaultConfig.geral.descricao,
           numeroWhatsApp: supabaseConfig.websiteConfig?.whatsapp_number || defaultConfig.geral.numeroWhatsApp,
           linkCompra: supabaseConfig.websiteConfig?.purchase_link || defaultConfig.geral.linkCompra,
+          faixaEtaria: defaultConfig.geral.faixaEtaria,
         },
         hero: {
-          titulo: supabaseConfig.heroSection?.title || defaultConfig.hero.titulo,
-          subtitulo: supabaseConfig.heroSection?.subtitle || defaultConfig.hero.subtitulo,
+          titulo: defaultConfig.hero.titulo,
+          subtitulo: defaultConfig.hero.subtitulo,
           descricao1: supabaseConfig.heroSection?.description_1 || defaultConfig.hero.descricao1,
           descricao2: supabaseConfig.heroSection?.description_2 || defaultConfig.hero.descricao2,
           descricao3: supabaseConfig.heroSection?.description_3 || defaultConfig.hero.descricao3,
-          imagemUrl: supabaseConfig.heroSection?.image_url || undefined,
+          imagemUrl: supabaseConfig.heroSection?.image_url || defaultConfig.hero.imagemUrl,
+          botaoCta: defaultConfig.hero.botaoCta,
         },
         beneficios: {
           titulo: 'BENEFÍCIOS DO NOSSO E-BOOK',
+          subtitulo: 'EDUCATIVO PARA CRIANÇAS',
           items: supabaseConfig.benefits.map(b => ({
             id: b.id,
             title: b.title,
@@ -207,6 +255,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         pacotes: {
           titulo: 'ESCOLHA SEU PACOTE',
           subtitulo: 'Pacotes desenvolvidos para cada necessidade',
+          botaoCompra: 'QUERO COMPRAR AGORA',
           items: supabaseConfig.packages.map(p => ({
             id: p.id,
             nome: p.name,
@@ -263,6 +312,8 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           instrucoes: supabaseConfig.thankYouConfig.instructions,
           textoSuporte: supabaseConfig.thankYouConfig.support_text,
         } : defaultConfig.obrigado,
+        garantia: defaultConfig.garantia,
+        faq: defaultConfig.faq,
         contato: defaultConfig.contato,
         cores: defaultConfig.cores,
       };
