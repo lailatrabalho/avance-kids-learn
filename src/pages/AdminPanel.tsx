@@ -1004,7 +1004,7 @@ const AdminPanel = () => {
                     {config.depoimentos.depoimento1.imagem ? (
                       <img src={config.depoimentos.depoimento1.imagem} alt={config.depoimentos.depoimento1.nome} className="w-full h-full object-cover" onError={(e) => {
                         e.currentTarget.style.display = 'none';
-                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                        (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
                       }} />
                     ) : null}
                     <div className={`w-full h-full flex items-center justify-center text-gray-500 font-bold text-lg ${config.depoimentos.depoimento1.imagem ? 'hidden' : 'flex'}`}>
@@ -1081,7 +1081,7 @@ const AdminPanel = () => {
                     {config.depoimentos.depoimento2.imagem ? (
                       <img src={config.depoimentos.depoimento2.imagem} alt={config.depoimentos.depoimento2.nome} className="w-full h-full object-cover" onError={(e) => {
                         e.currentTarget.style.display = 'none';
-                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                        (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
                       }} />
                     ) : null}
                     <div className={`w-full h-full flex items-center justify-center text-gray-500 font-bold text-lg ${config.depoimentos.depoimento2.imagem ? 'hidden' : 'flex'}`}>
@@ -1158,7 +1158,7 @@ const AdminPanel = () => {
                     {config.depoimentos.depoimento3.imagem ? (
                       <img src={config.depoimentos.depoimento3.imagem} alt={config.depoimentos.depoimento3.nome} className="w-full h-full object-cover" onError={(e) => {
                         e.currentTarget.style.display = 'none';
-                        e.currentTarget.nextElementSibling.style.display = 'flex';
+                        (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'flex';
                       }} />
                     ) : null}
                     <div className={`w-full h-full flex items-center justify-center text-gray-500 font-bold text-lg ${config.depoimentos.depoimento3.imagem ? 'hidden' : 'flex'}`}>
