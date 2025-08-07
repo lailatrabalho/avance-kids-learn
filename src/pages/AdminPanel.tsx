@@ -1178,17 +1178,45 @@ const AdminPanel = () => {
     </div>;
 
   const renderObrigado = () => {
-    // Safety check for config.obrigado
-    if (!config.obrigado) {
-      return <div className="space-y-6">
-        <div className="bg-red-50 p-6 rounded-2xl border border-red-200">
-          <h3 className="text-2xl font-bold text-red-800 mb-2">⚠️ Erro de Configuração</h3>
-          <p className="text-red-700">A seção 'obrigado' não está disponível na configuração.</p>
-        </div>
-      </div>;
-    }
+    try {
+      console.log('renderObrigado called');
+      console.log('config:', config);
+      console.log('config.obrigado:', config.obrigado);
+      
+      // Safety check for config.obrigado
+      if (!config || !config.obrigado) {
+        console.log('config.obrigado is missing');
+        return (
+          <div className="space-y-6">
+            <div className="bg-red-50 p-6 rounded-2xl border border-red-200">
+              <h3 className="text-2xl font-bold text-red-800 mb-2">⚠️ Erro de Configuração</h3>
+              <p className="text-red-700">A seção 'obrigado' não está disponível na configuração.</p>
+              <p className="text-red-600 text-sm mt-2">Config disponível: {JSON.stringify(Object.keys(config || {}))}</p>
+            </div>
+          </div>
+        );
+      }
+      
+      // Check nested properties
+      if (!config.obrigado.proximosPassos || !config.obrigado.informacoesImportantes || !config.obrigado.faqCompleto || !config.obrigado.compartilhamento) {
+        console.log('Missing nested properties in config.obrigado');
+        return (
+          <div className="space-y-6">
+            <div className="bg-yellow-50 p-6 rounded-2xl border border-yellow-200">
+              <h3 className="text-2xl font-bold text-yellow-800 mb-2">⚠️ Configuração Incompleta</h3>
+              <p className="text-yellow-700">Algumas propriedades da seção 'obrigado' estão faltando.</p>
+              <p className="text-yellow-600 text-sm mt-2">
+                Propriedades disponíveis: {JSON.stringify(Object.keys(config.obrigado || {}))}
+              </p>
+            </div>
+          </div>
+        );
+      }
+      
+      console.log('config.obrigado is complete, rendering form');
     
-    return <div className="space-y-6">
+      return (
+        <div className="space-y-6">
       <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl border border-green-200">
         <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
           <span className="text-3xl">🎉</span>
@@ -1466,7 +1494,20 @@ const AdminPanel = () => {
           </div>
         </div>
       </div>
-    </div>;
+        </div>
+      );
+    } catch (error) {
+      console.error('Error in renderObrigado:', error);
+      return (
+        <div className="space-y-6">
+          <div className="bg-red-50 p-6 rounded-2xl border border-red-200">
+            <h3 className="text-2xl font-bold text-red-800 mb-2">❌ Erro de Renderização</h3>
+            <p className="text-red-700">Ocorreu um erro ao renderizar a seção Obrigado.</p>
+            <p className="text-red-600 text-sm mt-2">Erro: {error.toString()}</p>
+          </div>
+        </div>
+      );
+    }
   };
   
   const tabs = [{
