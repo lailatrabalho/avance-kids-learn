@@ -1177,7 +1177,18 @@ const AdminPanel = () => {
       </div>
     </div>;
 
-  const renderObrigado = () => <div className="space-y-6">
+  const renderObrigado = () => {
+    // Safety check for config.obrigado
+    if (!config.obrigado) {
+      return <div className="space-y-6">
+        <div className="bg-red-50 p-6 rounded-2xl border border-red-200">
+          <h3 className="text-2xl font-bold text-red-800 mb-2">⚠️ Erro de Configuração</h3>
+          <p className="text-red-700">A seção 'obrigado' não está disponível na configuração.</p>
+        </div>
+      </div>;
+    }
+    
+    return <div className="space-y-6">
       <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl border border-green-200">
         <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
           <span className="text-3xl">🎉</span>
@@ -1456,6 +1467,8 @@ const AdminPanel = () => {
         </div>
       </div>
     </div>;
+  };
+  
   const tabs = [{
     id: 'geral',
     label: '⚙️ Geral',
