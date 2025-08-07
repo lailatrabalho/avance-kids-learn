@@ -1,9 +1,33 @@
 import { useConfig } from "@/contexts/ConfigContext";
 import { CheckCircle, WhatsApp, Download, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const ThankYou = () => {
   const { config, loading } = useConfig();
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setExpandedFaq(expandedFaq === index ? null : index);
+  };
+
+  const openWhatsApp = () => {
+    const whatsappUrl = `https://wa.me/${config.geral.numeroWhatsApp}?text=${encodeURIComponent(config.contato.mensagemWhatsApp)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const shareSuccess = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: config.geral.titulo,
+        text: config.geral.descricao,
+        url: window.location.origin,
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.origin);
+      alert('Link copiado para a área de transferência!');
+    }
+  };
 
   const handleWhatsAppContact = () => {
     const whatsappUrl = `https://wa.me/${config.geral.numeroWhatsApp}?text=${encodeURIComponent(config.contato.mensagemWhatsApp)}`;

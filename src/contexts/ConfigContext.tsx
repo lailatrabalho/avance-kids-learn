@@ -79,6 +79,9 @@ export interface ConfigData {
     subtitulo: string;
     instrucoes: string;
     textoSuporte: string;
+    descricao: string;
+    videoTitulo: string;
+    videoDescricao: string;
   };
   garantia: {
     seloTexto1: string;
@@ -185,6 +188,9 @@ const defaultConfig: ConfigData = {
     subtitulo: 'Seu e-book será enviado em instantes',
     instrucoes: 'Verifique seu e-mail (incluindo a pasta de spam)',
     textoSuporte: 'Precisa de ajuda? Entre em contato conosco',
+    descricao: 'Seu material educativo chegará no seu e-mail em até 5 minutos. Enquanto isso, confira as instruções abaixo.',
+    videoTitulo: 'COMO USAR SEU MATERIAL',
+    videoDescricao: 'Assista este vídeo rápido e aprenda a aproveitar ao máximo seu e-book educativo.',
   },
   garantia: {
     seloTexto1: 'GARANTIA',
@@ -311,7 +317,15 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           subtitulo: supabaseConfig.thankYouConfig.subtitle,
           instrucoes: supabaseConfig.thankYouConfig.instructions,
           textoSuporte: supabaseConfig.thankYouConfig.support_text,
-        } : defaultConfig.obrigado,
+        } : {
+          titulo: supabaseConfig.thankYouConfig?.title || defaultConfig.obrigado.titulo,
+          subtitulo: supabaseConfig.thankYouConfig?.subtitle || defaultConfig.obrigado.subtitulo,
+          instrucoes: supabaseConfig.thankYouConfig?.instructions || defaultConfig.obrigado.instrucoes,
+          textoSuporte: supabaseConfig.thankYouConfig?.support_text || defaultConfig.obrigado.textoSuporte,
+          descricao: defaultConfig.obrigado.descricao,
+          videoTitulo: defaultConfig.obrigado.videoTitulo,
+          videoDescricao: defaultConfig.obrigado.videoDescricao,
+        },
         garantia: defaultConfig.garantia,
         faq: defaultConfig.faq,
         contato: defaultConfig.contato,
