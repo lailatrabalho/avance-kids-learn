@@ -491,6 +491,9 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           id: supabaseConfig.heroSection.id,
           [fieldMap[field]]: value,
         });
+      } else {
+        // For sections not yet integrated with Supabase, just update local state
+        console.log(`Section '${section}' updated locally only. Supabase integration pending.`);
       }
     } catch (error) {
       console.error('Error updating config:', error);
