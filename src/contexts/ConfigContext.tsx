@@ -331,7 +331,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   // Transform Supabase data to legacy format
   useEffect(() => {
-    if (!supabaseConfig.loading && supabaseConfig.websiteConfig && supabaseConfig.heroSection) {
+    if (!supabaseConfig.loading) {
       const transformedConfig: ConfigData = {
         geral: {
           titulo: supabaseConfig.websiteConfig?.title || defaultConfig.geral.titulo,
@@ -357,12 +357,12 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         beneficios: {
           titulo: 'BENEFÍCIOS DO NOSSO E-BOOK',
           subtitulo: 'EDUCATIVO PARA CRIANÇAS',
-          items: supabaseConfig.benefits.map(b => ({
+          items: supabaseConfig.benefits?.map(b => ({
             id: b.id,
             title: b.title,
             description: b.description,
             icon: b.icon_name,
-          })),
+          })) || defaultConfig.beneficios.items,
           beneficio1: defaultConfig.beneficios.beneficio1,
           beneficio2: defaultConfig.beneficios.beneficio2,
           beneficio3: defaultConfig.beneficios.beneficio3,
@@ -372,12 +372,12 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           titulo: 'ESCOLHA SEU PACOTE',
           subtitulo: 'Pacotes desenvolvidos para cada necessidade',
           botaoCompra: 'QUERO COMPRAR AGORA',
-          items: supabaseConfig.packages.map(p => ({
+          items: supabaseConfig.packages?.map(p => ({
             id: p.id,
             nome: p.name,
             descricao: p.description,
             imagem: p.image_url || undefined,
-          })),
+          })) || defaultConfig.pacotes.items,
           middle: defaultConfig.pacotes.middle,
           rich: defaultConfig.pacotes.rich,
           super: defaultConfig.pacotes.super,
@@ -385,7 +385,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         },
         depoimentos: {
           titulo: 'O QUE DIZEM OS PAIS E PROFESSORES',
-          depoimento1: supabaseConfig.testimonials[0] ? {
+          depoimento1: (supabaseConfig.testimonials && supabaseConfig.testimonials[0]) ? {
             id: supabaseConfig.testimonials[0].id,
             nome: supabaseConfig.testimonials[0].name,
             cargo: supabaseConfig.testimonials[0].role,
@@ -395,7 +395,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             categoria: supabaseConfig.testimonials[0].category,
             avaliacao: supabaseConfig.testimonials[0].rating,
           } : defaultConfig.depoimentos.depoimento1,
-          depoimento2: supabaseConfig.testimonials[1] ? {
+          depoimento2: (supabaseConfig.testimonials && supabaseConfig.testimonials[1]) ? {
             id: supabaseConfig.testimonials[1].id,
             nome: supabaseConfig.testimonials[1].name,
             cargo: supabaseConfig.testimonials[1].role,
@@ -405,7 +405,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             categoria: supabaseConfig.testimonials[1].category,
             avaliacao: supabaseConfig.testimonials[1].rating,
           } : defaultConfig.depoimentos.depoimento2,
-          depoimento3: supabaseConfig.testimonials[2] ? {
+          depoimento3: (supabaseConfig.testimonials && supabaseConfig.testimonials[2]) ? {
             id: supabaseConfig.testimonials[2].id,
             nome: supabaseConfig.testimonials[2].name,
             cargo: supabaseConfig.testimonials[2].role,
@@ -454,6 +454,9 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       };
 
       setConfig(transformedConfig);
+    } else {
+      // Fallback to default config if Supabase data is not available
+      setConfig(defaultConfig);
     }
   }, [supabaseConfig]);
 
