@@ -37,6 +37,14 @@ export interface ConfigData {
     numeroWhatsApp: string;
     linkCompra: string;
     faixaEtaria: string;
+    nomeEbook: string;
+    subtitulo: string;
+    whatsapp: string;
+    emailSuporta: string;
+  };
+  navegacao: {
+    logo: string;
+    nomeEmpresa: string;
   };
   hero: {
     titulo: string;
@@ -51,12 +59,20 @@ export interface ConfigData {
     titulo: string;
     subtitulo: string;
     items: BenefitItem[];
+    beneficio1: { titulo: string; descricao: string };
+    beneficio2: { titulo: string; descricao: string };
+    beneficio3: { titulo: string; descricao: string };
+    beneficio4: { titulo: string; descricao: string };
   };
   pacotes: {
     titulo: string;
     subtitulo: string;
     botaoCompra: string;
     items: PackageItem[];
+    middle: { nome: string; idade: string; atividades: string; descricao: string; preco: string };
+    rich: { nome: string; idade: string; atividades: string; descricao: string; preco: string };
+    super: { nome: string; idade: string; atividades: string; descricao: string; preco: string };
+    expert: { nome: string; idade: string; atividades: string; descricao: string; preco: string };
   };
   depoimentos: {
     titulo: string;
@@ -136,6 +152,14 @@ const defaultConfig: ConfigData = {
     numeroWhatsApp: '5511999999999',
     linkCompra: 'https://pay.hotmart.com/example',
     faixaEtaria: 'DE 3 A 8 ANOS',
+    nomeEbook: 'E-book AVANCE',
+    subtitulo: 'Material educativo para desenvolvimento infantil',
+    whatsapp: '5511999999999',
+    emailSuporta: 'suporte@avance.com.br',
+  },
+  navegacao: {
+    logo: '🚀',
+    nomeEmpresa: 'AVANCE',
   },
   hero: {
     titulo: 'E-BOOK AVANCE',
@@ -155,6 +179,10 @@ const defaultConfig: ConfigData = {
       { id: '3', title: 'Coordenação Motora', description: 'Atividades que desenvolvem habilidades motoras', icon: 'hand' },
       { id: '4', title: 'Leitura e Escrita', description: 'Estímulo ao desenvolvimento da alfabetização', icon: 'book' },
     ],
+    beneficio1: { titulo: 'Jogos Pedagógicos Educativos', descricao: 'Atividades lúdicas e interativas que estimulam o aprendizado' },
+    beneficio2: { titulo: 'Desenvolvem Lógica e Inteligência', descricao: 'Atividades que estimulam o raciocínio lógico e criatividade' },
+    beneficio3: { titulo: 'Desenvolvem a Coordenação Motora', descricao: 'Atividades práticas que estimulam o desenvolvimento motor' },
+    beneficio4: { titulo: 'Melhoram os Níveis de Leitura e Escrita', descricao: 'Atividades que desenvolvem habilidades de alfabetização' },
   },
   pacotes: {
     titulo: 'ESCOLHA SEU PACOTE',
@@ -166,6 +194,10 @@ const defaultConfig: ConfigData = {
       { id: '3', nome: 'SUPER', descricao: 'Pacote avançado com recursos extras' },
       { id: '4', nome: 'EXPERT', descricao: 'Pacote completo com todo o conteúdo' },
     ],
+    middle: { nome: 'MIDDLE', idade: 'Pré-Silábico', atividades: '12 ATIVIDADES', descricao: 'Atividades fundamentais de alfabetização inicial', preco: '29.90' },
+    rich: { nome: 'RICH', idade: 'Silábicos', atividades: '15 ATIVIDADES', descricao: 'Exercícios de coordenação motora e primeiras palavras', preco: '39.90' },
+    super: { nome: 'SUPER', idade: 'Silábico Alfabético', atividades: '20 ATIVIDADES', descricao: 'Leitura de palavras simples e operações matemáticas básicas', preco: '49.90' },
+    expert: { nome: 'EXPERT', idade: 'Alfabéticos Leitores Fluentes', atividades: '25 ATIVIDADES', descricao: 'Kit completo com progressão total do desenvolvimento infantil', preco: '59.90' },
   },
   depoimentos: {
     titulo: 'O QUE DIZEM OS PAIS E PROFESSORES',
@@ -238,7 +270,12 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           numeroWhatsApp: supabaseConfig.websiteConfig?.whatsapp_number || defaultConfig.geral.numeroWhatsApp,
           linkCompra: supabaseConfig.websiteConfig?.purchase_link || defaultConfig.geral.linkCompra,
           faixaEtaria: defaultConfig.geral.faixaEtaria,
+          nomeEbook: defaultConfig.geral.nomeEbook,
+          subtitulo: defaultConfig.geral.subtitulo,
+          whatsapp: defaultConfig.geral.whatsapp,
+          emailSuporta: defaultConfig.geral.emailSuporta,
         },
+        navegacao: defaultConfig.navegacao,
         hero: {
           titulo: defaultConfig.hero.titulo,
           subtitulo: defaultConfig.hero.subtitulo,
@@ -257,6 +294,10 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             description: b.description,
             icon: b.icon_name,
           })),
+          beneficio1: defaultConfig.beneficios.beneficio1,
+          beneficio2: defaultConfig.beneficios.beneficio2,
+          beneficio3: defaultConfig.beneficios.beneficio3,
+          beneficio4: defaultConfig.beneficios.beneficio4,
         },
         pacotes: {
           titulo: 'ESCOLHA SEU PACOTE',
@@ -268,6 +309,10 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             descricao: p.description,
             imagem: p.image_url || undefined,
           })),
+          middle: defaultConfig.pacotes.middle,
+          rich: defaultConfig.pacotes.rich,
+          super: defaultConfig.pacotes.super,
+          expert: defaultConfig.pacotes.expert,
         },
         depoimentos: {
           titulo: 'O QUE DIZEM OS PAIS E PROFESSORES',
