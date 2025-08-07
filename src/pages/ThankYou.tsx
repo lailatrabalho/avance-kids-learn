@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
 import { useConfig } from "@/contexts/ConfigContext";
+import { CheckCircle, WhatsApp, Download, Share2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ThankYou = () => {
-  const { config } = useConfig();
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const { config, loading } = useConfig();
 
-  useEffect(() => {
-    // Scroll to top on page load
-    window.scrollTo(0, 0);
-  }, []);
-
-  const toggleFaq = (index: number) => {
-    setExpandedFaq(expandedFaq === index ? null : index);
+  const handleWhatsAppContact = () => {
+    const whatsappUrl = `https://wa.me/${config.geral.numeroWhatsApp}?text=${encodeURIComponent(config.contato.mensagemWhatsApp)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
-  const openWhatsApp = () => {
-    const message = encodeURIComponent("Olá! Acabei de adquirir o e-book Avance e gostaria de suporte. Podem me ajudar?");
-    const link = `https://wa.me/${config.geral.whatsapp}?text=${message}`;
-    window.open(link, '_blank');
+  const handleDownload = () => {
+    // Simular download do e-book
+    alert('Download iniciado! Verifique sua pasta de downloads.');
   };
 
-  const shareSuccess = () => {
-    const text = "Acabei de adquirir o E-book Avance para educação infantil! 📚✨ Material incrível para o desenvolvimento das crianças de 3 a 8 anos.";
-    
+  const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'E-book Avance',
-        text: text,
-        url: window.location.href
+        title: config.geral.titulo,
+        text: config.geral.descricao,
+        url: window.location.origin,
       });
     } else {
-      const message = encodeURIComponent(text);
-      const link = `https://wa.me/?text=${message}`;
-      window.open(link, '_blank');
+      // Fallback para navegadores que não suportam Web Share API
+      navigator.clipboard.writeText(window.location.origin);
+      alert('Link copiado para a área de transferência!');
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
 
   const faqData = [
     {
