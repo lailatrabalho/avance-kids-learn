@@ -1,28 +1,14 @@
 
 // trocamos o ícone 'WhatsApp' que não existe no lucide-react por 'MessageCircle'
 import { MessageCircle } from "lucide-react";
-import { useEffect, useState } from 'react';
+
 import { Button } from "@/components/ui/button";
 import { useConfig } from '@/contexts/ConfigContext';
 
 const ThankYou = () => {
   const { config, loading } = useConfig();
-  const [seconds, setSeconds] = useState(5);
+  
 
-  useEffect(() => {
-    if (loading) return;
-
-    if (seconds > 0) {
-      const timer = setTimeout(() => {
-        setSeconds(seconds - 1);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    } else {
-      // Redirect after timer is up
-      window.location.href = config.geral.linkCompra || '/';
-    }
-  }, [seconds, loading, config.geral.linkCompra]);
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -75,9 +61,6 @@ const ThankYou = () => {
             </Button>
           </div>
 
-          <div className="mt-8 text-gray-500 text-sm">
-            Redirecionando para a página de compra em {seconds} segundos...
-          </div>
         </div>
       </div>
     </section>

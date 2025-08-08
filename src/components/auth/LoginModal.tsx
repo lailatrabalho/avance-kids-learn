@@ -41,7 +41,7 @@ export default function LoginModal({ open, onOpenChange, enforced = true }: Logi
       console.error("Erro ao entrar:", error);
       toast({
         title: "Falha no login",
-        description: "Verifique o e-mail e a senha e tente novamente.",
+        description: `Verifique o e-mail e a senha. Detalhes: ${error.message}`,
         variant: "destructive",
       });
       return;
