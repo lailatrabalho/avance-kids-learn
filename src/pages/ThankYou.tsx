@@ -1,6 +1,6 @@
 
 import { useConfig } from "@/contexts/ConfigContext";
-import { CheckCircle, WhatsApp, Download, Share2 } from "lucide-react";
+import { CheckCircle, MessageCircle, Download, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 

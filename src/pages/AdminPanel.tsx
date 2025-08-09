@@ -6,10 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Settings, Save, Eye, FileText, Users, Heart } from "lucide-react";
+import { Settings, Save, Eye, FileText, Users, Heart, Star, Shield, Palette, HelpCircle, Gift, Target } from "lucide-react";
 
 const AdminPanel = () => {
-  const { config, loading, updateConfig } = useConfig();
+  const { config, loading, updateConfig, updateNestedConfig } = useConfig();
   const [activeTab, setActiveTab] = useState("geral");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -78,17 +78,37 @@ const AdminPanel = () => {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="geral" className="flex items-center">
-              <Settings className="h-4 w-4 mr-2" />
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
+            <TabsTrigger value="geral" className="flex items-center text-xs">
+              <Settings className="h-3 w-3 mr-1" />
               Geral
             </TabsTrigger>
-            <TabsTrigger value="hero" className="flex items-center">
-              <FileText className="h-4 w-4 mr-2" />
+            <TabsTrigger value="hero" className="flex items-center text-xs">
+              <FileText className="h-3 w-3 mr-1" />
               Hero
             </TabsTrigger>
-            <TabsTrigger value="obrigado" className="flex items-center">
-              <Heart className="h-4 w-4 mr-2" />
+            <TabsTrigger value="beneficios" className="flex items-center text-xs">
+              <Star className="h-3 w-3 mr-1" />
+              Benefícios
+            </TabsTrigger>
+            <TabsTrigger value="pacotes" className="flex items-center text-xs">
+              <Gift className="h-3 w-3 mr-1" />
+              Pacotes
+            </TabsTrigger>
+            <TabsTrigger value="depoimentos" className="flex items-center text-xs">
+              <Users className="h-3 w-3 mr-1" />
+              Depoimentos
+            </TabsTrigger>
+            <TabsTrigger value="publico" className="flex items-center text-xs">
+              <Target className="h-3 w-3 mr-1" />
+              Público
+            </TabsTrigger>
+            <TabsTrigger value="garantia" className="flex items-center text-xs">
+              <Shield className="h-3 w-3 mr-1" />
+              Garantia
+            </TabsTrigger>
+            <TabsTrigger value="obrigado" className="flex items-center text-xs">
+              <Heart className="h-3 w-3 mr-1" />
               Obrigado
             </TabsTrigger>
           </TabsList>
@@ -201,14 +221,308 @@ const AdminPanel = () => {
 
 
 
+          {/* Benefícios */}
+          <TabsContent value="beneficios" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Seção Benefícios</CardTitle>
+                <CardDescription>Configure a seção de benefícios</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="beneficiosTitulo">Título</Label>
+                  <Input
+                    id="beneficiosTitulo"
+                    value={config.beneficios?.titulo || ""}
+                    onChange={(e) => handleInputChange("beneficios", "titulo", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="beneficiosSubtitulo">Subtítulo</Label>
+                  <Input
+                    id="beneficiosSubtitulo"
+                    value={config.beneficios?.subtitulo || ""}
+                    onChange={(e) => handleInputChange("beneficios", "subtitulo", e.target.value)}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Pacotes */}
+          <TabsContent value="pacotes" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Seção Pacotes</CardTitle>
+                <CardDescription>Configure a seção de pacotes</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="pacotesTitulo">Título</Label>
+                  <Input
+                    id="pacotesTitulo"
+                    value={config.pacotes?.titulo || ""}
+                    onChange={(e) => handleInputChange("pacotes", "titulo", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="pacotesSubtitulo">Subtítulo</Label>
+                  <Input
+                    id="pacotesSubtitulo"
+                    value={config.pacotes?.subtitulo || ""}
+                    onChange={(e) => handleInputChange("pacotes", "subtitulo", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="pacotesBotaoCompra">Texto do Botão</Label>
+                  <Input
+                    id="pacotesBotaoCompra"
+                    value={config.pacotes?.botaoCompra || ""}
+                    onChange={(e) => handleInputChange("pacotes", "botaoCompra", e.target.value)}
+                    placeholder="Comprar Agora"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Depoimentos */}
+          <TabsContent value="depoimentos" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Seção Depoimentos</CardTitle>
+                <CardDescription>Configure os depoimentos de clientes</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="depoimentosTitulo">Título da Seção</Label>
+                  <Input
+                    id="depoimentosTitulo"
+                    value={config.depoimentos?.titulo || ""}
+                    onChange={(e) => handleInputChange("depoimentos", "titulo", e.target.value)}
+                  />
+                </div>
+                
+                {/* Depoimento 1 */}
+                <Card className="p-4">
+                  <h4 className="font-semibold mb-3">Depoimento 1</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="depoimento1Nome">Nome</Label>
+                      <Input
+                        id="depoimento1Nome"
+                        value={config.depoimentos?.depoimento1?.nome || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento1", "nome", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="depoimento1Cargo">Cargo</Label>
+                      <Input
+                        id="depoimento1Cargo"
+                        value={config.depoimentos?.depoimento1?.cargo || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento1", "cargo", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="depoimento1Texto">Texto</Label>
+                      <Textarea
+                        id="depoimento1Texto"
+                        value={config.depoimentos?.depoimento1?.texto || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento1", "texto", e.target.value)}
+                        rows={3}
+                      />
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Depoimento 2 */}
+                <Card className="p-4">
+                  <h4 className="font-semibold mb-3">Depoimento 2</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="depoimento2Nome">Nome</Label>
+                      <Input
+                        id="depoimento2Nome"
+                        value={config.depoimentos?.depoimento2?.nome || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento2", "nome", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="depoimento2Cargo">Cargo</Label>
+                      <Input
+                        id="depoimento2Cargo"
+                        value={config.depoimentos?.depoimento2?.cargo || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento2", "cargo", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="depoimento2Texto">Texto</Label>
+                      <Textarea
+                        id="depoimento2Texto"
+                        value={config.depoimentos?.depoimento2?.texto || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento2", "texto", e.target.value)}
+                        rows={3}
+                      />
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Depoimento 3 */}
+                <Card className="p-4">
+                  <h4 className="font-semibold mb-3">Depoimento 3</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <Label htmlFor="depoimento3Nome">Nome</Label>
+                      <Input
+                        id="depoimento3Nome"
+                        value={config.depoimentos?.depoimento3?.nome || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento3", "nome", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="depoimento3Cargo">Cargo</Label>
+                      <Input
+                        id="depoimento3Cargo"
+                        value={config.depoimentos?.depoimento3?.cargo || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento3", "cargo", e.target.value)}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="depoimento3Texto">Texto</Label>
+                      <Textarea
+                        id="depoimento3Texto"
+                        value={config.depoimentos?.depoimento3?.texto || ""}
+                        onChange={(e) => updateNestedConfig("depoimentos", "depoimento3", "texto", e.target.value)}
+                        rows={3}
+                      />
+                    </div>
+                  </div>
+                </Card>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Público Alvo */}
+          <TabsContent value="publico" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Público Alvo</CardTitle>
+                <CardDescription>Configure a seção do público alvo</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="publicoTitulo">Título</Label>
+                  <Input
+                    id="publicoTitulo"
+                    value={config.publicoAlvo?.titulo || ""}
+                    onChange={(e) => handleInputChange("publicoAlvo", "titulo", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="publicoTextoIntroducao">Texto de Introdução</Label>
+                  <Textarea
+                    id="publicoTextoIntroducao"
+                    value={config.publicoAlvo?.textoIntroducao || ""}
+                    onChange={(e) => handleInputChange("publicoAlvo", "textoIntroducao", e.target.value)}
+                    rows={3}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="publicoCtaTexto">Texto CTA</Label>
+                  <Input
+                    id="publicoCtaTexto"
+                    value={config.publicoAlvo?.ctaTexto || ""}
+                    onChange={(e) => handleInputChange("publicoAlvo", "ctaTexto", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="publicoCtaSubtexto">Subtexto CTA</Label>
+                  <Input
+                    id="publicoCtaSubtexto"
+                    value={config.publicoAlvo?.ctaSubtexto || ""}
+                    onChange={(e) => handleInputChange("publicoAlvo", "ctaSubtexto", e.target.value)}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Garantia */}
+          <TabsContent value="garantia" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Seção Garantia</CardTitle>
+                <CardDescription>Configure a seção de garantia</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="garantiaSeloTexto1">Selo Texto 1</Label>
+                  <Input
+                    id="garantiaSeloTexto1"
+                    value={config.garantia?.seloTexto1 || ""}
+                    onChange={(e) => handleInputChange("garantia", "seloTexto1", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="garantiaSeloTexto2">Selo Texto 2</Label>
+                  <Input
+                    id="garantiaSeloTexto2"
+                    value={config.garantia?.seloTexto2 || ""}
+                    onChange={(e) => handleInputChange("garantia", "seloTexto2", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="garantiaSeloTexto3">Selo Texto 3</Label>
+                  <Input
+                    id="garantiaSeloTexto3"
+                    value={config.garantia?.seloTexto3 || ""}
+                    onChange={(e) => handleInputChange("garantia", "seloTexto3", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="garantiaCard1Titulo">Card 1 - Título</Label>
+                  <Input
+                    id="garantiaCard1Titulo"
+                    value={config.garantia?.card1Titulo || ""}
+                    onChange={(e) => handleInputChange("garantia", "card1Titulo", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="garantiaCard1Descricao">Card 1 - Descrição</Label>
+                  <Textarea
+                    id="garantiaCard1Descricao"
+                    value={config.garantia?.card1Descricao || ""}
+                    onChange={(e) => handleInputChange("garantia", "card1Descricao", e.target.value)}
+                    rows={3}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="garantiaCard2Titulo">Card 2 - Título</Label>
+                  <Input
+                    id="garantiaCard2Titulo"
+                    value={config.garantia?.card2Titulo || ""}
+                    onChange={(e) => handleInputChange("garantia", "card2Titulo", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="garantiaCard2Descricao">Card 2 - Descrição</Label>
+                  <Textarea
+                    id="garantiaCard2Descricao"
+                    value={config.garantia?.card2Descricao || ""}
+                    onChange={(e) => handleInputChange("garantia", "card2Descricao", e.target.value)}
+                    rows={3}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
           {/* Página Obrigado */}
           <TabsContent value="obrigado" className="space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle>Página de Obrigado</CardTitle>
-                <CardDescription>
-                  Configure a página de agradecimento
-                </CardDescription>
+                <CardDescription>Configure a página de agradecimento</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
@@ -228,20 +542,28 @@ const AdminPanel = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="obrigadoInstrucoes">Instruções</Label>
+                  <Label htmlFor="obrigadoDescricao">Descrição</Label>
                   <Textarea
-                    id="obrigadoInstrucoes"
-                    value={config.obrigado?.instrucoes || ""}
-                    onChange={(e) => handleInputChange("obrigado", "instrucoes", e.target.value)}
-                    rows={2}
+                    id="obrigadoDescricao"
+                    value={config.obrigado?.descricao || ""}
+                    onChange={(e) => handleInputChange("obrigado", "descricao", e.target.value)}
+                    rows={3}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="obrigadoTextoSuporte">Texto de Suporte</Label>
+                  <Label htmlFor="obrigadoVideoTitulo">Título do Vídeo</Label>
+                  <Input
+                    id="obrigadoVideoTitulo"
+                    value={config.obrigado?.videoTitulo || ""}
+                    onChange={(e) => handleInputChange("obrigado", "videoTitulo", e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="obrigadoVideoDescricao">Descrição do Vídeo</Label>
                   <Textarea
-                    id="obrigadoTextoSuporte"
-                    value={config.obrigado?.textoSuporte || ""}
-                    onChange={(e) => handleInputChange("obrigado", "textoSuporte", e.target.value)}
+                    id="obrigadoVideoDescricao"
+                    value={config.obrigado?.videoDescricao || ""}
+                    onChange={(e) => handleInputChange("obrigado", "videoDescricao", e.target.value)}
                     rows={2}
                   />
                 </div>
