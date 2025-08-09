@@ -517,9 +517,8 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     try {
       if (section === 'depoimentos') {
         const testimonialIndex = parseInt(subsection.replace('depoimento', '')) - 1;
-        // Check if testimonials array exists and has the required index
-        if (supabaseConfig.testimonials && Array.isArray(supabaseConfig.testimonials) && supabaseConfig.testimonials[testimonialIndex]) {
-          const testimonial = supabaseConfig.testimonials[testimonialIndex];
+        const testimonial = supabaseConfig.testimonials[testimonialIndex];
+        if (testimonial) {
           const fieldMap: { [key: string]: string } = {
             nome: 'name',
             cargo: 'role',
@@ -532,8 +531,6 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           await ConfigService.updateTestimonial(testimonial.id, {
             [fieldMap[field]]: value,
           });
-        } else {
-          console.warn(`Testimonial at index ${testimonialIndex} not found or testimonials not loaded yet`);
         }
       } else if (section === 'publicoAlvo' && supabaseConfig.targetAudience) {
         const fieldMap: { [key: string]: string } = {
