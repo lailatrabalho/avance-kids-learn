@@ -1,4 +1,3 @@
-
 // trocamos o ícone 'WhatsApp' que não existe no lucide-react por 'MessageCircle'
 import { MessageCircle } from "lucide-react";
 import { useEffect, useState } from 'react';
@@ -6,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { useConfig } from '@/contexts/ConfigContext';
 
 const ThankYou = () => {
-  const { config, loading } = useConfig();
+  const { config } = useConfig();
   const [seconds, setSeconds] = useState(5);
 
   useEffect(() => {
-    if (loading) return;
+    if (!config?.thankYouConfig) return;
 
     if (seconds > 0) {
       const timer = setTimeout(() => {
@@ -20,11 +19,11 @@ const ThankYou = () => {
       return () => clearTimeout(timer);
     } else {
       // Redirect after timer is up
-      window.location.href = config.geral.linkCompra || '/';
+      window.location.href = config.websiteConfig?.purchase_link || '/';
     }
-  }, [seconds, loading, config.geral.linkCompra]);
+  }, [seconds, config?.websiteConfig?.purchase_link, config?.thankYouConfig]);
 
-  if (loading) {
+  if (!config?.thankYouConfig) {
     return <div>Carregando...</div>;
   }
 
@@ -39,14 +38,14 @@ const ThankYou = () => {
               </div>
             </div>
             <h2 className="fredoka text-2xl sm:text-3xl lg:text-4xl text-green-800 mb-4 leading-tight">
-              {config.obrigado.titulo}
+              {config.thankYouConfig.title}
             </h2>
             <p className="poppins text-gray-700 text-base sm:text-lg leading-relaxed mb-6">
-              {config.obrigado.subtitulo}
+              {config.thankYouConfig.subtitle}
             </p>
             <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200 shadow-inner">
               <p className="poppins text-gray-600 text-sm sm:text-base leading-relaxed">
-                {config.obrigado.instrucoes}
+                {config.thankYouConfig.instructions}
               </p>
             </div>
           </div>
@@ -61,15 +60,10 @@ const ThankYou = () => {
               Precisa de ajuda?
             </h3>
             <p className="poppins text-gray-700 text-base sm:text-lg leading-relaxed mb-6">
-              {config.obrigado.textoSuporte}
+              {config.thankYouConfig.support_text}
             </p>
             <Button asChild>
-              <a
-                href={`https://wa.me/${config.geral.numeroWhatsApp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold text-sm sm:text-base transition-colors duration-300"
-              >
+              <a href={`https://wa.me/${config.websiteConfig?.whatsapp_number}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold text-sm sm:text-base transition-colors duration-300">
                 Fale conosco no WhatsApp
               </a>
             </Button>
@@ -85,4 +79,3 @@ const ThankYou = () => {
 };
 
 export default ThankYou;
-
