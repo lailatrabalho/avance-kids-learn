@@ -24,7 +24,6 @@ const AdminPanel = () => {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      await updateConfig(config);
       alert("Configurações salvas com sucesso!");
     } catch (error) {
       alert("Erro ao salvar configurações");
@@ -33,14 +32,12 @@ const AdminPanel = () => {
     }
   };
 
-  const handleInputChange = (section: string, field: string, value: string) => {
-    updateConfig({
-      ...config,
-      [section]: {
-        ...config[section],
-        [field]: value
-      }
-    });
+  const handleInputChange = async (section: string, field: string, value: string) => {
+    try {
+      await updateConfig(section as any, field, value);
+    } catch (error) {
+      console.error("Erro ao atualizar configuração:", error);
+    }
   };
 
   return (
@@ -81,7 +78,7 @@ const AdminPanel = () => {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="geral" className="flex items-center">
               <Settings className="h-4 w-4 mr-2" />
               Geral
@@ -89,10 +86,6 @@ const AdminPanel = () => {
             <TabsTrigger value="hero" className="flex items-center">
               <FileText className="h-4 w-4 mr-2" />
               Hero
-            </TabsTrigger>
-            <TabsTrigger value="publico" className="flex items-center">
-              <Users className="h-4 w-4 mr-2" />
-              Público
             </TabsTrigger>
             <TabsTrigger value="obrigado" className="flex items-center">
               <Heart className="h-4 w-4 mr-2" />
@@ -168,74 +161,45 @@ const AdminPanel = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="heroDescricao">Descrição</Label>
+                  <Label htmlFor="heroDescricao1">Descrição 1</Label>
                   <Textarea
-                    id="heroDescricao"
-                    value={config.hero?.descricao || ""}
-                    onChange={(e) => handleInputChange("hero", "descricao", e.target.value)}
-                    rows={4}
+                    id="heroDescricao1"
+                    value={config.hero?.descricao1 || ""}
+                    onChange={(e) => handleInputChange("hero", "descricao1", e.target.value)}
+                    rows={2}
                   />
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="heroPreco">Preço</Label>
-                    <Input
-                      id="heroPreco"
-                      value={config.hero?.preco || ""}
-                      onChange={(e) => handleInputChange("hero", "preco", e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <Label htmlFor="heroPrecoOriginal">Preço Original</Label>
-                    <Input
-                      id="heroPrecoOriginal"
-                      value={config.hero?.precoOriginal || ""}
-                      onChange={(e) => handleInputChange("hero", "precoOriginal", e.target.value)}
-                    />
-                  </div>
+                <div>
+                  <Label htmlFor="heroDescricao2">Descrição 2</Label>
+                  <Textarea
+                    id="heroDescricao2"
+                    value={config.hero?.descricao2 || ""}
+                    onChange={(e) => handleInputChange("hero", "descricao2", e.target.value)}
+                    rows={2}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="heroDescricao3">Descrição 3</Label>
+                  <Textarea
+                    id="heroDescricao3"
+                    value={config.hero?.descricao3 || ""}
+                    onChange={(e) => handleInputChange("hero", "descricao3", e.target.value)}
+                    rows={2}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="heroImagemUrl">URL da Imagem</Label>
+                  <Input
+                    id="heroImagemUrl"
+                    value={config.hero?.imagemUrl || ""}
+                    onChange={(e) => handleInputChange("hero", "imagemUrl", e.target.value)}
+                  />
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
-          {/* Público Alvo */}
-          <TabsContent value="publico" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Público Alvo</CardTitle>
-                <CardDescription>
-                  Configure a seção de público alvo
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <Label htmlFor="publicoTitulo">Título</Label>
-                  <Input
-                    id="publicoTitulo"
-                    value={config.publicoAlvo?.titulo || ""}
-                    onChange={(e) => handleInputChange("publicoAlvo", "titulo", e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="publicoSubtitulo">Subtítulo</Label>
-                  <Input
-                    id="publicoSubtitulo"
-                    value={config.publicoAlvo?.subtitulo || ""}
-                    onChange={(e) => handleInputChange("publicoAlvo", "subtitulo", e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="publicoDescricao">Descrição</Label>
-                  <Textarea
-                    id="publicoDescricao"
-                    value={config.publicoAlvo?.descricao || ""}
-                    onChange={(e) => handleInputChange("publicoAlvo", "descricao", e.target.value)}
-                    rows={3}
-                  />
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+
 
           {/* Página Obrigado */}
           <TabsContent value="obrigado" className="space-y-6">
@@ -264,28 +228,20 @@ const AdminPanel = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="obrigadoDescricao">Descrição</Label>
+                  <Label htmlFor="obrigadoInstrucoes">Instruções</Label>
                   <Textarea
-                    id="obrigadoDescricao"
-                    value={config.obrigado?.descricao || ""}
-                    onChange={(e) => handleInputChange("obrigado", "descricao", e.target.value)}
-                    rows={3}
+                    id="obrigadoInstrucoes"
+                    value={config.obrigado?.instrucoes || ""}
+                    onChange={(e) => handleInputChange("obrigado", "instrucoes", e.target.value)}
+                    rows={2}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="videoTitulo">Título do Vídeo</Label>
-                  <Input
-                    id="videoTitulo"
-                    value={config.obrigado?.videoTitulo || ""}
-                    onChange={(e) => handleInputChange("obrigado", "videoTitulo", e.target.value)}
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="videoDescricao">Descrição do Vídeo</Label>
+                  <Label htmlFor="obrigadoTextoSuporte">Texto de Suporte</Label>
                   <Textarea
-                    id="videoDescricao"
-                    value={config.obrigado?.videoDescricao || ""}
-                    onChange={(e) => handleInputChange("obrigado", "videoDescricao", e.target.value)}
+                    id="obrigadoTextoSuporte"
+                    value={config.obrigado?.textoSuporte || ""}
+                    onChange={(e) => handleInputChange("obrigado", "textoSuporte", e.target.value)}
                     rows={2}
                   />
                 </div>
