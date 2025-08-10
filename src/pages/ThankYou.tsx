@@ -1,6 +1,5 @@
 
 import { useConfig } from "@/contexts/ConfigContext";
-import { CheckCircle, WhatsApp, Download, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -111,32 +110,32 @@ const ThankYou = () => {
           <div className="mb-6 md:mb-8 flex justify-center">
             <div className="relative">
               <svg className="checkmark w-20 h-20 md:w-32 md:h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                <circle className="checkmark__circle" fill="none" cx="26" cy="26" r="25"/>
-                <path className="checkmark__check" fill="none" d="l14,20 l7,7 l16,-16"/>
+                <circle className="checkmark__circle" fill="none" cx="26" cy="26" r="25" />
+                <path className="checkmark__check" fill="none" d="l14,20 l7,7 l16,-16" />
               </svg>
               {/* Pulse rings */}
               <div className="absolute inset-0 rounded-full bg-white pulse-ring"></div>
-              <div className="absolute inset-0 rounded-full bg-white pulse-ring" style={{animationDelay: '0.5s'}}></div>
-              
+              <div className="absolute inset-0 rounded-full bg-white pulse-ring" style={{ animationDelay: '0.5s' }}></div>
+
               {/* Center check icon */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <svg className="w-8 h-8 md:w-12 md:h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{animationDelay: '1.2s', opacity: 0, animation: 'fadeInScale 0.5s ease-out 1.2s forwards'}}>
+                <svg className="w-8 h-8 md:w-12 md:h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ animationDelay: '1.2s', opacity: 0, animation: 'fadeInScale 0.5s ease-out 1.2s forwards' }}>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
                 </svg>
               </div>
             </div>
           </div>
-          
+
           <h1 className="font-fredoka text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-white mb-4 md:mb-6 leading-tight px-2">
             🎉 {config.obrigado.titulo}
             <br />
             <span className="text-gold">{config.obrigado.subtitulo}</span>
           </h1>
-          
+
           <p className="font-poppins text-base md:text-xl text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto px-4">
             {config.obrigado.descricao}
           </p>
-          
+
           {/* Success Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
             <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 md:p-6">
@@ -169,20 +168,88 @@ const ThankYou = () => {
               {config.obrigado.videoDescricao}
             </p>
           </div>
-          
+
           <div className="relative bg-dark-blue rounded-2xl md:rounded-3xl p-4 md:p-8 mb-8 md:mb-12 shadow-2xl">
             <div className="aspect-video bg-gray-800 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-dark-blue to-purple flex items-center justify-center">
                 <div className="text-center text-white px-4">
                   <div className="w-16 h-16 md:w-24 md:h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4 cursor-pointer hover:bg-white/30 transition">
                     <svg className="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M8 5v10l7-5-7-5z"/>
+                      <path d="M8 5v10l7-5-7-5z" />
                     </svg>
                   </div>
                   <h3 className="font-fredoka text-lg md:text-xl mb-2">TUTORIAL COMPLETO</h3>
                   <p className="font-poppins text-xs md:text-sm opacity-80">Clique para assistir (5 minutos)</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Learning Section */}
+      <section className="py-10 md:py-20 px-4 md:px-6 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="font-fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4 leading-tight">
+              {(config.obrigado as any)?.aprendizagemTitulo || "📚 O QUE VOCÊ VAI APRENDER"}
+            </h2>
+            <p className="font-poppins text-muted-foreground text-sm md:text-lg px-4">
+              {(config.obrigado as any)?.aprendizagemSubtitulo || "Tudo que você precisa saber para aproveitar ao máximo seu material educativo"}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {[
+              {
+                gradient: 'from-green-500 to-teal-600',
+                titulo: (config.obrigado as any)?.aprendizagemCard1Titulo || 'Como organizar as atividades por idade',
+                descricao: (config.obrigado as any)?.aprendizagemCard1Descricao || 'Sistema de classificação simples para escolher as atividades certas para cada faixa etária'
+              },
+              {
+                gradient: 'from-green-500 to-teal-600',
+                titulo: (config.obrigado as any)?.aprendizagemCard2Titulo || 'Dicas para imprimir com qualidade',
+                descricao: (config.obrigado as any)?.aprendizagemCard2Descricao || 'Configurações ideais de impressão, tipos de papel recomendados e como economizar tinta'
+              },
+              {
+                gradient: 'from-green-500 to-teal-600',
+                titulo: (config.obrigado as any)?.aprendizagemCard3Titulo || 'Rotina de estudos recomendada',
+                descricao: (config.obrigado as any)?.aprendizagemCard3Descricao || 'Cronograma semanal flexível e dicas de horários ideais para máximo aproveitamento'
+              },
+              {
+                gradient: 'from-green-500 to-teal-600',
+                titulo: (config.obrigado as any)?.aprendizagemCard4Titulo || 'Como acompanhar o progresso',
+                descricao: (config.obrigado as any)?.aprendizagemCard4Descricao || 'Métodos simples para registrar evolução e celebrar conquistas da sua criança'
+              }
+            ].map((card, index) => (
+              <div key={index} className="bg-white rounded-xl p-4 md:p-5 shadow-md hover:shadow-lg transition-all duration-300">
+                <div className="flex items-start space-x-3">
+                  <div className={`w-8 h-8 bg-gradient-to-br ${card.gradient} rounded-full flex items-center justify-center flex-shrink-0 shadow-lg`}>
+                    <div className="text-white font-bold text-lg">✓</div>
+                  </div>
+                  <div>
+                    <h3 className="font-fredoka text-base md:text-lg text-dark-blue mb-1">
+                      {card.titulo}
+                    </h3>
+                    <p className="font-poppins text-muted-foreground text-xs md:text-sm">
+                      {card.descricao}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bonus tip */}
+          <div className="mt-6 md:mt-8 bg-gradient-to-r from-gold/20 to-yellow-200/30 rounded-xl p-4 md:p-6 border border-gold/30">
+            <div className="text-center">
+              <div className="text-2xl md:text-3xl mb-2">💡</div>
+              <h3 className="font-fredoka text-lg md:text-xl text-dark-blue mb-2 md:mb-3">
+                {(config.obrigado as any)?.dicaEspecialTitulo || "DICA ESPECIAL"}
+              </h3>
+              <p className="font-poppins text-muted-foreground text-xs md:text-sm max-w-2xl mx-auto">
+                {(config.obrigado as any)?.dicaEspecialTexto || "Comece devagar! Escolha 2-3 atividades por semana e observe como sua criança responde. O segredo está na consistência, não na quantidade. Cada pequeno progresso é uma grande vitória! 🌟"}
+              </p>
             </div>
           </div>
         </div>
@@ -199,7 +266,7 @@ const ThankYou = () => {
               Siga estas etapas simples para começar a usar seu material hoje mesmo
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
             <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 text-center shadow-lg card-hover">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple to-primary rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-white font-bold text-lg md:text-2xl">
@@ -216,7 +283,7 @@ const ThankYou = () => {
                 </p>
               </div>
             </div>
-            
+
             <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 text-center shadow-lg card-hover">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-light-green to-accent rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-white font-bold text-lg md:text-2xl">
                 2
@@ -232,7 +299,7 @@ const ThankYou = () => {
                 </p>
               </div>
             </div>
-            
+
             <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 text-center shadow-lg card-hover">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-orange to-coral rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-white font-bold text-lg md:text-2xl">
                 3
@@ -265,11 +332,11 @@ const ThankYou = () => {
               Selecionamos as principais dúvidas para facilitar sua decisão. Se precisar de mais informações, nossa equipe está pronta para ajudar!
             </p>
           </div>
-          
+
           <div className="space-y-3">
             {faqData.map((faq, index) => (
               <div key={index} className="bg-white rounded-2xl md:rounded-3xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
-                <button 
+                <button
                   onClick={() => toggleFaq(index + 1)}
                   className="w-full p-4 md:p-6 lg:p-8 text-left flex justify-between items-center hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300"
                 >
@@ -279,12 +346,11 @@ const ThankYou = () => {
                     </div>
                     <h3 className="font-fredoka text-lg lg:text-xl text-dark-blue">{faq.question}</h3>
                   </div>
-                  <svg 
-                    className={`w-6 h-6 text-dark-blue transform transition-transform duration-300 flex-shrink-0 ${
-                      expandedFaq === index + 1 ? 'rotate-180' : ''
-                    }`} 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <svg
+                    className={`w-6 h-6 text-dark-blue transform transition-transform duration-300 flex-shrink-0 ${expandedFaq === index + 1 ? 'rotate-180' : ''
+                      }`}
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
@@ -304,7 +370,7 @@ const ThankYou = () => {
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-8 md:mt-12">
             <div className="bg-gradient-to-r from-primary via-purple to-primary p-6 md:p-8 rounded-2xl md:rounded-3xl shadow-2xl border border-white/20">
               <h3 className="font-fredoka text-xl md:text-2xl mb-3 md:mb-4 text-white drop-shadow-lg">💬 Ainda tem dúvidas?</h3>
@@ -324,18 +390,18 @@ const ThankYou = () => {
             🌟 SUA JORNADA DE SUCESSO COMEÇA AGORA!
           </h2>
           <p className="font-poppins text-white/90 text-sm md:text-lg mb-6 md:mb-8 px-4">
-            Lembre-se: cada atividade realizada é um passo importante no desenvolvimento da sua criança. 
+            Lembre-se: cada atividade realizada é um passo importante no desenvolvimento da sua criança.
             Estamos aqui para apoiar você nessa jornada incrível de aprendizado.
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <Button 
+            <Button
               onClick={openWhatsApp}
               className="bg-coral hover:bg-red-600 text-white font-poppins font-semibold py-3 md:py-4 px-4 md:px-6 rounded-xl transition text-sm md:text-base"
             >
               📞 SUPORTE IMEDIATO
             </Button>
-            <Button 
+            <Button
               onClick={shareSuccess}
               className="bg-light-green hover:bg-green-600 text-white font-poppins font-semibold py-3 md:py-4 px-4 md:px-6 rounded-xl transition text-sm md:text-base"
             >
