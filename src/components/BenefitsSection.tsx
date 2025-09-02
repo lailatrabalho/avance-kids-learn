@@ -1,5 +1,5 @@
 
-import { useConfig } from "@/contexts/ConfigContext";
+import { useConfig } from '@/hooks/useConfig';
 
 const BenefitsSection = () => {
   const { config } = useConfig();

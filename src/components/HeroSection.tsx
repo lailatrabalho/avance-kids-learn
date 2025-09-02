@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useConfig } from "@/contexts/ConfigContext";
+import { useConfig } from '@/hooks/useConfig';
 
 const HeroSection = () => {
   const { config } = useConfig();

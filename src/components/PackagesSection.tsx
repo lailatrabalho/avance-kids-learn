@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { useConfig } from "@/contexts/ConfigContext";
+import { useConfig } from '@/hooks/useConfig';
 
 const PackagesSection = () => {
   const { config } = useConfig();
@@ -14,10 +14,17 @@ const PackagesSection = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="fredoka text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-blue mb-4">
-            {config.pacotes.titulo}
+            CONHEÇA TODOS OS PACOTES
             <br />
-            <span className="text-coral">{config.pacotes.subtitulo}</span>
+            <span className="text-coral">INCLUSOS NO SEU KIT COMPLETO</span>
           </h2>
+          <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-200 max-w-2xl mx-auto">
+            <p className="poppins text-dark-blue font-semibold text-sm md:text-base">
+              ✨ <strong>Com sua compra, você terá acesso a TODOS os pacotes!</strong> 
+              <br />
+              <span className="text-sm opacity-80">Material progressivo para cada etapa do desenvolvimento da sua criança</span>
+            </p>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
@@ -153,7 +160,7 @@ const PackagesSection = () => {
           </Button>
           <div className="mt-6 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 max-w-md mx-auto">
             <p className="poppins text-gray-700 text-xs sm:text-sm text-center font-medium">
-              ✨ Escolha qualquer pacote e comece a transformar o aprendizado da sua criança hoje mesmo!
+              🎯 <strong>ACESSO A TODOS OS 4 PACOTES</strong> - Material completo para todas as idades!
             </p>
             <div className="flex justify-center items-center mt-2 space-x-4 text-xs text-gray-500">
               <span className="flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span>Acesso imediato</span>
