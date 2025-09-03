@@ -39,12 +39,12 @@
     --purple: 259 94% 71%; /* #8B5CF6 */
     --pink: 340 62% 86%; /* #FFB6C1 */
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(225 73% 70%), hsl(259 45% 63%));
-    --gradient-card-1: linear-gradient(135deg, hsl(225 73% 70%), hsl(259 45% 63%));
-    --gradient-card-2: linear-gradient(135deg, hsl(311 76% 80%), hsl(355 70% 64%));
-    --gradient-card-3: linear-gradient(135deg, hsl(195 100% 65%), hsl(186 100% 50%));
-    --gradient-card-4: linear-gradient(135deg, hsl(158 64% 52%), hsl(171 80% 60%));
+    /* Gradients - Fortalecidos */
+    --gradient-hero: linear-gradient(135deg, hsl(225 85% 55%), hsl(259 65% 50%));
+    --gradient-card-1: linear-gradient(135deg, hsl(225 85% 55%), hsl(259 65% 50%));
+    --gradient-card-2: linear-gradient(135deg, hsl(311 85% 65%), hsl(355 80% 55%));
+    --gradient-card-3: linear-gradient(135deg, hsl(195 100% 50%), hsl(186 100% 40%));
+    --gradient-card-4: linear-gradient(135deg, hsl(158 75% 45%), hsl(171 90% 50%));
     --gradient-cta: linear-gradient(135deg, hsl(225 73% 70%), hsl(259 45% 63%));
     --gradient-faq: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--coral)));
 

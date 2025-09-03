@@ -35,8 +35,8 @@ const PackagesSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="space-y-2">
-                <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Pré-Silábico</div>
-                <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>12 ATIVIDADES</div>
+                <div className="inline-block bg-blue-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Pré-Silábico</div>
+                <div className="inline-block bg-purple-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">12 ATIVIDADES</div>
               </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img 
@@ -48,14 +48,14 @@ const PackagesSection = () => {
                 </div>
               </div>
               <div className="relative z-10 mb-3">
-                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>PACOTE MIDDLE</h3>
+                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: 'none' }}>PACOTE MIDDLE</h3>
               </div>
               <div className="relative z-10 mb-4">
-                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Atividades fundamentais de alfabetização inicial, reconhecimento de formas e cores básicas para desenvolvimento motor.</p>
+                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium">Atividades fundamentais de alfabetização inicial, reconhecimento de formas e cores básicas para desenvolvimento motor.</p>
               </div>
               <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
-                <span className="poppins text-sm text-white font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Primeiras atividades</span>
-                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.8))' }}>
+                <span className="poppins text-sm text-white font-medium">Primeiras atividades</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
@@ -69,8 +69,8 @@ const PackagesSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="space-y-2">
-                <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Silábicos</div>
-                <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>15 ATIVIDADES</div>
+                <div className="inline-block bg-pink-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Silábicos</div>
+                <div className="inline-block bg-red-500/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">15 ATIVIDADES</div>
               </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img 
@@ -82,14 +82,14 @@ const PackagesSection = () => {
                 </div>
               </div>
               <div className="relative z-10 mb-3">
-                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>PACOTE RICH</h3>
+                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: 'none' }}>PACOTE RICH</h3>
               </div>
               <div className="relative z-10 mb-4">
-                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Exercícios de coordenação motora, primeiras palavras, números até 10 e atividades de associação e memória.</p>
+                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium">Exercícios de coordenação motora, primeiras palavras, números até 10 e atividades de associação e memória.</p>
               </div>
               <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
-                <span className="poppins text-sm text-white font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Desenvolvimento médio</span>
-                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.8))' }}>
+                <span className="poppins text-sm text-white font-medium">Desenvolvimento médio</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
@@ -103,8 +103,8 @@ const PackagesSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="space-y-2">
-                <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Silábico Alfabético</div>
-                <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>20 ATIVIDADES</div>
+                <div className="inline-block bg-cyan-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Silábico Alfabético</div>
+                <div className="inline-block bg-blue-500/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">20 ATIVIDADES</div>
               </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img 
@@ -116,14 +116,14 @@ const PackagesSection = () => {
                 </div>
               </div>
               <div className="relative z-10 mb-3">
-                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>PACOTE SUPER</h3>
+                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: 'none' }}>PACOTE SUPER</h3>
               </div>
               <div className="relative z-10 mb-4">
-                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Leitura de palavras simples, operações matemáticas básicas, desenvolvimento da escrita e atividades de lógica.</p>
+                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium">Leitura de palavras simples, operações matemáticas básicas, desenvolvimento da escrita e atividades de lógica.</p>
               </div>
               <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
-                <span className="poppins text-sm text-white font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Nível avançado</span>
-                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.8))' }}>
+                <span className="poppins text-sm text-white font-medium">Nível avançado</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
@@ -138,8 +138,8 @@ const PackagesSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex justify-between items-start mb-4 relative z-10">
                 <div className="space-y-2">
-                  <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>Alfabéticos Leitores Fluentes</div>
-                  <div className="inline-block bg-gold/30 px-3 py-1 rounded-full text-xs fredoka font-bold text-white shadow-lg" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>25 ATIVIDADES</div>
+                  <div className="inline-block bg-green-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Alfabéticos Leitores Fluentes</div>
+                  <div className="inline-block bg-yellow-600/90 px-3 py-1 rounded-full text-xs fredoka font-bold text-white">25 ATIVIDADES</div>
                 </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-xl ring-4 ring-gold/30 group-hover:scale-110 transition-transform duration-300">
                   <img 
@@ -151,14 +151,14 @@ const PackagesSection = () => {
                 </div>
               </div>
               <div className="relative z-10 mb-3">
-                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>PACOTE EXPERT</h3>
+                <h3 className="fredoka text-lg sm:text-xl text-white font-bold group-hover:scale-105 transition-transform duration-300" style={{ textShadow: 'none' }}>PACOTE EXPERT</h3>
               </div>
               <div className="relative z-10 mb-4">
-                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 8 anos.</p>
+                <p className="poppins text-xs sm:text-sm leading-relaxed text-white font-medium">Todos os pacotes reunidos! Kit completo com progressão total do desenvolvimento infantil de 3 a 8 anos.</p>
               </div>
               <div className="mt-4 flex items-center relative z-10 group-hover:translate-x-1 transition-transform duration-300">
-                <span className="poppins text-sm text-white font-semibold" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Completo e progressivo</span>
-                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0,0,0,0.8))' }}>
+                <span className="poppins text-sm text-white font-semibold">Completo e progressivo</span>
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path>
                 </svg>
               </div>
