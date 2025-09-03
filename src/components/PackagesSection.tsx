@@ -32,7 +32,7 @@ const PackagesSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="space-y-2">
-                <div className="inline-block bg-blue-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Pré-Silábico</div>
+                <div className="inline-block px-3 py-1 text-xs fredoka text-white font-semibold bg-yellow-500 rounded">Pré-Silábico</div>
                 <div className="inline-block bg-purple-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">12 ATIVIDADES</div>
               </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
@@ -66,7 +66,7 @@ const PackagesSection = () => {
               <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="space-y-2">
                 <div className="inline-block bg-pink-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Silábicos</div>
-                <div className="inline-block bg-red-500/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">15 ATIVIDADES</div>
+                <div className="inline-block bg-red-500/90 px-3 py-1 text-xs fredoka text-white font-semibold rounded">15 ATIVIDADES</div>
               </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img src="https://i.imgur.com/YpcSJsf.jpeg" alt="Criança lendo livro 2" className="w-full h-full object-cover" style={{
@@ -98,8 +98,8 @@ const PackagesSection = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="flex justify-between items-start mb-4 relative z-10">
               <div className="space-y-2">
-                <div className="inline-block bg-cyan-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Silábico Alfabético</div>
-                <div className="inline-block bg-blue-500/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">20 ATIVIDADES</div>
+                <div className="inline-block bg-cyan-600/90 px-3 py-1 text-xs fredoka text-white font-semibold rounded">Silábico Alfabético</div>
+                <div className="inline-block bg-blue-500/90 px-3 py-1 text-xs fredoka text-white font-semibold rounded">20 ATIVIDADES</div>
               </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-lg ring-4 ring-white/20 group-hover:scale-110 transition-transform duration-300">
                   <img src="https://i.imgur.com/M6ByzwL.jpeg" alt="Criança lendo livro 3" className="w-full h-full object-cover" style={{
@@ -133,7 +133,7 @@ const PackagesSection = () => {
               <div className="flex justify-between items-start mb-4 relative z-10">
                 <div className="space-y-2">
                   <div className="inline-block bg-green-600/90 px-3 py-1 rounded-full text-xs fredoka text-white font-semibold">Alfabéticos Leitores Fluentes</div>
-                  <div className="inline-block bg-yellow-600/90 px-3 py-1 rounded-full text-xs fredoka font-bold text-white">25 ATIVIDADES</div>
+                  <div className="inline-block bg-yellow-600/90 px-3 py-1 text-xs fredoka font-bold text-white rounded">25 ATIVIDADES</div>
                 </div>
                 <div className="w-16 h-16 bg-white rounded-full overflow-hidden flex-shrink-0 shadow-xl ring-4 ring-gold/30 group-hover:scale-110 transition-transform duration-300">
                   <img src="https://i.imgur.com/FDqaQzG.jpeg" alt="Criança lendo livro 4" className="w-full h-full object-cover" style={{
