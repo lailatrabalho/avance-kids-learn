@@ -83,7 +83,29 @@ const AdminPanel = () => {
 
   const triggerImport = () => fileInputRef.current?.click();
 
-  const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const SaveButton = ({ section }: { section: string }) => (
+    <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-end space-x-3">
+      {savedSections[section] && (
+        <span className="text-green-600 font-medium flex items-center space-x-1 animate-in fade-in">
+          <Check className="w-4 h-4" />
+          <span>Salvo!</span>
+        </span>
+      )}
+      <Button
+        onClick={() => handleSaveSection(section)}
+        disabled={isSaving}
+        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
+      >
+        {isSaving ? (
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+        ) : (
+          <Save className="w-5 h-5" />
+        )}
+        <span className="font-semibold">Salvar Alterações</span>
+      </Button>
+    </div>
+  );
+
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
