@@ -5,8 +5,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
-import { useRef, useState } from "react";
-import { Settings, Save, Eye, FileText, Users, MessageCircle, Heart, Upload, Download, Palette, Package, Star, Gift } from "lucide-react";
+import { useRef, useState, useCallback } from "react";
+import { Settings, Save, Eye, FileText, Users, MessageCircle, Heart, Upload, Download, Palette, Package, Star, Gift, Check } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const AdminPanel = () => {
   const { config, loading, updateConfig, updateNestedConfig, exportConfig, importConfig } = useConfig();
