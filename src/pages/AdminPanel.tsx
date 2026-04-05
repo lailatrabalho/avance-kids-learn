@@ -1020,6 +1020,7 @@ const AdminPanel = () => {
                       </div>
                     </div>
                   </div>
+                  <SaveButton section="cores" />
                 </TabsContent>
 
               </Tabs>
