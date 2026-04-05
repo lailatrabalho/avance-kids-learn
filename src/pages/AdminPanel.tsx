@@ -113,9 +113,9 @@ const AdminPanel = () => {
       try {
         const data = JSON.parse(reader.result as string);
         importConfig(data);
-        alert("Configuração importada com sucesso!");
+        toast({ title: "✅ Importado!", description: "Configuração importada com sucesso." });
       } catch (err) {
-        alert("Arquivo inválido. Certifique-se de enviar um JSON exportado pelo sistema.");
+        toast({ title: "❌ Erro", description: "Arquivo inválido.", variant: "destructive" });
       }
     };
     reader.readAsText(file);
@@ -137,7 +137,7 @@ const AdminPanel = () => {
       return fakeId;
     } catch (error) {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
-      alert('Erro ao fazer upload da imagem');
+      toast({ title: "❌ Erro", description: "Erro ao fazer upload da imagem.", variant: "destructive" });
       return null;
     }
   };
@@ -147,12 +147,12 @@ const AdminPanel = () => {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('Por favor, selecione apenas arquivos de imagem.');
+      toast({ title: "Atenção", description: "Selecione apenas arquivos de imagem.", variant: "destructive" }); return;
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert('A imagem deve ter no máximo 5MB.');
+      toast({ title: "Atenção", description: "A imagem deve ter no máximo 5MB.", variant: "destructive" }); return;
       return;
     }
 
@@ -174,12 +174,12 @@ const AdminPanel = () => {
     if (!file) return;
 
     if (!file.type.startsWith('video/')) {
-      alert('Por favor, selecione apenas arquivos de vídeo.');
+      toast({ title: "Atenção", description: "Selecione apenas arquivos de vídeo.", variant: "destructive" }); return;
       return;
     }
 
     if (file.size > 100 * 1024 * 1024) { // 100MB limit for videos
-      alert('O vídeo deve ter no máximo 100MB.');
+      toast({ title: "Atenção", description: "O vídeo deve ter no máximo 100MB.", variant: "destructive" }); return;
       return;
     }
 
@@ -198,10 +198,10 @@ const AdminPanel = () => {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
       
       await updateConfig(section as any, 'videoArquivo', fakeId);
-      alert('Vídeo enviado com sucesso!');
+      toast({ title: "✅ Sucesso", description: "Vídeo enviado com sucesso!" });
     } catch (error) {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
-      alert('Erro ao fazer upload do vídeo');
+      toast({ title: "❌ Erro", description: "Erro ao fazer upload do vídeo.", variant: "destructive" });
     }
   };
 
