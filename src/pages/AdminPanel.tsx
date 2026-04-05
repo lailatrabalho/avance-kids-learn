@@ -978,6 +978,7 @@ const AdminPanel = () => {
                       </div>
                     </div>
                   </div>
+                  <SaveButton section="obrigado" />
                 </TabsContent>
 
                 {/* Paleta de Cores */}
