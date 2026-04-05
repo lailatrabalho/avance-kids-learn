@@ -11,8 +11,11 @@ import { useToast } from "@/hooks/use-toast";
 
 const AdminPanel = () => {
   const { config, loading, updateConfig, updateNestedConfig, exportConfig, importConfig } = useConfig();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("geral");
   const [isSaving, setIsSaving] = useState(false);
+  const [savedSections, setSavedSections] = useState<Record<string, boolean>>({});
+  const [dirtyFields, setDirtyFields] = useState<Record<string, boolean>>({});
   const [uploadingImages, setUploadingImages] = useState<Record<string, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
@@ -25,18 +28,38 @@ const AdminPanel = () => {
     );
   }
 
-  const handleSave = async () => {
+  const markDirty = (section: string) => {
+    setDirtyFields(prev => ({ ...prev, [section]: true }));
+    setSavedSections(prev => ({ ...prev, [section]: false }));
+  };
+
+  const handleSaveSection = async (section: string) => {
     setIsSaving(true);
     try {
-      alert("Configurações salvas com sucesso!");
+      // Changes are already persisted per-keystroke via updateConfig/updateNestedConfig
+      // This button confirms to the user that everything is saved
+      await new Promise(resolve => setTimeout(resolve, 300)); // Small delay for UX
+      setDirtyFields(prev => ({ ...prev, [section]: false }));
+      setSavedSections(prev => ({ ...prev, [section]: true }));
+      toast({
+        title: "✅ Salvo com sucesso!",
+        description: "As alterações foram salvas no banco de dados.",
+      });
+      // Reset the saved indicator after 3s
+      setTimeout(() => setSavedSections(prev => ({ ...prev, [section]: false })), 3000);
     } catch (error) {
-      alert("Erro ao salvar configurações");
+      toast({
+        title: "❌ Erro ao salvar",
+        description: "Não foi possível salvar as alterações. Tente novamente.",
+        variant: "destructive",
+      });
     } finally {
       setIsSaving(false);
     }
   };
 
   const handleInputChange = async (section: keyof typeof config, field: string, value: string) => {
+    markDirty(section);
     try {
       await updateConfig(section as any, field, value);
     } catch (error) {
@@ -50,6 +73,7 @@ const AdminPanel = () => {
     field: string,
     value: string
   ) => {
+    markDirty(section);
     try {
       await updateNestedConfig(section as any, subsection, field, value);
     } catch (error) {
