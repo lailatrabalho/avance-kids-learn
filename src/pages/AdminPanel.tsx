@@ -538,6 +538,7 @@ const AdminPanel = () => {
                       </div>
                     ))}
                   </div>
+                  <SaveButton section="beneficios" />
                 </TabsContent>
 
                 {/* Pacotes */}
