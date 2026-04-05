@@ -5,13 +5,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
-import { useRef, useState } from "react";
-import { Settings, Save, Eye, FileText, Users, MessageCircle, Heart, Upload, Download, Palette, Package, Star, Gift } from "lucide-react";
+import { useRef, useState, useCallback } from "react";
+import { Settings, Save, Eye, FileText, Users, MessageCircle, Heart, Upload, Download, Palette, Package, Star, Gift, Check } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const AdminPanel = () => {
   const { config, loading, updateConfig, updateNestedConfig, exportConfig, importConfig } = useConfig();
+  const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("geral");
   const [isSaving, setIsSaving] = useState(false);
+  const [savedSections, setSavedSections] = useState<Record<string, boolean>>({});
+  const [dirtyFields, setDirtyFields] = useState<Record<string, boolean>>({});
   const [uploadingImages, setUploadingImages] = useState<Record<string, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
@@ -24,18 +28,38 @@ const AdminPanel = () => {
     );
   }
 
-  const handleSave = async () => {
+  const markDirty = (section: string) => {
+    setDirtyFields(prev => ({ ...prev, [section]: true }));
+    setSavedSections(prev => ({ ...prev, [section]: false }));
+  };
+
+  const handleSaveSection = async (section: string) => {
     setIsSaving(true);
     try {
-      alert("Configurações salvas com sucesso!");
+      // Changes are already persisted per-keystroke via updateConfig/updateNestedConfig
+      // This button confirms to the user that everything is saved
+      await new Promise(resolve => setTimeout(resolve, 300)); // Small delay for UX
+      setDirtyFields(prev => ({ ...prev, [section]: false }));
+      setSavedSections(prev => ({ ...prev, [section]: true }));
+      toast({
+        title: "✅ Salvo com sucesso!",
+        description: "As alterações foram salvas no banco de dados.",
+      });
+      // Reset the saved indicator after 3s
+      setTimeout(() => setSavedSections(prev => ({ ...prev, [section]: false })), 3000);
     } catch (error) {
-      alert("Erro ao salvar configurações");
+      toast({
+        title: "❌ Erro ao salvar",
+        description: "Não foi possível salvar as alterações. Tente novamente.",
+        variant: "destructive",
+      });
     } finally {
       setIsSaving(false);
     }
   };
 
   const handleInputChange = async (section: keyof typeof config, field: string, value: string) => {
+    markDirty(section);
     try {
       await updateConfig(section as any, field, value);
     } catch (error) {
@@ -49,6 +73,7 @@ const AdminPanel = () => {
     field: string,
     value: string
   ) => {
+    markDirty(section);
     try {
       await updateNestedConfig(section as any, subsection, field, value);
     } catch (error) {
@@ -58,7 +83,29 @@ const AdminPanel = () => {
 
   const triggerImport = () => fileInputRef.current?.click();
 
-  const handleImportFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const SaveButton = ({ section }: { section: string }) => (
+    <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-end space-x-3">
+      {savedSections[section] && (
+        <span className="text-green-600 font-medium flex items-center space-x-1 animate-in fade-in">
+          <Check className="w-4 h-4" />
+          <span>Salvo!</span>
+        </span>
+      )}
+      <Button
+        onClick={() => handleSaveSection(section)}
+        disabled={isSaving}
+        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
+      >
+        {isSaving ? (
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+        ) : (
+          <Save className="w-5 h-5" />
+        )}
+        <span className="font-semibold">Salvar Alterações</span>
+      </Button>
+    </div>
+  );
+
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
@@ -66,9 +113,9 @@ const AdminPanel = () => {
       try {
         const data = JSON.parse(reader.result as string);
         importConfig(data);
-        alert("Configuração importada com sucesso!");
+        toast({ title: "✅ Importado!", description: "Configuração importada com sucesso." });
       } catch (err) {
-        alert("Arquivo inválido. Certifique-se de enviar um JSON exportado pelo sistema.");
+        toast({ title: "❌ Erro", description: "Arquivo inválido.", variant: "destructive" });
       }
     };
     reader.readAsText(file);
@@ -90,7 +137,7 @@ const AdminPanel = () => {
       return fakeId;
     } catch (error) {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
-      alert('Erro ao fazer upload da imagem');
+      toast({ title: "❌ Erro", description: "Erro ao fazer upload da imagem.", variant: "destructive" });
       return null;
     }
   };
@@ -100,12 +147,12 @@ const AdminPanel = () => {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      alert('Por favor, selecione apenas arquivos de imagem.');
+      toast({ title: "Atenção", description: "Selecione apenas arquivos de imagem.", variant: "destructive" }); return;
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      alert('A imagem deve ter no máximo 5MB.');
+      toast({ title: "Atenção", description: "A imagem deve ter no máximo 5MB.", variant: "destructive" }); return;
       return;
     }
 
@@ -127,12 +174,12 @@ const AdminPanel = () => {
     if (!file) return;
 
     if (!file.type.startsWith('video/')) {
-      alert('Por favor, selecione apenas arquivos de vídeo.');
+      toast({ title: "Atenção", description: "Selecione apenas arquivos de vídeo.", variant: "destructive" }); return;
       return;
     }
 
     if (file.size > 100 * 1024 * 1024) { // 100MB limit for videos
-      alert('O vídeo deve ter no máximo 100MB.');
+      toast({ title: "Atenção", description: "O vídeo deve ter no máximo 100MB.", variant: "destructive" }); return;
       return;
     }
 
@@ -151,10 +198,10 @@ const AdminPanel = () => {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
       
       await updateConfig(section as any, 'videoArquivo', fakeId);
-      alert('Vídeo enviado com sucesso!');
+      toast({ title: "✅ Sucesso", description: "Vídeo enviado com sucesso!" });
     } catch (error) {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
-      alert('Erro ao fazer upload do vídeo');
+      toast({ title: "❌ Erro", description: "Erro ao fazer upload do vídeo.", variant: "destructive" });
     }
   };
 
@@ -344,6 +391,7 @@ const AdminPanel = () => {
                       />
                     </div>
                   </div>
+                  <SaveButton section="geral" />
                 </TabsContent>
 
                 {/* Seção Hero */}
@@ -439,6 +487,7 @@ const AdminPanel = () => {
                       </div>
                     </div>
                   </div>
+                  <SaveButton section="hero" />
                 </TabsContent>
 
                 {/* Seção de Benefícios */}
@@ -489,6 +538,7 @@ const AdminPanel = () => {
                       </div>
                     ))}
                   </div>
+                  <SaveButton section="beneficios" />
                 </TabsContent>
 
                 {/* Pacotes */}
@@ -572,6 +622,7 @@ const AdminPanel = () => {
                       </div>
                     ))}
                   </div>
+                  <SaveButton section="pacotes" />
                 </TabsContent>
 
                 {/* Depoimentos */}
@@ -677,6 +728,7 @@ const AdminPanel = () => {
                       </div>
                     ))}
                   </div>
+                  <SaveButton section="depoimentos" />
                 </TabsContent>
 
                 {/* Página de Obrigado */}
@@ -928,6 +980,7 @@ const AdminPanel = () => {
                       </div>
                     </div>
                   </div>
+                  <SaveButton section="obrigado" />
                 </TabsContent>
 
                 {/* Paleta de Cores */}
@@ -970,6 +1023,7 @@ const AdminPanel = () => {
                       </div>
                     </div>
                   </div>
+                  <SaveButton section="cores" />
                 </TabsContent>
 
               </Tabs>
