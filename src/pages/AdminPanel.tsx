@@ -487,6 +487,7 @@ const AdminPanel = () => {
                       </div>
                     </div>
                   </div>
+                  <SaveButton section="hero" />
                 </TabsContent>
 
                 {/* Seção de Benefícios */}
