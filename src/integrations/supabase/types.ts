@@ -16,28 +16,34 @@ export type Database = {
     Tables: {
       benefits: {
         Row: {
+          category: string | null
           created_at: string
           description: string
           icon_name: string
           id: string
+          image_url: string | null
           order_index: number
           title: string
           updated_at: string
         }
         Insert: {
+          category?: string | null
           created_at?: string
           description: string
           icon_name: string
           id?: string
+          image_url?: string | null
           order_index: number
           title: string
           updated_at?: string
         }
         Update: {
+          category?: string | null
           created_at?: string
           description?: string
           icon_name?: string
           id?: string
+          image_url?: string | null
           order_index?: number
           title?: string
           updated_at?: string
@@ -82,30 +88,39 @@ export type Database = {
       }
       packages: {
         Row: {
+          activities_count: string | null
+          age_range: string | null
           created_at: string
           description: string
           id: string
           image_url: string | null
           name: string
           order_index: number
+          price: string | null
           updated_at: string
         }
         Insert: {
+          activities_count?: string | null
+          age_range?: string | null
           created_at?: string
           description: string
           id?: string
           image_url?: string | null
           name: string
           order_index: number
+          price?: string | null
           updated_at?: string
         }
         Update: {
+          activities_count?: string | null
+          age_range?: string | null
           created_at?: string
           description?: string
           id?: string
           image_url?: string | null
           name?: string
           order_index?: number
+          price?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -250,28 +265,49 @@ export type Database = {
       }
       website_config: {
         Row: {
+          age_range: string | null
+          background_url: string | null
           created_at: string
           description: string | null
+          ebook_name: string | null
+          email_support: string | null
+          favicon_url: string | null
           id: string
+          logo_url: string | null
           purchase_link: string | null
+          subtitle: string | null
           title: string
           updated_at: string
           whatsapp_number: string | null
         }
         Insert: {
+          age_range?: string | null
+          background_url?: string | null
           created_at?: string
           description?: string | null
+          ebook_name?: string | null
+          email_support?: string | null
+          favicon_url?: string | null
           id?: string
+          logo_url?: string | null
           purchase_link?: string | null
+          subtitle?: string | null
           title?: string
           updated_at?: string
           whatsapp_number?: string | null
         }
         Update: {
+          age_range?: string | null
+          background_url?: string | null
           created_at?: string
           description?: string | null
+          ebook_name?: string | null
+          email_support?: string | null
+          favicon_url?: string | null
           id?: string
+          logo_url?: string | null
           purchase_link?: string | null
+          subtitle?: string | null
           title?: string
           updated_at?: string
           whatsapp_number?: string | null

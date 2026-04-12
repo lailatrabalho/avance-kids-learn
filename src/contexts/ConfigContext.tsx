@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRealTimeConfig } from '@/hooks/useRealTimeConfig';
 import { ConfigService } from '@/services/configService';
 import { ImageService } from '@/services/imageService';
@@ -346,18 +346,20 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           descricao: supabaseConfig.websiteConfig?.description || defaultConfig.geral.descricao,
           numeroWhatsApp: supabaseConfig.websiteConfig?.whatsapp_number || defaultConfig.geral.numeroWhatsApp,
           linkCompra: supabaseConfig.websiteConfig?.purchase_link || defaultConfig.geral.linkCompra,
-          faixaEtaria: defaultConfig.geral.faixaEtaria,
-          nomeEbook: defaultConfig.geral.nomeEbook,
-          subtitulo: defaultConfig.geral.subtitulo,
-          whatsapp: defaultConfig.geral.whatsapp,
-          emailSuporta: defaultConfig.geral.emailSuporta,
+          faixaEtaria: supabaseConfig.websiteConfig?.age_range || defaultConfig.geral.faixaEtaria,
+          nomeEbook: supabaseConfig.websiteConfig?.ebook_name || defaultConfig.geral.nomeEbook,
+          subtitulo: supabaseConfig.websiteConfig?.subtitle || defaultConfig.geral.subtitulo,
+          whatsapp: supabaseConfig.websiteConfig?.whatsapp_number || defaultConfig.geral.whatsapp,
+          emailSuporta: supabaseConfig.websiteConfig?.email_support || defaultConfig.geral.emailSuporta,
+          logo: supabaseConfig.websiteConfig?.logo_url || defaultConfig.geral.logo,
+          favicon: supabaseConfig.websiteConfig?.favicon_url || defaultConfig.geral.favicon,
         },
         navegacao: defaultConfig.navegacao,
         hero: {
-          titulo: defaultConfig.hero.titulo,
-          subtitulo: defaultConfig.hero.subtitulo,
+          titulo: supabaseConfig.heroSection?.title || defaultConfig.hero.titulo,
+          subtitulo: supabaseConfig.heroSection?.subtitle || defaultConfig.hero.subtitulo,
           descricao1: supabaseConfig.heroSection?.description_1 || defaultConfig.hero.descricao1,
-          descricao2: supabaseConfig.heroSection?.description_2 || defaultConfig.hero.descricao2,
+          descricao2: supabaseConfig.heroSection?.description_2 || defaultConfig.hero.description_2,
           descricao3: supabaseConfig.heroSection?.description_3 || defaultConfig.hero.descricao3,
           imagemUrl: supabaseConfig.heroSection?.image_url || defaultConfig.hero.imagemUrl,
           botaoCta: defaultConfig.hero.botaoCta,
@@ -371,26 +373,76 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             description: b.description,
             icon: b.icon_name,
           })) || defaultConfig.beneficios.items,
-          beneficio1: defaultConfig.beneficios.beneficio1,
-          beneficio2: defaultConfig.beneficios.beneficio2,
-          beneficio3: defaultConfig.beneficios.beneficio3,
-          beneficio4: defaultConfig.beneficios.beneficio4,
-          certificado: defaultConfig.beneficios.certificado,
+          beneficio1: supabaseConfig.benefits?.find(b => b.order_index === 1) ? { 
+            titulo: supabaseConfig.benefits.find(b => b.order_index === 1)!.title, 
+            descricao: supabaseConfig.benefits.find(b => b.order_index === 1)!.description,
+            imagem: supabaseConfig.benefits.find(b => b.order_index === 1)!.image_url,
+          } : defaultConfig.beneficios.beneficio1,
+          beneficio2: supabaseConfig.benefits?.find(b => b.order_index === 2) ? { 
+            titulo: supabaseConfig.benefits.find(b => b.order_index === 2)!.title, 
+            descricao: supabaseConfig.benefits.find(b => b.order_index === 2)!.description,
+            imagem: supabaseConfig.benefits.find(b => b.order_index === 2)!.image_url,
+          } : defaultConfig.beneficios.beneficio2,
+          beneficio3: supabaseConfig.benefits?.find(b => b.order_index === 3) ? { 
+            titulo: supabaseConfig.benefits.find(b => b.order_index === 3)!.title, 
+            descricao: supabaseConfig.benefits.find(b => b.order_index === 3)!.description,
+            imagem: supabaseConfig.benefits.find(b => b.order_index === 3)!.image_url,
+          } : defaultConfig.beneficios.beneficio3,
+          beneficio4: supabaseConfig.benefits?.find(b => b.order_index === 4) ? { 
+            titulo: supabaseConfig.benefits.find(b => b.order_index === 4)!.title, 
+            descricao: supabaseConfig.benefits.find(b => b.order_index === 4)!.description,
+            imagem: supabaseConfig.benefits.find(b => b.order_index === 4)!.image_url,
+          } : defaultConfig.beneficios.beneficio4,
+          certificado: supabaseConfig.benefits?.find(b => b.category === 'certificado') ? { 
+            titulo: supabaseConfig.benefits.find(b => b.category === 'certificado')!.title, 
+            descricao: supabaseConfig.benefits.find(b => b.category === 'certificado')!.description,
+            item1: (supabaseConfig.benefits.find(b => b.category === 'certificado') as any)?.advanced_settings?.item1 || defaultConfig.beneficios.certificado.item1,
+            item2: (supabaseConfig.benefits.find(b => b.category === 'certificado') as any)?.advanced_settings?.item2 || defaultConfig.beneficios.certificado.item2,
+            item3: (supabaseConfig.benefits.find(b => b.category === 'certificado') as any)?.advanced_settings?.item3 || defaultConfig.beneficios.certificado.item3,
+          } : defaultConfig.beneficios.certificado,
         },
         pacotes: {
           titulo: 'ESCOLHA SEU PACOTE',
           subtitulo: 'Pacotes desenvolvidos para cada necessidade',
-          botaoCompra: 'QUERO COMPRAR AGORA',
+          botaoCompra: supabaseConfig.websiteConfig?.purchase_link ? 'QUERO COMPRAR AGORA' : defaultConfig.pacotes.botaoCompra,
           items: supabaseConfig.packages?.map(p => ({
             id: p.id,
             nome: p.name,
             descricao: p.description,
             imagem: p.image_url || undefined,
           })) || defaultConfig.pacotes.items,
-          middle: defaultConfig.pacotes.middle,
-          rich: defaultConfig.pacotes.rich,
-          super: defaultConfig.pacotes.super,
-          expert: defaultConfig.pacotes.expert,
+          middle: supabaseConfig.packages?.find(p => p.name === 'MIDDLE') ? {
+            nome: 'MIDDLE',
+            idade: supabaseConfig.packages.find(p => p.name === 'MIDDLE')!.age_range || defaultConfig.pacotes.middle.idade,
+            atividades: supabaseConfig.packages.find(p => p.name === 'MIDDLE')!.activities_count || defaultConfig.pacotes.middle.atividades,
+            descricao: supabaseConfig.packages.find(p => p.name === 'MIDDLE')!.description,
+            preco: supabaseConfig.packages.find(p => p.name === 'MIDDLE')!.price || defaultConfig.pacotes.middle.preco,
+            imagem: supabaseConfig.packages.find(p => p.name === 'MIDDLE')!.image_url || undefined
+          } : defaultConfig.pacotes.middle,
+          rich: supabaseConfig.packages?.find(p => p.name === 'RICH') ? {
+            nome: 'RICH',
+            idade: supabaseConfig.packages.find(p => p.name === 'RICH')!.age_range || defaultConfig.pacotes.rich.idade,
+            atividades: supabaseConfig.packages.find(p => p.name === 'RICH')!.activities_count || defaultConfig.pacotes.rich.atividades,
+            descricao: supabaseConfig.packages.find(p => p.name === 'RICH')!.description,
+            preco: supabaseConfig.packages.find(p => p.name === 'RICH')!.price || defaultConfig.pacotes.rich.preco,
+            imagem: supabaseConfig.packages.find(p => p.name === 'RICH')!.image_url || undefined
+          } : defaultConfig.pacotes.rich,
+          super: supabaseConfig.packages?.find(p => p.name === 'SUPER') ? {
+            nome: 'SUPER',
+            idade: supabaseConfig.packages.find(p => p.name === 'SUPER')!.age_range || defaultConfig.pacotes.super.idade,
+            atividades: supabaseConfig.packages.find(p => p.name === 'SUPER')!.activities_count || defaultConfig.pacotes.super.atividades,
+            descricao: supabaseConfig.packages.find(p => p.name === 'SUPER')!.description,
+            preco: supabaseConfig.packages.find(p => p.name === 'SUPER')!.price || defaultConfig.pacotes.super.preco,
+            imagem: supabaseConfig.packages.find(p => p.name === 'SUPER')!.image_url || undefined
+          } : defaultConfig.pacotes.super,
+          expert: supabaseConfig.packages?.find(p => p.name === 'EXPERT') ? {
+            nome: 'EXPERT',
+            idade: supabaseConfig.packages.find(p => p.name === 'EXPERT')!.age_range || defaultConfig.pacotes.expert.idade,
+            atividades: supabaseConfig.packages.find(p => p.name === 'EXPERT')!.activities_count || defaultConfig.pacotes.expert.atividades,
+            descricao: supabaseConfig.packages.find(p => p.name === 'EXPERT')!.description,
+            preco: supabaseConfig.packages.find(p => p.name === 'EXPERT')!.price || defaultConfig.pacotes.expert.preco,
+            imagem: supabaseConfig.packages.find(p => p.name === 'EXPERT')!.image_url || undefined
+          } : defaultConfig.pacotes.expert,
         },
         depoimentos: {
           titulo: 'O QUE DIZEM OS PAIS E PROFESSORES',
@@ -481,7 +533,14 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           titulo: 'title',
           descricao: 'description',
           numeroWhatsApp: 'whatsapp_number',
+          whatsapp: 'whatsapp_number',
           linkCompra: 'purchase_link',
+          faixaEtaria: 'age_range',
+          nomeEbook: 'ebook_name',
+          subtitulo: 'subtitle',
+          emailSuporta: 'email_support',
+          logo: 'logo_url',
+          favicon: 'favicon_url',
         };
         await ConfigService.updateWebsiteConfig({
           id: supabaseConfig.websiteConfig.id,
@@ -495,14 +554,23 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           descricao2: 'description_2',
           descricao3: 'description_3',
           imagemUrl: 'image_url',
+          botaoCta: 'botao_cta',
         };
         await ConfigService.updateHeroSection({
           id: supabaseConfig.heroSection.id,
           [fieldMap[field]]: value,
         });
+      } else if (section === 'beneficios') {
+        // Handle global benefits settings if any
+      } else if (section === 'pacotes') {
+        if (field === 'botaoCompra' && supabaseConfig.websiteConfig) {
+          await ConfigService.updateWebsiteConfig({
+            id: supabaseConfig.websiteConfig.id,
+            purchase_link: value,
+          });
+        }
       } else {
-        // For sections not yet integrated with Supabase, just update local state
-        console.log(`Section '${section}' updated locally only. Supabase integration pending.`);
+        console.log(`Section '${section}' updated locally. Supabase integration for this field pending.`);
       }
     } catch (error) {
       console.error('Error updating config:', error);
@@ -552,6 +620,49 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           id: supabaseConfig.targetAudience.id,
           [`card_${cardNum}_${fieldMap[field]}`]: value,
         });
+      } else if (section === 'beneficios') {
+        if (subsection === 'certificado') {
+          let certBenefit = supabaseConfig.benefits.find(b => b.category === 'certificado');
+          if (certBenefit) {
+            const fieldMap: { [key: string]: string } = {
+              titulo: 'title',
+              descricao: 'description',
+              imagem: 'image_url',
+            };
+            if (fieldMap[field]) {
+              await ConfigService.updateBenefit(certBenefit.id, { [fieldMap[field]]: value });
+            } else {
+              // Store items in advanced_settings
+              const settings = (certBenefit as any).advanced_settings || {};
+              settings[field] = value;
+              await ConfigService.updateBenefit(certBenefit.id, { advanced_settings: settings });
+            }
+          }
+        } else if (subsection.startsWith('beneficio')) {
+          const index = parseInt(subsection.replace('beneficio', ''));
+          const benefit = supabaseConfig.benefits.find(b => b.order_index === index);
+          if (benefit) {
+            const fieldMap: { [key: string]: string } = {
+              titulo: 'title',
+              descricao: 'description',
+              imagem: 'image_url',
+            };
+            await ConfigService.updateBenefit(benefit.id, { [fieldMap[field]]: value });
+          }
+        }
+      } else if (section === 'pacotes') {
+        const pkg = supabaseConfig.packages.find(p => p.name.toLowerCase() === subsection.toLowerCase());
+        if (pkg) {
+          const fieldMap: { [key: string]: string } = {
+            nome: 'name',
+            idade: 'age_range',
+            atividades: 'activities_count',
+            descricao: 'description',
+            preco: 'price',
+            imagem: 'image_url',
+          };
+          await ConfigService.updatePackage(pkg.id, { [fieldMap[field]]: value });
+        }
       }
     } catch (error) {
       console.error('Error updating nested config:', error);
@@ -588,6 +699,21 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     exportConfig,
     importConfig,
   };
+
+  // Update document title and favicon
+  useEffect(() => {
+    if (config.geral.nomeEbook) {
+      document.title = config.geral.nomeEbook;
+    }
+    
+    if (config.geral.favicon) {
+      const link: HTMLLinkElement = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel = 'shortcut icon';
+      link.href = config.geral.favicon.startsWith('http') ? config.geral.favicon : `keys/${config.geral.favicon}`;
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  }, [config.geral.nomeEbook, config.geral.favicon]);
 
   return (
     <ConfigContext.Provider value={value}>

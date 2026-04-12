@@ -438,7 +438,7 @@ const AdminPanel = () => {
                         placeholder="5599999999999"
                       />
                     </div>
-                    <div className="md:col-span-2">
+                    <div className="md:col-span-1">
                       <Label className="block text-sm font-medium text-gray-700 mb-2">E-mail de Suporte</Label>
                       <Input
                         type="email"
@@ -446,6 +446,60 @@ const AdminPanel = () => {
                         onChange={(e) => handleInputChange("geral", "emailSuporta", e.target.value)}
                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                       />
+                    </div>
+                    {/* Logo Upload */}
+                    <div className="md:col-span-1">
+                      <Label className="block text-sm font-medium text-gray-700 mb-2">Logo do Site</Label>
+                      <div className="space-y-3">
+                        <Input
+                          value={(config.geral as any)?.logo || ""}
+                          onChange={(e) => handleInputChange("geral", "logo", e.target.value)}
+                          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          placeholder="URL da imagem ou ID"
+                        />
+                        <div className="flex items-center space-x-3">
+                          <label className={`flex-1 cursor-pointer ${uploadingImages['geral_logo'] ? 'opacity-50' : ''}`}>
+                            <div className="flex items-center justify-center w-full px-4 py-2 border-2 border-dashed border-blue-300 rounded-lg hover:border-blue-400 transition-colors bg-blue-50 hover:bg-blue-100">
+                              <Upload className="w-5 h-5 text-blue-600 mr-2" />
+                              <span className="text-sm text-blue-600 font-medium">Upload Logo</span>
+                            </div>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handleImageUpload(e, 'geral', 'logo')}
+                              className="hidden"
+                              disabled={uploadingImages['geral_logo']}
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Favicon Upload */}
+                    <div className="md:col-span-1">
+                      <Label className="block text-sm font-medium text-gray-700 mb-2">Favicon (Ícone da Aba)</Label>
+                      <div className="space-y-3">
+                        <Input
+                          value={(config.geral as any)?.favicon || ""}
+                          onChange={(e) => handleInputChange("geral", "favicon", e.target.value)}
+                          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                          placeholder="URL da imagem .ico ou .png"
+                        />
+                        <div className="flex items-center space-x-3">
+                          <label className={`flex-1 cursor-pointer ${uploadingImages['geral_favicon'] ? 'opacity-50' : ''}`}>
+                            <div className="flex items-center justify-center w-full px-4 py-2 border-2 border-dashed border-green-300 rounded-lg hover:border-green-400 transition-colors bg-green-50 hover:bg-green-100">
+                              <Upload className="w-5 h-5 text-green-600 mr-2" />
+                              <span className="text-sm text-green-600 font-medium">Upload Favicon</span>
+                            </div>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handleImageUpload(e, 'geral', 'favicon')}
+                              className="hidden"
+                              disabled={uploadingImages['geral_favicon']}
+                            />
+                          </label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <SaveButton section="geral" />
@@ -591,6 +645,28 @@ const AdminPanel = () => {
                               rows={3}
                             />
                           </div>
+                          <div>
+                            <Label className="block text-sm font-medium text-gray-700 mb-1 text-xs">Imagem do Benefício (opcional)</Label>
+                            <div className="flex items-center space-x-2">
+                              <Input
+                                value={(config.beneficios as any)?.[key]?.imagem || ""}
+                                onChange={(e) => handleNestedChange("beneficios", key, "imagem", e.target.value)}
+                                className="flex-1 p-2 text-[10px] h-8 border border-gray-300 rounded"
+                                placeholder="URL ou Upload"
+                              />
+                              <label className={`cursor-pointer ${uploadingImages[`beneficios_${key}_imagem`] ? 'opacity-50' : ''}`}>
+                                <div className="p-1.5 bg-blue-50 rounded border border-blue-200 hover:bg-blue-100 transition-colors">
+                                  <Upload className="w-3.5 h-3.5 text-blue-600" />
+                                </div>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={(e) => handleImageUpload(e, 'beneficios', `${key}_imagem`)}
+                                  className="hidden"
+                                />
+                              </label>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -725,6 +801,28 @@ const AdminPanel = () => {
                               className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
                               placeholder="29.90"
                             />
+                          </div>
+                          <div>
+                            <Label className="block text-sm font-medium text-gray-700 mb-1">Imagem da Capa</Label>
+                            <div className="flex items-center space-x-2">
+                              <Input
+                                value={(config.pacotes as any)?.[key]?.imagem || ""}
+                                onChange={(e) => handleNestedChange("pacotes", key, "imagem", e.target.value)}
+                                className="flex-1 p-2 text-xs border border-gray-300 rounded"
+                                placeholder="URL da imagem (ex: Imgur)"
+                              />
+                              <label className={`cursor-pointer ${uploadingImages[`pacotes_${key}_imagem`] ? 'opacity-50' : ''}`}>
+                                <div className="p-2 bg-purple-50 rounded border border-purple-200 hover:bg-purple-100 transition-colors">
+                                  <Upload className="w-4 h-4 text-purple-600" />
+                                </div>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={(e) => handleImageUpload(e, 'pacotes', `${key}_imagem`)}
+                                  className="hidden"
+                                />
+                              </label>
+                            </div>
                           </div>
                         </div>
                       </div>

@@ -6,6 +6,13 @@ export interface WebsiteConfig {
   description: string;
   whatsapp_number: string;
   purchase_link: string;
+  age_range?: string;
+  ebook_name?: string;
+  subtitle?: string;
+  email_support?: string;
+  logo_url?: string;
+  favicon_url?: string;
+  background_url?: string;
   advanced_settings?: any;
   created_at: string;
   updated_at: string;
@@ -28,6 +35,8 @@ export interface Benefit {
   title: string;
   description: string;
   icon_name: string;
+  image_url: string | null;
+  category: string | null;
   order_index: number;
   created_at: string;
   updated_at: string;
@@ -38,6 +47,9 @@ export interface Package {
   name: string;
   description: string;
   image_url: string | null;
+  age_range: string | null;
+  activities_count: string | null;
+  price: string | null;
   order_index: number;
   created_at: string;
   updated_at: string;

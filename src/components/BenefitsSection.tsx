@@ -14,65 +14,38 @@ const BenefitsSection = () => {
         </div>
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-green-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
-              <div className="relative p-6 sm:p-8">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">1</div>
-                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">🎲</div>
+          {[
+            { key: 'beneficio1', emoji: '🎲', color: 'green' },
+            { key: 'beneficio2', emoji: '🧠', color: 'green' },
+            { key: 'beneficio3', emoji: '✍️', color: 'green' },
+            { key: 'beneficio4', emoji: '📖', color: 'green' }
+          ].map((item, index) => {
+            const benefit = (config.beneficios as any)[item.key];
+            const benefitImage = benefit?.imagem ? (benefit.imagem.startsWith('http') ? benefit.imagem : `keys/${benefit.imagem}`) : null;
+            
+            return (
+              <div key={item.key} className="group">
+                <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-green-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50 h-full">
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
+                  <div className="relative p-6 sm:p-8">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">{index + 1}</div>
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                        {benefitImage ? (
+                          <img src={benefitImage} alt={benefit?.titulo} className="w-full h-full object-contain" />
+                        ) : (
+                          <span className="text-4xl sm:text-5xl">{item.emoji}</span>
+                        )}
+                      </div>
+                    </div>
+                    <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight font-semibold">{benefit?.titulo}</h3>
+                    <p className="poppins text-gray-700 text-sm leading-relaxed">{benefit?.descricao}</p>
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  </div>
                 </div>
-                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">JOGOS PEDAGÓGICOS EDUCATIVOS</h3>
-                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades lúdicas e interativas que estimulam o aprendizado por meio de jogos, promovendo o raciocínio, a criatividade e a socialização das crianças.</p>
-                <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               </div>
-            </div>
-          </div>
-          
-          <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-green-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
-              <div className="relative p-6 sm:p-8">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">2</div>
-                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">🧠</div>
-                </div>
-                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">DESENVOLVEM LÓGICA E INTELIGÊNCIA</h3>
-                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades que estimulam o raciocínio lógico, criatividade e resolução de problemas</p>
-                <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-green-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
-              <div className="relative p-6 sm:p-8">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">3</div>
-                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">✍️</div>
-                </div>
-                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">DESENVOLVEM A COORDENAÇÃO MOTORA</h3>
-                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades práticas que estimulam o traçado, recorte, colagem e outras ações essenciais para o desenvolvimento motor das crianças.</p>
-                <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="group">
-            <div className="relative overflow-hidden bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-green-300 hover:bg-gradient-to-br hover:from-green-50 hover:to-emerald-50">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-100 opacity-60"></div>
-              <div className="relative p-6 sm:p-8">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">4</div>
-                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform duration-300">📖</div>
-                </div>
-                <h3 className="fredoka text-lg sm:text-xl text-dark-blue mb-3 leading-tight">MELHORAM E AVANÇAM NO NÍVEIS DE LEITURA E ESCRITA</h3>
-                <p className="poppins text-gray-700 text-sm leading-relaxed">Atividades que desenvolvem e aprimoram as habilidades de leitura e escrita, promovendo avanços significativos em cada etapa da alfabetização.</p>
-                <div className="absolute top-4 right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       
         <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }} className="p-4 sm:p-6 lg:p-8 rounded-3xl mt-12 sm:mt-16 text-center shadow-2xl border-4 border-white relative overflow-hidden">

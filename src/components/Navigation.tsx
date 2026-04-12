@@ -10,7 +10,7 @@ const WhatsAppIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
 const Navigation = () => {
   const { config } = useConfig();
   const handleWhatsAppClick = () => {
-    const numeroWhatsApp = config.geral.numeroWhatsApp || "559491334167";
+    const numeroWhatsApp = config.geral.whatsapp || "559491334167";
     const mensagem = encodeURIComponent("Olá! Gostaria de adquirir o e-book Avance para Educação Infantil. Pode me ajudar?");
     const link = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
     window.open(link, '_blank');
@@ -25,8 +25,21 @@ const Navigation = () => {
   return (
     <nav className="bg-white/95 backdrop-blur-sm shadow-lg py-3 sm:py-4 px-4 sm:px-6 border-b-2 border-gold/30 sticky top-0 z-50 transition-all duration-300">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="fredoka text-lg sm:text-xl md:text-2xl text-dark-blue hover:scale-105 transition-transform duration-300 cursor-pointer" translate="no">
-          🚀 AVANCE
+        <div 
+          className="fredoka text-lg sm:text-xl md:text-2xl text-dark-blue hover:scale-105 transition-transform duration-300 cursor-pointer flex items-center" 
+          translate="no"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          {config.geral.logo ? (
+            <img 
+              src={config.geral.logo.startsWith('http') ? config.geral.logo : `keys/${config.geral.logo}`} 
+              alt={config.geral.nomeEbook || "Avance"} 
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
+          ) : (
+            <>🚀 AVANCE</>
+          )}
         </div>
         <div className="hidden lg:flex space-x-6 xl:space-x-8 poppins">
           <button 
