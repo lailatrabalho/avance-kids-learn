@@ -63,6 +63,7 @@ export interface ConfigData {
     beneficio2: { titulo: string; descricao: string };
     beneficio3: { titulo: string; descricao: string };
     beneficio4: { titulo: string; descricao: string };
+    certificado: { titulo: string; descricao: string; item1: string; item2: string; item3: string; };
   };
   pacotes: {
     titulo: string;
@@ -210,6 +211,13 @@ const defaultConfig: ConfigData = {
     beneficio2: { titulo: 'Desenvolvem Lógica e Inteligência', descricao: 'Atividades que estimulam o raciocínio lógico e criatividade' },
     beneficio3: { titulo: 'Desenvolvem a Coordenação Motora', descricao: 'Atividades práticas que estimulam o desenvolvimento motor' },
     beneficio4: { titulo: 'Melhoram os Níveis de Leitura e Escrita', descricao: 'Atividades que desenvolvem habilidades de alfabetização' },
+    certificado: { 
+      titulo: 'CERTIFICADO<br />PERSONALIZADO', 
+      descricao: '🎓 Reconhecimento oficial que motiva e valoriza o desenvolvimento de cada criança ao concluir as atividades propostas', 
+      item1: 'Certificado Digital', 
+      item2: 'Design Exclusivo', 
+      item3: 'Nome da Criança' 
+    },
   },
   pacotes: {
     titulo: 'ESCOLHA SEU PACOTE',
@@ -367,6 +375,7 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           beneficio2: defaultConfig.beneficios.beneficio2,
           beneficio3: defaultConfig.beneficios.beneficio3,
           beneficio4: defaultConfig.beneficios.beneficio4,
+          certificado: defaultConfig.beneficios.certificado,
         },
         pacotes: {
           titulo: 'ESCOLHA SEU PACOTE',

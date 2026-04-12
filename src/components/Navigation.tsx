@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-
+import { useConfig } from '@/contexts/ConfigContext';
 // WhatsApp SVG Icon Component
 const WhatsAppIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -8,8 +8,9 @@ const WhatsAppIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
 );
 
 const Navigation = () => {
+  const { config } = useConfig();
   const handleWhatsAppClick = () => {
-    const numeroWhatsApp = "559491334167";
+    const numeroWhatsApp = config.geral.numeroWhatsApp || "559491334167";
     const mensagem = encodeURIComponent("Olá! Gostaria de adquirir o e-book Avance para Educação Infantil. Pode me ajudar?");
     const link = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
     window.open(link, '_blank');

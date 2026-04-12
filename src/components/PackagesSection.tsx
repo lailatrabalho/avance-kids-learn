@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useConfig } from '@/hooks/useConfig';
+import { useConfig } from '@/contexts/ConfigContext';
 const PackagesSection = () => {
   const {
     config

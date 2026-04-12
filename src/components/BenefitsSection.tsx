@@ -1,5 +1,5 @@
 
-import { useConfig } from '@/hooks/useConfig';
+import { useConfig } from '@/contexts/ConfigContext';
 
 const BenefitsSection = () => {
   const { config } = useConfig();
@@ -96,28 +96,29 @@ const BenefitsSection = () => {
               <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-white rounded-full flex items-center justify-center mb-2 shadow-xl animate-bounce">
                 <div className="text-2xl sm:text-4xl lg:text-5xl">🏆</div>
               </div>
-              <h3 className="fredoka text-lg sm:text-xl md:text-2xl lg:text-3xl text-white drop-shadow-lg leading-tight mb-3 sm:mb-4 text-center">
-                CERTIFICADO<br />PERSONALIZADO
-              </h3>
+              <h3 
+                className="fredoka text-lg sm:text-xl md:text-2xl lg:text-3xl text-white drop-shadow-lg leading-tight mb-3 sm:mb-4 text-center"
+                dangerouslySetInnerHTML={{ __html: (config.beneficios as any).certificado?.titulo }}
+              />
             </div>
             
             <div className="bg-white/90 backdrop-blur-sm p-3 sm:p-4 lg:p-6 rounded-2xl shadow-xl mx-auto max-w-2xl border border-white/30">
               <p className="poppins text-dark-blue font-semibold text-xs sm:text-sm lg:text-base mb-3 sm:mb-4">
-                🎓 Reconhecimento oficial que motiva e valoriza o desenvolvimento de cada criança ao concluir as atividades propostas
+                {(config.beneficios as any).certificado?.descricao}
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                 <div className="flex flex-col sm:flex-row items-center justify-center bg-blue-600 text-white p-3 rounded-xl shadow-lg">
                   <span className="text-lg sm:text-base mb-1 sm:mb-0 sm:mr-2">📜</span>
-                  <span className="poppins font-bold text-xs sm:text-sm text-center">Certificado Digital</span>
+                  <span className="poppins font-bold text-xs sm:text-sm text-center">{(config.beneficios as any).certificado?.item1}</span>
                 </div>
                 <div className="flex flex-col sm:flex-row items-center justify-center bg-green-600 text-white p-3 rounded-xl shadow-lg">
                   <span className="text-lg sm:text-base mb-1 sm:mb-0 sm:mr-2">🎨</span>
-                  <span className="poppins font-bold text-xs sm:text-sm text-center">Design Exclusivo</span>
+                  <span className="poppins font-bold text-xs sm:text-sm text-center">{(config.beneficios as any).certificado?.item2}</span>
                 </div>
                 <div style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' }} className="flex flex-col sm:flex-row items-center justify-center text-white p-3 rounded-xl shadow-lg">
                   <span className="text-lg sm:text-base mb-1 sm:mb-0 sm:mr-2">👶</span>
-                  <span className="poppins font-bold text-xs sm:text-sm text-center">Nome da Criança</span>
+                  <span className="poppins font-bold text-xs sm:text-sm text-center">{(config.beneficios as any).certificado?.item3}</span>
                 </div>
               </div>
             </div>

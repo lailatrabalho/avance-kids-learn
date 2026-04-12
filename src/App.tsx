@@ -7,7 +7,7 @@ import { ConfigProvider } from "@/contexts/ConfigContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import ThankYouStatic from "./pages/ThankYouStatic";
-import AdminPanel from "./pages/AdminPanel";
+import ProtectedAdminPanel from "./components/ProtectedAdminPanel";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,7 +23,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/obrigado" element={<ThankYouStatic />} />
-              <Route path="/admin" element={<AdminPanel />} />
+              <Route path="/admin" element={<ProtectedAdminPanel />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

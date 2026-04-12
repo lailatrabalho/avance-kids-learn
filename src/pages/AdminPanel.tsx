@@ -7,15 +7,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { useRef, useState, useCallback } from "react";
 import { Settings, Save, Eye, FileText, Users, MessageCircle, Heart, Upload, Download, Palette, Package, Star, Gift, Check } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
 const AdminPanel = () => {
-  const { config, loading, updateConfig, updateNestedConfig, exportConfig, importConfig } = useConfig();
+  const { config, loading, updateConfig, updateNestedConfig, exportConfig, importConfig, uploadImage: contextUploadImage } = useConfig();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("geral");
   const [isSaving, setIsSaving] = useState(false);
   const [savedSections, setSavedSections] = useState<Record<string, boolean>>({});
   const [dirtyFields, setDirtyFields] = useState<Record<string, boolean>>({});
+  const [newAdminEmail, setNewAdminEmail] = useState("");
+  const [newAdminPassword, setNewAdminPassword] = useState("");
+  const [isCreatingAdmin, setIsCreatingAdmin] = useState(false);
   const [uploadingImages, setUploadingImages] = useState<Record<string, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
@@ -126,16 +130,9 @@ const AdminPanel = () => {
   const uploadImage = async (file: File, fieldKey: string) => {
     setUploadingImages(prev => ({ ...prev, [fieldKey]: true }));
     try {
-      const formData = new FormData();
-      formData.append('image', file);
-      
-      // Simular delay de upload
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Retornar um ID fictício baseado no nome do arquivo
-      const fakeId = file.name.replace(/\.[^/.]+$/, "") + "_" + Date.now();
+      const imageUrl = await contextUploadImage(file, 'uploads');
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
-      return fakeId;
+      return imageUrl;
     } catch (error) {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
       toast({ title: "❌ Erro", description: "Erro ao fazer upload da imagem.", variant: "destructive" });
@@ -188,21 +185,39 @@ const AdminPanel = () => {
     setUploadingImages(prev => ({ ...prev, [fieldKey]: true }));
     
     try {
-      const formData = new FormData();
-      formData.append('video', file);
+      const videoUrl = await contextUploadImage(file, 'videos');
       
-      // Simular delay de upload de vídeo (mais longo)
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      // Retornar um ID fictício baseado no nome do arquivo
-      const fakeId = file.name.replace(/\.[^/.]+$/, "") + "_video_" + Date.now();
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
       
-      await updateConfig(section as any, 'videoArquivo', fakeId);
+      await updateConfig(section as any, 'videoUrl', videoUrl);
       toast({ title: "✅ Sucesso", description: "Vídeo enviado com sucesso!" });
     } catch (error) {
       setUploadingImages(prev => ({ ...prev, [fieldKey]: false }));
       toast({ title: "❌ Erro", description: "Erro ao fazer upload do vídeo.", variant: "destructive" });
+    }
+  };
+
+  const handleAddAdmin = async () => {
+    if (!newAdminEmail || !newAdminPassword) {
+      alert("Preencha E-mail e Senha!");
+      return;
+    }
+    setIsCreatingAdmin(true);
+    try {
+      const { error } = await supabase.rpc('admin_create_user', {
+        admin_email: newAdminEmail,
+        admin_password: newAdminPassword
+      });
+
+      if (error) throw error;
+      alert("Administrador criado com sucesso!");
+      setNewAdminEmail("");
+      setNewAdminPassword("");
+    } catch (err: any) {
+      console.error(err);
+      alert("Erro ao adicionar admin: " + err.message);
+    } finally {
+      setIsCreatingAdmin(false);
     }
   };
 
@@ -281,7 +296,8 @@ const AdminPanel = () => {
                   { id: 'pacotes', label: '📦 Pacotes', icon: Package },
                   { id: 'depoimentos', label: '💬 Depoimentos', icon: MessageCircle },
                   { id: 'obrigado', label: '🎉 Obrigado', icon: Gift },
-                  { id: 'cores', label: '🎨 Cores', icon: Palette }
+                  { id: 'cores', label: '🎨 Cores', icon: Palette },
+                  { id: 'gestores', label: '👥 Gestores', icon: Users }
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -333,6 +349,46 @@ const AdminPanel = () => {
           <div className="flex-1">
             <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
               <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+
+                {/* Gestores / Participantes */}
+                <TabsContent value="gestores" className="space-y-6">
+                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl border border-blue-200">
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2 flex items-center space-x-3">
+                      <span className="text-3xl">👥</span>
+                      <span>Participantes / Gestores</span>
+                    </h3>
+                    <p className="text-gray-600">Adicione novos administradores para acessar este painel.</p>
+                  </div>
+                  
+                  <div className="bg-white border rounded-xl p-6">
+                    <h4 className="font-semibold text-lg mb-4">Novo Administrador</h4>
+                    <div className="space-y-4 max-w-md">
+                      <div>
+                        <Label className="block text-sm font-medium text-gray-700 mb-2">E-mail</Label>
+                        <Input
+                          value={newAdminEmail}
+                          onChange={(e) => setNewAdminEmail(e.target.value)}
+                          placeholder="email@exemplo.com"
+                          className="w-full"
+                          type="email"
+                        />
+                      </div>
+                      <div>
+                        <Label className="block text-sm font-medium text-gray-700 mb-2">Senha</Label>
+                        <Input
+                          value={newAdminPassword}
+                          onChange={(e) => setNewAdminPassword(e.target.value)}
+                          placeholder="Mínimo 6 caracteres"
+                          className="w-full"
+                          type="password"
+                        />
+                      </div>
+                      <Button onClick={handleAddAdmin} disabled={isCreatingAdmin} className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                        {isCreatingAdmin ? "Adicionando..." : "Adicionar Administrador"}
+                      </Button>
+                    </div>
+                  </div>
+                </TabsContent>
 
                 {/* Configurações Gerais */}
                 <TabsContent value="geral" className="space-y-8">
@@ -538,6 +594,57 @@ const AdminPanel = () => {
                         </div>
                       </div>
                     ))}
+                  </div>
+                  {/* Seção Certificado Personalizado */}
+                  <div className="mt-8 pt-8 border-t border-gray-200">
+                    <h3 className="text-xl font-bold text-gray-800 mb-4">🏆 Seção Certificado</h3>
+                    <div className="bg-gray-50 p-6 rounded-xl space-y-4">
+                      <div>
+                        <Label className="block text-sm font-medium text-gray-700 mb-2">Título do Certificado</Label>
+                        <Input
+                          value={(config.beneficios as any)?.certificado?.titulo || ""}
+                          onChange={(e) => handleNestedChange("beneficios", "certificado", "titulo", e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                          placeholder="Ex: CERTIFICADO<br />PERSONALIZADO"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">Use &lt;br /&gt; para quebrar a linha.</p>
+                      </div>
+                      <div>
+                        <Label className="block text-sm font-medium text-gray-700 mb-2">Descrição</Label>
+                        <Textarea
+                          value={(config.beneficios as any)?.certificado?.descricao || ""}
+                          onChange={(e) => handleNestedChange("beneficios", "certificado", "descricao", e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                          rows={2}
+                        />
+                      </div>
+                      <div className="grid md:grid-cols-3 gap-4">
+                        <div>
+                          <Label className="block text-sm font-medium text-gray-700 mb-2">Item 1</Label>
+                          <Input
+                            value={(config.beneficios as any)?.certificado?.item1 || ""}
+                            onChange={(e) => handleNestedChange("beneficios", "certificado", "item1", e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                        <div>
+                          <Label className="block text-sm font-medium text-gray-700 mb-2">Item 2</Label>
+                          <Input
+                            value={(config.beneficios as any)?.certificado?.item2 || ""}
+                            onChange={(e) => handleNestedChange("beneficios", "certificado", "item2", e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                        <div>
+                          <Label className="block text-sm font-medium text-gray-700 mb-2">Item 3</Label>
+                          <Input
+                            value={(config.beneficios as any)?.certificado?.item3 || ""}
+                            onChange={(e) => handleNestedChange("beneficios", "certificado", "item3", e.target.value)}
+                            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <SaveButton section="beneficios" />
                 </TabsContent>

@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { useConfig } from '@/hooks/useConfig';
+import { useConfig } from '@/contexts/ConfigContext';
 
 const HeroSection = () => {
   const { config } = useConfig();
   
   const handlePurchaseClick = () => {
-    window.open('https://pay.kiwify.com.br/3dFCqAu', '_blank');
+    window.open(config.geral.linkCompra || config.geral.botaoCta || 'https://pay.kiwify.com.br/3dFCqAu', '_blank');
   };
 
   return (

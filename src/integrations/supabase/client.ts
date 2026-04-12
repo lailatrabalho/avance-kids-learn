@@ -1,6 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://xwxzcklljjcyoblznocp.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3eHpja2xsampjeW9ibHpub2NwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2NzQwOTAsImV4cCI6MjA2ODI1MDA5MH0.da5u8qn0ItyfdYLpOsofnocvSFc3FDh9syzXGIfaK6U'
+const supabaseProjectId = import.meta.env.VITE_SUPABASE_PROJECT_ID
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL ?? (supabaseProjectId ? `https://${supabaseProjectId}.supabase.co` : undefined)
+const supabasePublishableKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+if (!supabaseUrl || !supabasePublishableKey) {
+  throw new Error('Supabase não configurado. Defina VITE_SUPABASE_URL e VITE_SUPABASE_PUBLISHABLE_KEY.')
+}
+
+export const supabase = createClient(supabaseUrl, supabasePublishableKey)
