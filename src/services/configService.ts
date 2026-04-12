@@ -6,6 +6,7 @@ export interface WebsiteConfig {
   description: string;
   whatsapp_number: string;
   purchase_link: string;
+  advanced_settings?: any;
   created_at: string;
   updated_at: string;
 }
